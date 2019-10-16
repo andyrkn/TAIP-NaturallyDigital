@@ -9,7 +9,7 @@ Conf. dr. Alboaie Lenuța
 ## Team members
 Borsan Razvan Ionut  razvanborsan@gmail.com
 
-Mihaila Andrei  ratzoiu2000@gmail.com
+Mihaila Andrei  andyfbgm@gmail.com
 
 Popescu Georgian Stefan  georgianspopescu@gmail.com
 
