@@ -1,10 +1,12 @@
 pragma solidity >=0.5.5 <=0.5.11;
 
+import "./Ownable.sol";
+
 /**
  * @dev Pausable contract implements Emergency stop mechanism design pattern
  * @notice From https://github.com/OpenZeppelin/openzeppelin-contracts
  */
-contract Pausable {
+contract Pausable is Ownable {
     /**
      * @dev Emitted when the pause is triggered by a pauser (`account`).
      */
@@ -51,8 +53,7 @@ contract Pausable {
     /**
      * @dev Called by a pauser to pause, triggers stopped state.
      */
-    // TO DO: add permission
-    function pause() public whenNotPaused {
+    function pause() public whenNotPaused onlyOwner {
         _paused = true;
         emit Paused(msg.sender);
     }
@@ -60,8 +61,7 @@ contract Pausable {
     /**
      * @dev Called by a pauser to unpause, returns to normal state.
      */
-    // TO DO: add permission
-    function unpause() public whenPaused {
+    function unpause() public whenPaused onlyOwner {
         _paused = false;
         emit Unpaused(msg.sender);
     }

@@ -6,17 +6,17 @@
       "inputs": [
         {
           "indexed": false,
-          "name": "",
+          "name": "user",
           "type": "address"
         },
         {
           "indexed": false,
-          "name": "",
+          "name": "userDataHash",
           "type": "string"
         },
         {
           "indexed": false,
-          "name": "",
+          "name": "IP",
           "type": "address"
         }
       ],
@@ -28,17 +28,17 @@
       "inputs": [
         {
           "indexed": false,
-          "name": "",
+          "name": "user",
           "type": "address"
         },
         {
           "indexed": false,
-          "name": "",
+          "name": "userDataHash",
           "type": "string"
         },
         {
           "indexed": false,
-          "name": "",
+          "name": "IP",
           "type": "address"
         }
       ],
@@ -78,12 +78,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_ipfsHash\",\"type\":\"string\"}],\"name\":\"removeIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_ipfsHash\",\"type\":\"string\"},{\"name\":\"_identityProvider\",\"type\":\"address\"}],\"name\":\"addIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"name\":\"\",\"type\":\"address\"}],\"name\":\"AddIdentity\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"name\":\"\",\"type\":\"address\"}],\"name\":\"RemoveIdentity\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{},\"title\":\"User identity interface\\r\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":\"IUserIdentity\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":{\"keccak256\":\"0x9a4fb7fa4041ec7079f98385dd4faf977c74be0f43ef9adfed1c79003b032561\",\"urls\":[\"bzzr://0859d6750171c762fb6ed8b2a96a0f516d939f1baae9e5bca983c34605710d20\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_ipfsHash\",\"type\":\"string\"}],\"name\":\"removeIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_ipfsHash\",\"type\":\"string\"},{\"name\":\"_identityProvider\",\"type\":\"address\"}],\"name\":\"addIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"userDataHash\",\"type\":\"string\"},{\"indexed\":false,\"name\":\"IP\",\"type\":\"address\"}],\"name\":\"AddIdentity\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"userDataHash\",\"type\":\"string\"},{\"indexed\":false,\"name\":\"IP\",\"type\":\"address\"}],\"name\":\"RemoveIdentity\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{},\"title\":\"User identity interface\\r\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":\"IUserIdentity\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":{\"keccak256\":\"0x71ce6c48d9e7cd3b67cc2c9a48c16184090b1d7e98d3f1a18e3494f6ad2e0808\",\"urls\":[\"bzzr://680bc63d8414e9191353c514d3a4bf01d1bd11b011e4bb94b75eaeb98cd28a85\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity >=0.5.8 <=0.5.11;\r\n\r\n/**\r\n * @title User identity interface\r\n */\r\ninterface IUserIdentity {\r\n    event AddIdentity(address, string, address);\r\n    event RemoveIdentity(address, string, address);\r\n\r\n    function addIdentity(string calldata _ipfsHash, address _identityProvider) external;\r\n\r\n    function removeIdentity(string calldata _ipfsHash) external;\r\n}",
+  "source": "pragma solidity >=0.5.8 <=0.5.11;\r\n\r\n/**\r\n * @title User identity interface\r\n */\r\ninterface IUserIdentity {\r\n    event AddIdentity(address user, string userDataHash, address IP);\r\n    event RemoveIdentity(address user , string userDataHash, address IP);\r\n\r\n    function addIdentity(string calldata _ipfsHash, address _identityProvider) external;\r\n\r\n    function removeIdentity(string calldata _ipfsHash) external;\r\n}",
   "sourcePath": "D:\\Facultate\\MASTER\\TAIP\\TAIP-NaturallyDigital\\Ethereum\\contracts\\IUserIdentity.sol",
   "ast": {
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol",
@@ -136,10 +136,10 @@
                   "constant": false,
                   "id": 3,
                   "indexed": false,
-                  "name": "",
+                  "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 9,
-                  "src": "131:7:0",
+                  "src": "131:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -164,10 +164,10 @@
                   "constant": false,
                   "id": 5,
                   "indexed": false,
-                  "name": "",
+                  "name": "userDataHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 9,
-                  "src": "140:6:0",
+                  "src": "145:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -178,7 +178,7 @@
                     "id": 4,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "140:6:0",
+                    "src": "145:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -191,10 +191,10 @@
                   "constant": false,
                   "id": 7,
                   "indexed": false,
-                  "name": "",
+                  "name": "IP",
                   "nodeType": "VariableDeclaration",
                   "scope": 9,
-                  "src": "148:7:0",
+                  "src": "166:10:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -205,7 +205,7 @@
                     "id": 6,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "148:7:0",
+                    "src": "166:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -216,9 +216,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "130:26:0"
+              "src": "130:47:0"
             },
-            "src": "113:44:0"
+            "src": "113:65:0"
           },
           {
             "anonymous": false,
@@ -234,10 +234,10 @@
                   "constant": false,
                   "id": 11,
                   "indexed": false,
-                  "name": "",
+                  "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 17,
-                  "src": "184:7:0",
+                  "src": "205:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -248,7 +248,7 @@
                     "id": 10,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "184:7:0",
+                    "src": "205:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -262,10 +262,10 @@
                   "constant": false,
                   "id": 13,
                   "indexed": false,
-                  "name": "",
+                  "name": "userDataHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 17,
-                  "src": "193:6:0",
+                  "src": "220:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -276,7 +276,7 @@
                     "id": 12,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "193:6:0",
+                    "src": "220:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -289,10 +289,10 @@
                   "constant": false,
                   "id": 15,
                   "indexed": false,
-                  "name": "",
+                  "name": "IP",
                   "nodeType": "VariableDeclaration",
                   "scope": 17,
-                  "src": "201:7:0",
+                  "src": "241:10:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -303,7 +303,7 @@
                     "id": 14,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "201:7:0",
+                    "src": "241:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -314,9 +314,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "183:26:0"
+              "src": "204:48:0"
             },
-            "src": "163:47:0"
+            "src": "184:69:0"
           },
           {
             "body": null,
@@ -337,7 +337,7 @@
                   "name": "_ipfsHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 24,
-                  "src": "239:25:0",
+                  "src": "282:25:0",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -348,7 +348,7 @@
                     "id": 18,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "239:6:0",
+                    "src": "282:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -363,7 +363,7 @@
                   "name": "_identityProvider",
                   "nodeType": "VariableDeclaration",
                   "scope": 24,
-                  "src": "266:25:0",
+                  "src": "309:25:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -374,7 +374,7 @@
                     "id": 20,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "266:7:0",
+                    "src": "309:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -385,16 +385,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "238:54:0"
+              "src": "281:54:0"
             },
             "returnParameters": {
               "id": 23,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "301:0:0"
+              "src": "344:0:0"
             },
             "scope": 30,
-            "src": "218:84:0",
+            "src": "261:84:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -418,7 +418,7 @@
                   "name": "_ipfsHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 29,
-                  "src": "334:25:0",
+                  "src": "377:25:0",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -429,7 +429,7 @@
                     "id": 25,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "334:6:0",
+                    "src": "377:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -439,26 +439,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "333:27:0"
+              "src": "376:27:0"
             },
             "returnParameters": {
               "id": 28,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "369:0:0"
+              "src": "412:0:0"
             },
             "scope": 30,
-            "src": "310:60:0",
+            "src": "353:60:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 31,
-        "src": "82:291:0"
+        "src": "82:334:0"
       }
     ],
-    "src": "0:373:0"
+    "src": "0:416:0"
   },
   "legacyAST": {
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol",
@@ -511,10 +511,10 @@
                   "constant": false,
                   "id": 3,
                   "indexed": false,
-                  "name": "",
+                  "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 9,
-                  "src": "131:7:0",
+                  "src": "131:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -539,10 +539,10 @@
                   "constant": false,
                   "id": 5,
                   "indexed": false,
-                  "name": "",
+                  "name": "userDataHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 9,
-                  "src": "140:6:0",
+                  "src": "145:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -553,7 +553,7 @@
                     "id": 4,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "140:6:0",
+                    "src": "145:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -566,10 +566,10 @@
                   "constant": false,
                   "id": 7,
                   "indexed": false,
-                  "name": "",
+                  "name": "IP",
                   "nodeType": "VariableDeclaration",
                   "scope": 9,
-                  "src": "148:7:0",
+                  "src": "166:10:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -580,7 +580,7 @@
                     "id": 6,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "148:7:0",
+                    "src": "166:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -591,9 +591,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "130:26:0"
+              "src": "130:47:0"
             },
-            "src": "113:44:0"
+            "src": "113:65:0"
           },
           {
             "anonymous": false,
@@ -609,10 +609,10 @@
                   "constant": false,
                   "id": 11,
                   "indexed": false,
-                  "name": "",
+                  "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 17,
-                  "src": "184:7:0",
+                  "src": "205:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -623,7 +623,7 @@
                     "id": 10,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "184:7:0",
+                    "src": "205:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -637,10 +637,10 @@
                   "constant": false,
                   "id": 13,
                   "indexed": false,
-                  "name": "",
+                  "name": "userDataHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 17,
-                  "src": "193:6:0",
+                  "src": "220:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -651,7 +651,7 @@
                     "id": 12,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "193:6:0",
+                    "src": "220:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -664,10 +664,10 @@
                   "constant": false,
                   "id": 15,
                   "indexed": false,
-                  "name": "",
+                  "name": "IP",
                   "nodeType": "VariableDeclaration",
                   "scope": 17,
-                  "src": "201:7:0",
+                  "src": "241:10:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -678,7 +678,7 @@
                     "id": 14,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "201:7:0",
+                    "src": "241:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -689,9 +689,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "183:26:0"
+              "src": "204:48:0"
             },
-            "src": "163:47:0"
+            "src": "184:69:0"
           },
           {
             "body": null,
@@ -712,7 +712,7 @@
                   "name": "_ipfsHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 24,
-                  "src": "239:25:0",
+                  "src": "282:25:0",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -723,7 +723,7 @@
                     "id": 18,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "239:6:0",
+                    "src": "282:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -738,7 +738,7 @@
                   "name": "_identityProvider",
                   "nodeType": "VariableDeclaration",
                   "scope": 24,
-                  "src": "266:25:0",
+                  "src": "309:25:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -749,7 +749,7 @@
                     "id": 20,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "266:7:0",
+                    "src": "309:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -760,16 +760,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "238:54:0"
+              "src": "281:54:0"
             },
             "returnParameters": {
               "id": 23,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "301:0:0"
+              "src": "344:0:0"
             },
             "scope": 30,
-            "src": "218:84:0",
+            "src": "261:84:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -793,7 +793,7 @@
                   "name": "_ipfsHash",
                   "nodeType": "VariableDeclaration",
                   "scope": 29,
-                  "src": "334:25:0",
+                  "src": "377:25:0",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -804,7 +804,7 @@
                     "id": 25,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "334:6:0",
+                    "src": "377:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -814,26 +814,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "333:27:0"
+              "src": "376:27:0"
             },
             "returnParameters": {
               "id": 28,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "369:0:0"
+              "src": "412:0:0"
             },
             "scope": 30,
-            "src": "310:60:0",
+            "src": "353:60:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 31,
-        "src": "82:291:0"
+        "src": "82:334:0"
       }
     ],
-    "src": "0:373:0"
+    "src": "0:416:0"
   },
   "compiler": {
     "name": "solc",
@@ -841,7 +841,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-25T19:56:58.233Z",
+  "updatedAt": "2019-10-28T18:22:50.703Z",
   "devdoc": {
     "methods": {},
     "title": "User identity interface\r"

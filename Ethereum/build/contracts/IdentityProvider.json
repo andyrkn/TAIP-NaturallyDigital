@@ -1,0 +1,1541 @@
+{
+  "contractName": "IdentityProvider",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "identityProviders",
+      "outputs": [
+        {
+          "name": "identifier",
+          "type": "address"
+        },
+        {
+          "name": "ipfsHash",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "AddIP",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "RemoveIP",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "UpdateIP",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_identifier",
+          "type": "address"
+        },
+        {
+          "name": "_ipfsHash",
+          "type": "string"
+        }
+      ],
+      "name": "addIdentityProvider",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint56"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeIdentityProvider",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_identifier",
+          "type": "address"
+        },
+        {
+          "name": "ipfsHash",
+          "type": "string"
+        }
+      ],
+      "name": "updateIdentityProvider",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_id\",\"type\":\"uint256\"},{\"name\":\"_identifier\",\"type\":\"address\"},{\"name\":\"ipfsHash\",\"type\":\"string\"}],\"name\":\"updateIdentityProvider\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"identityProviders\",\"outputs\":[{\"name\":\"identifier\",\"type\":\"address\"},{\"name\":\"ipfsHash\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"removeIdentityProvider\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_identifier\",\"type\":\"address\"},{\"name\":\"_ipfsHash\",\"type\":\"string\"}],\"name\":\"addIdentityProvider\",\"outputs\":[{\"name\":\"\",\"type\":\"uint56\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"\",\"type\":\"string\"}],\"name\":\"AddIP\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"RemoveIP\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"UpdateIP\",\"type\":\"event\"}],\"devdoc\":{\"details\":\"Identity provider contracts manages identity providers structures and restricts control only to owner\\r\",\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IdentityProvider.sol\":\"IdentityProvider\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IdentityProvider.sol\":{\"keccak256\":\"0xf1753c0f9d2441231bce7ad3faaaabeb55c0d4ccdfd233c4a0606cc370fd60f3\",\"urls\":[\"bzzr://2dcde651a9a80aa9d315d9db85314c6e87c918c10449f59997eb6482ce306393\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506103e2806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633d4790d8146100515780636f388d05146100f457806384dd650b146101ce578063b4ef4e55146101fc575b600080fd5b6100f26004803603606081101561006757600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156100ae57600080fd5b8201836020820111156100c057600080fd5b803590602001918460018302840111640100000000831117156100e257600080fd5b90919293919293905050506102bb565b005b6101206004803603602081101561010a57600080fd5b81019080803590602001909291905050506102c1565b604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610192578082015181840152602081019050610177565b50505050905090810190601f1680156101bf5780820380516001836020036101000a031916815260200191505b50935050505060405180910390f35b6101fa600480360360208110156101e457600080fd5b81019080803590602001909291905050506103aa565b005b6102936004803603604081101561021257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019064010000000081111561024f57600080fd5b82018360208201111561026157600080fd5b8035906020019184600183028401116401000000008311171561028357600080fd5b90919293919293905050506103ad565b604051808266ffffffffffffff1666ffffffffffffff16815260200191505060405180910390f35b50505050565b600081815481106102ce57fe5b90600052602060002090600202016000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103a05780601f10610375576101008083540402835291602001916103a0565b820191906000526020600020905b81548152906001019060200180831161038357829003601f168201915b5050505050905082565b50565b6000939250505056fea165627a7a7230582007cadb5aab2834f0c0b6bf44616c3160c213a1550a10276c37bbfa4ec651e5c50029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80633d4790d8146100515780636f388d05146100f457806384dd650b146101ce578063b4ef4e55146101fc575b600080fd5b6100f26004803603606081101561006757600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156100ae57600080fd5b8201836020820111156100c057600080fd5b803590602001918460018302840111640100000000831117156100e257600080fd5b90919293919293905050506102bb565b005b6101206004803603602081101561010a57600080fd5b81019080803590602001909291905050506102c1565b604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610192578082015181840152602081019050610177565b50505050905090810190601f1680156101bf5780820380516001836020036101000a031916815260200191505b50935050505060405180910390f35b6101fa600480360360208110156101e457600080fd5b81019080803590602001909291905050506103aa565b005b6102936004803603604081101561021257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019064010000000081111561024f57600080fd5b82018360208201111561026157600080fd5b8035906020019184600183028401116401000000008311171561028357600080fd5b90919293919293905050506103ad565b604051808266ffffffffffffff1666ffffffffffffff16815260200191505060405180910390f35b50505050565b600081815481106102ce57fe5b90600052602060002090600202016000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103a05780601f10610375576101008083540402835291602001916103a0565b820191906000526020600020905b81548152906001019060200180831161038357829003601f168201915b5050505050905082565b50565b6000939250505056fea165627a7a7230582007cadb5aab2834f0c0b6bf44616c3160c213a1550a10276c37bbfa4ec651e5c50029",
+  "sourceMap": "158:590:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;158:590:1;;;;;;;",
+  "deployedSourceMap": "158:590:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;158:590:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;635:110;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;635:110:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;635:110:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;635:110:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;635:110:1;;;;;;;;;;;;:::i;:::-;;272:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;272:29:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;272:29:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;564:63;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;564:63:1;;;;;;;;;;;;;;;;;:::i;:::-;;442:114;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;442:114:1;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;442:114:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;442:114:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;442:114:1;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;635:110;;;;;:::o;272:29::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;564:63::-;;:::o;442:114::-;546:6;442:114;;;;;:::o",
+  "source": "pragma solidity >=0.5.8 <=0.5.11;\r\n\r\n/**\r\n * @dev Identity provider contracts manages identity providers structures and restricts control only to owner\r\n */\r\ncontract IdentityProvider {\r\n    struct IP {\r\n        address identifier;\r\n        string ipfsHash;\r\n    }\r\n\r\n    IP[] public identityProviders;\r\n\r\n    event AddIP(address, string);\r\n    event RemoveIP(uint id);\r\n    event UpdateIP(uint id);\r\n\r\n\r\n    modifier onlyOwner() {_;}\r\n\r\n    function addIdentityProvider(address _identifier, string calldata _ipfsHash) external onlyOwner returns(uint56) {}\r\n\r\n    function removeIdentityProvider(uint _id) external onlyOwner {}\r\n\r\n    function updateIdentityProvider(uint _id, address _identifier, string calldata ipfsHash) external onlyOwner {}\r\n}",
+  "sourcePath": "D:\\Facultate\\MASTER\\TAIP\\TAIP-NaturallyDigital\\Ethereum\\contracts\\IdentityProvider.sol",
+  "ast": {
+    "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IdentityProvider.sol",
+    "exportedSymbols": {
+      "IdentityProvider": [
+        91
+      ]
+    },
+    "id": 92,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 32,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".8",
+          "<=",
+          "0.5",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:33:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@dev Identity provider contracts manages identity providers structures and restricts control only to owner\r",
+        "fullyImplemented": true,
+        "id": 91,
+        "linearizedBaseContracts": [
+          91
+        ],
+        "name": "IdentityProvider",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IdentityProvider.IP",
+            "id": 37,
+            "members": [
+              {
+                "constant": false,
+                "id": 34,
+                "name": "identifier",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "212:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "212:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "name": "ipfsHash",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "241:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "241:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "IP",
+            "nodeType": "StructDefinition",
+            "scope": 91,
+            "src": "191:73:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 40,
+            "name": "identityProviders",
+            "nodeType": "VariableDeclaration",
+            "scope": 91,
+            "src": "272:29:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_IP_$37_storage_$dyn_storage",
+              "typeString": "struct IdentityProvider.IP[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 38,
+                "name": "IP",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 37,
+                "src": "272:2:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_IP_$37_storage_ptr",
+                  "typeString": "struct IdentityProvider.IP"
+                }
+              },
+              "id": 39,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "272:4:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_IP_$37_storage_$dyn_storage_ptr",
+                "typeString": "struct IdentityProvider.IP[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 46,
+            "name": "AddIP",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42,
+                  "indexed": false,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "322:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 41,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 44,
+                  "indexed": false,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "331:6:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 43,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "331:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "321:17:1"
+            },
+            "src": "310:29:1"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 50,
+            "name": "RemoveIP",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 49,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 48,
+                  "indexed": false,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50,
+                  "src": "360:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "360:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "359:9:1"
+            },
+            "src": "345:24:1"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 54,
+            "name": "UpdateIP",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 52,
+                  "indexed": false,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 54,
+                  "src": "390:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 51,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "390:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "389:9:1"
+            },
+            "src": "375:24:1"
+          },
+          {
+            "body": {
+              "id": 57,
+              "nodeType": "Block",
+              "src": "430:4:1",
+              "statements": [
+                {
+                  "id": 56,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "431:1:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 58,
+            "name": "onlyOwner",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 55,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "427:2:1"
+            },
+            "src": "409:25:1",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 69,
+              "nodeType": "Block",
+              "src": "554:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 70,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 65,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 64,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 58,
+                  "src": "528:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "528:9:1"
+              }
+            ],
+            "name": "addIdentityProvider",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 63,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 60,
+                  "name": "_identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70,
+                  "src": "471:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 59,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "471:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 62,
+                  "name": "_ipfsHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70,
+                  "src": "492:25:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 61,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "492:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "470:48:1"
+            },
+            "returnParameters": {
+              "id": 68,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 67,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70,
+                  "src": "546:6:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint56",
+                    "typeString": "uint56"
+                  },
+                  "typeName": {
+                    "id": 66,
+                    "name": "uint56",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "546:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint56",
+                      "typeString": "uint56"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "545:8:1"
+            },
+            "scope": 91,
+            "src": "442:114:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 77,
+              "nodeType": "Block",
+              "src": "625:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 78,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 75,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 74,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 58,
+                  "src": "615:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "615:9:1"
+              }
+            ],
+            "name": "removeIdentityProvider",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 73,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 72,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 78,
+                  "src": "596:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 71,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "596:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "595:10:1"
+            },
+            "returnParameters": {
+              "id": 76,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "625:0:1"
+            },
+            "scope": 91,
+            "src": "564:63:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 89,
+              "nodeType": "Block",
+              "src": "743:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 90,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 87,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 86,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 58,
+                  "src": "733:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "733:9:1"
+              }
+            ],
+            "name": "updateIdentityProvider",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 85,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 80,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 90,
+                  "src": "667:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 79,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "667:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 82,
+                  "name": "_identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 90,
+                  "src": "677:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "677:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "ipfsHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 90,
+                  "src": "698:24:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "698:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "666:57:1"
+            },
+            "returnParameters": {
+              "id": 88,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "743:0:1"
+            },
+            "scope": 91,
+            "src": "635:110:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 92,
+        "src": "158:590:1"
+      }
+    ],
+    "src": "0:748:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IdentityProvider.sol",
+    "exportedSymbols": {
+      "IdentityProvider": [
+        91
+      ]
+    },
+    "id": 92,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 32,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".8",
+          "<=",
+          "0.5",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:33:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@dev Identity provider contracts manages identity providers structures and restricts control only to owner\r",
+        "fullyImplemented": true,
+        "id": 91,
+        "linearizedBaseContracts": [
+          91
+        ],
+        "name": "IdentityProvider",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IdentityProvider.IP",
+            "id": 37,
+            "members": [
+              {
+                "constant": false,
+                "id": 34,
+                "name": "identifier",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "212:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "212:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "name": "ipfsHash",
+                "nodeType": "VariableDeclaration",
+                "scope": 37,
+                "src": "241:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "241:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "IP",
+            "nodeType": "StructDefinition",
+            "scope": 91,
+            "src": "191:73:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 40,
+            "name": "identityProviders",
+            "nodeType": "VariableDeclaration",
+            "scope": 91,
+            "src": "272:29:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_IP_$37_storage_$dyn_storage",
+              "typeString": "struct IdentityProvider.IP[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 38,
+                "name": "IP",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 37,
+                "src": "272:2:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_IP_$37_storage_ptr",
+                  "typeString": "struct IdentityProvider.IP"
+                }
+              },
+              "id": 39,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "272:4:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_IP_$37_storage_$dyn_storage_ptr",
+                "typeString": "struct IdentityProvider.IP[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 46,
+            "name": "AddIP",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42,
+                  "indexed": false,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "322:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 41,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 44,
+                  "indexed": false,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "331:6:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 43,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "331:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "321:17:1"
+            },
+            "src": "310:29:1"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 50,
+            "name": "RemoveIP",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 49,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 48,
+                  "indexed": false,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50,
+                  "src": "360:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "360:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "359:9:1"
+            },
+            "src": "345:24:1"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 54,
+            "name": "UpdateIP",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 52,
+                  "indexed": false,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 54,
+                  "src": "390:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 51,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "390:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "389:9:1"
+            },
+            "src": "375:24:1"
+          },
+          {
+            "body": {
+              "id": 57,
+              "nodeType": "Block",
+              "src": "430:4:1",
+              "statements": [
+                {
+                  "id": 56,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "431:1:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 58,
+            "name": "onlyOwner",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 55,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "427:2:1"
+            },
+            "src": "409:25:1",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 69,
+              "nodeType": "Block",
+              "src": "554:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 70,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 65,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 64,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 58,
+                  "src": "528:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "528:9:1"
+              }
+            ],
+            "name": "addIdentityProvider",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 63,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 60,
+                  "name": "_identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70,
+                  "src": "471:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 59,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "471:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 62,
+                  "name": "_ipfsHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70,
+                  "src": "492:25:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 61,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "492:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "470:48:1"
+            },
+            "returnParameters": {
+              "id": 68,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 67,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70,
+                  "src": "546:6:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint56",
+                    "typeString": "uint56"
+                  },
+                  "typeName": {
+                    "id": 66,
+                    "name": "uint56",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "546:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint56",
+                      "typeString": "uint56"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "545:8:1"
+            },
+            "scope": 91,
+            "src": "442:114:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 77,
+              "nodeType": "Block",
+              "src": "625:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 78,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 75,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 74,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 58,
+                  "src": "615:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "615:9:1"
+              }
+            ],
+            "name": "removeIdentityProvider",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 73,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 72,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 78,
+                  "src": "596:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 71,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "596:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "595:10:1"
+            },
+            "returnParameters": {
+              "id": 76,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "625:0:1"
+            },
+            "scope": 91,
+            "src": "564:63:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 89,
+              "nodeType": "Block",
+              "src": "743:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 90,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 87,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 86,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 58,
+                  "src": "733:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "733:9:1"
+              }
+            ],
+            "name": "updateIdentityProvider",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 85,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 80,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 90,
+                  "src": "667:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 79,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "667:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 82,
+                  "name": "_identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 90,
+                  "src": "677:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "677:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "ipfsHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 90,
+                  "src": "698:24:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "698:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "666:57:1"
+            },
+            "returnParameters": {
+              "id": 88,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "743:0:1"
+            },
+            "scope": 91,
+            "src": "635:110:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 92,
+        "src": "158:590:1"
+      }
+    ],
+    "src": "0:748:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {
+        "0x68ec2b9944c5fba8256d4113e96c33146ca2d103a04bc7eac7bd68ddb50a33ea": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "name": "AddIP",
+          "type": "event",
+          "signature": "0x68ec2b9944c5fba8256d4113e96c33146ca2d103a04bc7eac7bd68ddb50a33ea"
+        },
+        "0xb48fdf3f028b42ae7a4e52007fd20f3e8e42445278329ccde0001706edef3b8a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "RemoveIP",
+          "type": "event",
+          "signature": "0xb48fdf3f028b42ae7a4e52007fd20f3e8e42445278329ccde0001706edef3b8a"
+        },
+        "0x147d93cafe8a4f74e7041fed9a3c4a59b9147c6e923fb45f188379856f85ec84": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "UpdateIP",
+          "type": "event",
+          "signature": "0x147d93cafe8a4f74e7041fed9a3c4a59b9147c6e923fb45f188379856f85ec84"
+        }
+      },
+      "links": {},
+      "address": "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1",
+      "transactionHash": "0x26a7e52001170ee20419f6c1d48355f47819f81d780e587cc366707bb4578faf"
+    }
+  },
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-10-28T18:22:52.755Z",
+  "devdoc": {
+    "details": "Identity provider contracts manages identity providers structures and restricts control only to owner\r",
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
