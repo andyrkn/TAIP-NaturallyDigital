@@ -1,9 +1,9 @@
-﻿using CentralRequestsSystem.Business.Request.Models;
+﻿using CentralRequestsSystem.Business.RequestBusiness.Models;
 using System;
 
-namespace CentralRequestsSystem.Presentation.Tests
+namespace CentralRequestsSystem.TestData
 {
-    internal static class RequestsControllerTestData
+    public static class AddRequestTestData
     {
         public static AddRequestModel AddRequestTestModel()
             => new AddRequestModel

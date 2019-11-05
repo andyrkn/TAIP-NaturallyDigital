@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CentralRequestsSystem.Presentation\CentralRequestsSystem.Presentation.csproj" />
+    <ProjectReference Include="..\..\CentralRequestsSystem.Business\CentralRequestsSystem.Business.csproj" />
     <ProjectReference Include="..\CentralRequestsSystem.BaseTests\CentralRequestsSystem.BaseTests.csproj" />
     <ProjectReference Include="..\TestData\CentralRequestsSystemTestData\CentralRequestsSystem.TestData.csproj" />
   </ItemGroup>

@@ -1,7 +1,7 @@
-﻿using CentralRequestsSystem.Business.Request.Models;
+﻿using CentralRequestsSystem.Business.RequestBusiness.Models;
 using System.Threading.Tasks;
 
-namespace CentralRequestsSystem.Business.Request
+namespace CentralRequestsSystem.Business.RequestBusiness
 {
     public interface IRequestService
     {

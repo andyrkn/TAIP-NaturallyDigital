@@ -3,9 +3,10 @@ using CentralRequestsSystem.Presentation.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using FluentAssertions;
-using CentralRequestsSystem.Business.Request;
+using CentralRequestsSystem.Business.RequestBusiness;
 using Moq;
 using System.Threading.Tasks;
+using CentralRequestsSystem.TestData;
 
 namespace CentralRequestsSystem.Presentation.Tests
 {
@@ -16,7 +17,7 @@ namespace CentralRequestsSystem.Presentation.Tests
         [Fact]
         public async void When_AddRequestCalledWithValidModel_Returns_CompletedTask()
         {
-            var model = RequestsControllerTestData.AddRequestTestModel();
+            var model = AddRequestTestData.AddRequestTestModel();
             requestServiceMock.Setup(service => service.AddRequest(model))
                 .Returns(Task.CompletedTask);
 

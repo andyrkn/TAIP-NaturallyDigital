@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CentralRequestsSystem.Business.Request.Models
+namespace CentralRequestsSystem.Business.RequestBusiness.Models
 {
     public sealed class AddRequestModel
     {
