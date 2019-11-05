@@ -13,14 +13,16 @@ namespace CentralRequestsSystem.Business.Tests
         Mock<IRequestRepository> requestRepository;
 
         [Fact]
-        public async Task When_AddRequestService_Should_CallRepositoryOnce()
+        public async Task When_AddRequestService_Should_CallRepositoryOnce_AndSavesChanges()
         {
             var model = AddRequestTestData.AddRequestTestModel();
             requestRepository.Setup(repository => repository.Add(It.IsAny<Request>())).Returns(Task.CompletedTask);
+            requestRepository.Setup(repository => repository.SaveChanges()).Returns(Task.CompletedTask);
 
             await sut.AddRequest(model);
 
             requestRepository.Verify(repository => repository.Add(It.IsAny<Request>()), Times.Once);
+            requestRepository.Verify(repository => repository.SaveChanges(), Times.Once);
         }
         public override void InitSut()
         {

@@ -14,5 +14,8 @@ namespace CentralRequestsSystem.Persistance
 
         public Task Add(TEntity entity) 
             => throw new System.NotImplementedException();
+
+        public Task SaveChanges()
+            => context.SaveChangesAsync();
     }
 }
