@@ -6,16 +6,19 @@
       "inputs": [
         {
           "indexed": false,
+          "internalType": "address",
           "name": "user",
           "type": "address"
         },
         {
           "indexed": false,
+          "internalType": "string",
           "name": "userDataHash",
           "type": "string"
         },
         {
           "indexed": false,
+          "internalType": "address",
           "name": "IP",
           "type": "address"
         }
@@ -28,16 +31,19 @@
       "inputs": [
         {
           "indexed": false,
+          "internalType": "address",
           "name": "user",
           "type": "address"
         },
         {
           "indexed": false,
+          "internalType": "string",
           "name": "userDataHash",
           "type": "string"
         },
         {
           "indexed": false,
+          "internalType": "address",
           "name": "IP",
           "type": "address"
         }
@@ -49,16 +55,24 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "string",
           "name": "_ipfsHash",
           "type": "string"
         },
         {
+          "internalType": "address",
           "name": "_identityProvider",
           "type": "address"
         }
       ],
       "name": "addIdentity",
-      "outputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
@@ -67,8 +81,9 @@
       "constant": false,
       "inputs": [
         {
-          "name": "_ipfsHash",
-          "type": "string"
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
         }
       ],
       "name": "removeIdentity",
@@ -78,21 +93,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_ipfsHash\",\"type\":\"string\"}],\"name\":\"removeIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_ipfsHash\",\"type\":\"string\"},{\"name\":\"_identityProvider\",\"type\":\"address\"}],\"name\":\"addIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"userDataHash\",\"type\":\"string\"},{\"indexed\":false,\"name\":\"IP\",\"type\":\"address\"}],\"name\":\"AddIdentity\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"userDataHash\",\"type\":\"string\"},{\"indexed\":false,\"name\":\"IP\",\"type\":\"address\"}],\"name\":\"RemoveIdentity\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{},\"title\":\"User identity interface\\r\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":\"IUserIdentity\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":{\"keccak256\":\"0x71ce6c48d9e7cd3b67cc2c9a48c16184090b1d7e98d3f1a18e3494f6ad2e0808\",\"urls\":[\"bzzr://680bc63d8414e9191353c514d3a4bf01d1bd11b011e4bb94b75eaeb98cd28a85\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"userDataHash\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"IP\",\"type\":\"address\"}],\"name\":\"AddIdentity\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"userDataHash\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"IP\",\"type\":\"address\"}],\"name\":\"RemoveIdentity\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_ipfsHash\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_identityProvider\",\"type\":\"address\"}],\"name\":\"addIdentity\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"removeIdentity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{},\"title\":\"User identity interface\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":\"IUserIdentity\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol\":{\"keccak256\":\"0xce5ec3b0df88d9978c9920ec1ed748e890d22e66ebc9f4df425906c08e4d22dc\",\"urls\":[\"bzz-raw://48d22f3512e56387ff348ec5d10fcaa333e511af4709d897195a4234bc266bd4\",\"dweb:/ipfs/QmV1ZhEgLwwsAqyxgFUqF56JbLTkiWKDLF9QJYk6oCoxCM\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity >=0.5.8 <=0.5.11;\r\n\r\n/**\r\n * @title User identity interface\r\n */\r\ninterface IUserIdentity {\r\n    event AddIdentity(address user, string userDataHash, address IP);\r\n    event RemoveIdentity(address user , string userDataHash, address IP);\r\n\r\n    function addIdentity(string calldata _ipfsHash, address _identityProvider) external;\r\n\r\n    function removeIdentity(string calldata _ipfsHash) external;\r\n}",
+  "source": "pragma solidity >=0.5.8 <=0.5.12;\r\n\r\n/**\r\n * @title User identity interface\r\n */\r\ninterface IUserIdentity {\r\n    event AddIdentity(address user, string userDataHash, address IP);\r\n    event RemoveIdentity(address user , string userDataHash, address IP);\r\n\r\n    function addIdentity(string calldata _ipfsHash, address _identityProvider) external returns (uint);\r\n\r\n    function removeIdentity(uint index) external;\r\n}",
   "sourcePath": "D:\\Facultate\\MASTER\\TAIP\\TAIP-NaturallyDigital\\Ethereum\\contracts\\IUserIdentity.sol",
   "ast": {
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol",
     "exportedSymbols": {
       "IUserIdentity": [
-        30
+        32
       ]
     },
-    "id": 31,
+    "id": 33,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -104,7 +119,7 @@
           ".8",
           "<=",
           "0.5",
-          ".11"
+          ".12"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:33:0"
@@ -113,11 +128,11 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": "@title User identity interface\r",
+        "documentation": "@title User identity interface",
         "fullyImplemented": false,
-        "id": 30,
+        "id": 32,
         "linearizedBaseContracts": [
-          30
+          32
         ],
         "name": "IUserIdentity",
         "nodeType": "ContractDefinition",
@@ -321,7 +336,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 24,
+            "id": 26,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -336,7 +351,7 @@
                   "id": 19,
                   "name": "_ipfsHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 26,
                   "src": "282:25:0",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -362,7 +377,7 @@
                   "id": 21,
                   "name": "_identityProvider",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 26,
                   "src": "309:25:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -388,13 +403,40 @@
               "src": "281:54:0"
             },
             "returnParameters": {
-              "id": 23,
+              "id": 25,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "344:0:0"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 26,
+                  "src": "354:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "354:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "353:6:0"
             },
-            "scope": 30,
-            "src": "261:84:0",
+            "scope": 32,
+            "src": "261:99:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -402,59 +444,59 @@
           {
             "body": null,
             "documentation": null,
-            "id": 29,
+            "id": 31,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeIdentity",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 27,
+              "id": 29,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 26,
-                  "name": "_ipfsHash",
+                  "id": 28,
+                  "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 29,
-                  "src": "377:25:0",
+                  "scope": 31,
+                  "src": "392:10:0",
                   "stateVariable": false,
-                  "storageLocation": "calldata",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_calldata_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 25,
-                    "name": "string",
+                    "id": 27,
+                    "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "377:6:0",
+                    "src": "392:4:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "376:27:0"
+              "src": "391:12:0"
             },
             "returnParameters": {
-              "id": 28,
+              "id": 30,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "412:0:0"
             },
-            "scope": 30,
-            "src": "353:60:0",
+            "scope": 32,
+            "src": "368:45:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 31,
+        "scope": 33,
         "src": "82:334:0"
       }
     ],
@@ -464,10 +506,10 @@
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IUserIdentity.sol",
     "exportedSymbols": {
       "IUserIdentity": [
-        30
+        32
       ]
     },
-    "id": 31,
+    "id": 33,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -479,7 +521,7 @@
           ".8",
           "<=",
           "0.5",
-          ".11"
+          ".12"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:33:0"
@@ -488,11 +530,11 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": "@title User identity interface\r",
+        "documentation": "@title User identity interface",
         "fullyImplemented": false,
-        "id": 30,
+        "id": 32,
         "linearizedBaseContracts": [
-          30
+          32
         ],
         "name": "IUserIdentity",
         "nodeType": "ContractDefinition",
@@ -696,7 +738,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 24,
+            "id": 26,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -711,7 +753,7 @@
                   "id": 19,
                   "name": "_ipfsHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 26,
                   "src": "282:25:0",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -737,7 +779,7 @@
                   "id": 21,
                   "name": "_identityProvider",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 26,
                   "src": "309:25:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -763,13 +805,40 @@
               "src": "281:54:0"
             },
             "returnParameters": {
-              "id": 23,
+              "id": 25,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "344:0:0"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 26,
+                  "src": "354:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "354:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "353:6:0"
             },
-            "scope": 30,
-            "src": "261:84:0",
+            "scope": 32,
+            "src": "261:99:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -777,59 +846,59 @@
           {
             "body": null,
             "documentation": null,
-            "id": 29,
+            "id": 31,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "removeIdentity",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 27,
+              "id": 29,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 26,
-                  "name": "_ipfsHash",
+                  "id": 28,
+                  "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 29,
-                  "src": "377:25:0",
+                  "scope": 31,
+                  "src": "392:10:0",
                   "stateVariable": false,
-                  "storageLocation": "calldata",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_calldata_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 25,
-                    "name": "string",
+                    "id": 27,
+                    "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "377:6:0",
+                    "src": "392:4:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "376:27:0"
+              "src": "391:12:0"
             },
             "returnParameters": {
-              "id": 28,
+              "id": 30,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "412:0:0"
             },
-            "scope": 30,
-            "src": "353:60:0",
+            "scope": 32,
+            "src": "368:45:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 31,
+        "scope": 33,
         "src": "82:334:0"
       }
     ],
@@ -837,14 +906,14 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-28T18:22:50.703Z",
+  "updatedAt": "2019-11-05T22:32:22.686Z",
   "devdoc": {
     "methods": {},
-    "title": "User identity interface\r"
+    "title": "User identity interface"
   },
   "userdoc": {
     "methods": {}
