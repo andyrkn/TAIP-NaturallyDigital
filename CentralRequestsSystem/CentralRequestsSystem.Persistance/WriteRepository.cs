@@ -12,8 +12,8 @@ namespace CentralRequestsSystem.Persistance
         public WriteRepository(CentralRequestsSystemContext _context) 
             => context = _context;
 
-        public Task Add(TEntity entity) 
-            => throw new System.NotImplementedException();
+        public async Task Add(TEntity entity)
+            => await context.Set<TEntity>().AddAsync(entity);
 
         public Task SaveChanges()
             => context.SaveChangesAsync();
