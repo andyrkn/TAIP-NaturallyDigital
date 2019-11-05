@@ -2,6 +2,7 @@
 using CentralRequestsSystem.Business.Request.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace CentralRequestsSystem.Presentation.Controllers
 {
@@ -15,7 +16,16 @@ namespace CentralRequestsSystem.Presentation.Controllers
             => _requestsService = requestService;
 
         [HttpPost]
-        public IActionResult AddRequest([FromBody] AddRequestModel requestModel)
-            => throw new NotImplementedException();
+        public async Task<IActionResult> AddRequest([FromBody] AddRequestModel requestModel)
+        {
+            if(requestModel is null)
+            {
+                return BadRequest();
+            }
+
+            await _requestsService.AddRequest(requestModel);
+
+            return new CreatedResult("", null);
+        }
     }
 }

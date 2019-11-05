@@ -5,6 +5,7 @@ using Xunit;
 using FluentAssertions;
 using CentralRequestsSystem.Business.Request;
 using Moq;
+using System.Threading.Tasks;
 
 namespace CentralRequestsSystem.Presentation.Tests
 {
@@ -13,11 +14,14 @@ namespace CentralRequestsSystem.Presentation.Tests
         private Mock<IRequestService> requestServiceMock;
 
         [Fact]
-        public void When_AddRequestCalledWithValidModel_Returns_CompletedTask()
+        public async void When_AddRequestCalledWithValidModel_Returns_CompletedTask()
         {
             var model = RequestsControllerTestData.AddRequestTestModel();
+            requestServiceMock.Setup(service => service.AddRequest(model))
+                .Returns(Task.CompletedTask);
 
-            var result = sut.AddRequest(model);
+
+            var result = await sut.AddRequest(model);
 
             result.Should().BeOfType<CreatedResult>();
         }
