@@ -1,4 +1,4 @@
-pragma solidity >=0.5.5 <=0.5.11;
+pragma solidity >=0.5.5 <=0.5.12;
 
 /** @dev Ownable contract implements access control mechanism
  * allowing certain permissions for function access only to owner of the contract
