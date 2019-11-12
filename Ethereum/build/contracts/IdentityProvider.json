@@ -6764,12 +6764,12 @@
         }
       },
       "links": {},
-      "address": "0x37b7C8CD03bC3Cc1283e42AB87bD77e0ffdc816b",
-      "transactionHash": "0x8da54462d12a1623f6832c2e5768b4888fe3640f8756c991f0253becf2c78c5b"
+      "address": "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1",
+      "transactionHash": "0x0b07874868f8a053ba3de3555430d9c22d49c829911c09d39156f749be4701b1"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-05T22:32:22.691Z",
+  "updatedAt": "2019-11-12T20:50:31.218Z",
   "devdoc": {
     "details": "Identity provider contracts manages identity providers structures and restricts control only to owner",
     "methods": {

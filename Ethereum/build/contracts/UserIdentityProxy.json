@@ -234,12 +234,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xa7f860CD760133C45cEaB861d201bF1f5D2375a3",
-      "transactionHash": "0xb73951a8e8b3f46876d9bedfa37e3d4b8987fe3c5e3b845efa282b810492a345"
+      "address": "0x0fB7396e35e2296526F72bb6Ad1Efcdb827b6b1B",
+      "transactionHash": "0x0316646e732bdd224f5e613c935b888bb2256d7e87961b63800c0d394159ff44"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-05T22:16:43.537Z",
+  "updatedAt": "2019-11-12T20:47:11.975Z",
   "devdoc": {
     "details": "Proxy for user identity logic and storage",
     "methods": {
