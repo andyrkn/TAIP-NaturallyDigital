@@ -1,0 +1,94 @@
+{
+  "rutiera": [
+    {
+      "id": 1,
+      "fullName": "Politia Rutiera Iasi",
+      "transcript": "istoric-amenzi",
+      "content": [
+        {
+          "date": "10.09.2019",
+          "amount": "$300",
+          "reason": "Speeding",
+          "officer": "Capraru Daniel"
+        },
+        {
+          "date": "11.09.2019",
+          "amount": "$450",
+          "reason": "DUI",
+          "officer": "Capraru Alexandru"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "fullName": "Politia Rutiera Iasi",
+      "transcript": "plata-amenzi",
+      "content": [
+        {
+          "date": "10.09.2019",
+          "amount": "$300",
+          "reason": "Speeding",
+          "paid": "yes"
+        },
+        {
+          "date": "11.09.2019",
+          "amount": "$450",
+          "reason": "DUI",
+          "paid": "no"
+        }
+      ]
+    }
+  ],
+  "wallet": [
+    {
+      "institutionName": "rutiera",
+      "transcriptContent": [
+        {
+          "id": 1,
+          "fullName": "Politia Rutiera Iasi",
+          "transcript": "istoric-amenzi",
+          "content": [
+            {
+              "date": "10.09.2019",
+              "amount": "$300",
+              "reason": "Speeding",
+              "officer": "Capraru Daniel"
+            },
+            {
+              "date": "11.09.2019",
+              "amount": "$450",
+              "reason": "DUI",
+              "officer": "Capraru Alexandru"
+            }
+          ]
+        }
+      ],
+      "id": 1
+    },
+    {
+      "institutionName": "rutiera",
+      "transcriptContent": [
+        {
+          "id": 2,
+          "fullName": "Politia Rutiera Iasi",
+          "transcript": "plata-amenzi",
+          "content": [
+            {
+              "date": "10.09.2019",
+              "amount": "$300",
+              "reason": "Speeding",
+              "paid": "yes"
+            },
+            {
+              "date": "11.09.2019",
+              "amount": "$450",
+              "reason": "DUI",
+              "paid": "no"
+            }
+          ]
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
