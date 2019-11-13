@@ -1251,7 +1251,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-05T22:32:22.694Z",
+  "updatedAt": "2019-11-12T20:50:31.222Z",
   "devdoc": {
     "details": "Ownable contract implements access control mechanism allowing certain permissions for function access only to owner of the contract",
     "methods": {}
