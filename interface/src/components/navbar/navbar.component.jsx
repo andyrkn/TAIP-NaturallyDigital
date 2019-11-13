@@ -93,7 +93,6 @@ export default function Navbar() {
     Contact: '/contact'
   }
 
-
   let logo = require('../../assets/images/spiderman.png');
   
   const sideList = () => (
