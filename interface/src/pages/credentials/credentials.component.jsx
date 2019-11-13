@@ -44,12 +44,16 @@ export default function Credentials() {
 
     const handleTranscriptRequest = async (e) => {
         e.preventDefault();
+        await console.log("Initiating API GET call for transcripts...")
         let res = await axios.get(`http://localhost:3000/${institution}?transcript=${transcript}`);
-        axios.post('http://localhost:3000/wallet', {
+        await console.log("API GET call succesfull!");
+        await console.log("Saving the API GET call response to the wallet...");
+        await axios.post('http://localhost:3000/wallet', {
             institutionName: institution,
             transcriptContent: res.data,
         })
-    };
+        await console.log("Transcript sucesfully saved in the wallet!");
+    }
 
     return (
         <React.Fragment>
@@ -80,8 +84,8 @@ export default function Credentials() {
                             onChange={handleTranscriptChange}
                             labelWidth={labelWidth}
                         >
-                            <MenuItem value={'istoric-amenzi'}>Istoric amenzi</MenuItem>
-                            <MenuItem value={'plata-amenzi'}>Plata amenzi</MenuItem>
+                            <MenuItem value={"istoric-amenzi"}>Istoric amenzi</MenuItem>
+                            <MenuItem value={"plata-amenzi"}>Plata amenzi</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
