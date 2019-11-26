@@ -3,7 +3,7 @@ import userIdentityAbi from './userIdentity';
 import identityProviderAbi from './identityProvider';
 
 const userIdentityAddress = "0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c";
-const identityProviderAddress = "0xbE9497691Ad7405dc8a7492BbB4c135147bAF795";
+const identityProviderAddress = "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1";
 
 export const getWeb3Instance = () => {
   let web3Provider;

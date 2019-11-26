@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '../../components/navbar';
 import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core';
+import axios from 'axios';
 
 import "./credentials.styles.scss";
 import "../../shared/shared.scss";
@@ -24,7 +25,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Credentials() {
     const classes = useStyles();
-    const [age, setAge] = React.useState('');
+    const [institution, setInstitution] = React.useState(0);
+    const [transcript, setTranscript] = React.useState(0);
 
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -32,9 +34,26 @@ export default function Credentials() {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
     
-    const handleChange = event => {
-        setAge(event.target.value);
+    const handleInstitutionChange = event => {
+        setInstitution(event.target.value);
     };
+
+    const handleTranscriptChange = event => {
+        setTranscript(event.target.value);
+    }
+
+    const handleTranscriptRequest = async (e) => {
+        e.preventDefault();
+        await console.log("Initiating API GET call for transcripts...")
+        let res = await axios.get(`http://localhost:3000/${institution}?transcript=${transcript}`);
+        await console.log("API GET call succesfull!");
+        await console.log("Saving the API GET call response to the wallet...");
+        await axios.post('http://localhost:3000/wallet', {
+            institutionName: institution,
+            transcriptContent: res.data,
+        })
+        await console.log("Transcript sucesfully saved in the wallet!");
+    }
 
     return (
         <React.Fragment>
@@ -47,10 +66,10 @@ export default function Credentials() {
                             Institution
                         </InputLabel>
                         <Select
-                            onChange={handleChange}
+                            onChange={handleInstitutionChange}
                             labelWidth={labelWidth}
                         >
-                            <MenuItem value={20}>Politia Rutiera Iasi</MenuItem>
+                            <MenuItem value={"rutiera"}>Politia Rutiera Iasi</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -62,23 +81,22 @@ export default function Credentials() {
                             Transcript
                         </InputLabel>
                         <Select
-                            onChange={handleChange}
+                            onChange={handleTranscriptChange}
                             labelWidth={labelWidth}
                         >
-                            <MenuItem value={10}>Istoric amenzi</MenuItem>
-                            <MenuItem value={20}>Plata amenzi</MenuItem>
+                            <MenuItem value={"istoric-amenzi"}>Istoric amenzi</MenuItem>
+                            <MenuItem value={"plata-amenzi"}>Plata amenzi</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                     <p>Select time intervals:</p>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel ref={inputLabel}>
                             Time
                         </InputLabel>
                         <Select
-                            onChange={handleChange}
                             labelWidth={labelWidth}
                         >
                             <MenuItem value={10}>Last month</MenuItem>
@@ -86,26 +104,9 @@ export default function Credentials() {
                             <MenuItem value={20}>Since first item</MenuItem>
                         </Select>
                     </FormControl>
-                </div>
+                </div> */}
 
-                <div className="row">
-                    <p>Select priority order:</p>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel}>
-                            Order
-                        </InputLabel>
-                        <Select
-                            onChange={handleChange}
-                            labelWidth={labelWidth}
-                        >
-                            <MenuItem value={10}>Latest First</MenuItem>
-                            <MenuItem value={20}>Highest First</MenuItem>
-                            <MenuItem value={20}>Lowest First</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
-
-                <Button variant="contained" color="primary" className={classes.button}>
+                <Button variant="contained" color="primary" className={classes.button} onClick={handleTranscriptRequest}>
                     Send request
                 </Button>
             </div>

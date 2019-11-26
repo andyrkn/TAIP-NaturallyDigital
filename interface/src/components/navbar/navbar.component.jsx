@@ -86,6 +86,13 @@ export default function Navbar() {
     setOpen(false);
   }
 
+  const menuDictionary = {
+    Home: '/',
+    'Get Credentials': '/credentials',
+    Wallet: '/wallet',
+    Contact: '/contact'
+  }
+
   let logo = require('../../assets/images/spiderman.png');
   
   const sideList = () => (
@@ -97,7 +104,7 @@ export default function Navbar() {
     >
       <List className={classes.list}>
         {['Home', 'Wallet', 'Get Credentials', 'Contact'].map((text) => (
-          <Link to={text === "Home" ? '/' : '/credentials'} style={{ textDecoration: 'none' }}>
+          <Link to={menuDictionary[text]} key={text} style={{ textDecoration: 'none' }}>
             <ListItem classes={{ root: classes.listItem}} button key={text}>
                 <ListItemText classes={{ primary: classes.listItemText }} primary={text} />
             </ListItem>
