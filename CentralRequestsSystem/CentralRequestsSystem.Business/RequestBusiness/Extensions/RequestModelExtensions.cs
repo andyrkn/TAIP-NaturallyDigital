@@ -6,7 +6,7 @@ namespace CentralRequestsSystem.Business.RequestBusiness.Extensions
 {
     public static class RequestModelExtensions
     {
-        public static Result<Request> ToEntity(this AddRequestModel requestModel)
+        public static Result<Request> ToEntity(this RequestModel requestModel)
             => Request.CreateRequest(
                 requestModel.UserAdress,
                 requestModel.IdentityProviderAdress,

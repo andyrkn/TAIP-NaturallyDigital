@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CentralRequestsSystem.Core.Repository
 {
@@ -6,6 +9,9 @@ namespace CentralRequestsSystem.Core.Repository
     {
         Task Add(TEntity entity);
 
+        IAsyncEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
+
         Task SaveChanges();
+
     }
 }

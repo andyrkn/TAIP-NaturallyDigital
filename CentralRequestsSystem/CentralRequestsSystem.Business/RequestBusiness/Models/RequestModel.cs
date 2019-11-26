@@ -2,7 +2,7 @@
 
 namespace CentralRequestsSystem.Business.RequestBusiness.Models
 {
-    public sealed class AddRequestModel
+    public sealed class RequestModel
     {
         public string UserAdress { get; set; }
         public string IdentityProviderAdress { get; set; }

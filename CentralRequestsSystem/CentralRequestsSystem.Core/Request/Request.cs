@@ -16,7 +16,7 @@ namespace CentralRequestsSystem.Core
         public string Payload { get; private set; }
 
         public static Result<Request> CreateRequest(string userAdress, string identityProviderAdress, DateTime date, string payload)
-            => Result.Ok(new Request
+            => Result.Success(new Request
                 {
                     UserAdress = userAdress,
                     IdentityProviderAdress = identityProviderAdress,

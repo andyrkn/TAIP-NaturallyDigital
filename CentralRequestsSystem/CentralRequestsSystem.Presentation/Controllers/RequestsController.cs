@@ -16,7 +16,7 @@ namespace CentralRequestsSystem.Presentation.Controllers
             => _requestsService = requestService;
 
         [HttpPost]
-        public async Task<IActionResult> AddRequest([FromBody] AddRequestModel requestModel)
+        public async Task<IActionResult> AddRequest([FromBody] RequestModel requestModel)
         {
             if(requestModel is null)
             {
@@ -26,6 +26,28 @@ namespace CentralRequestsSystem.Presentation.Controllers
             await _requestsService.AddRequest(requestModel);
 
             return new CreatedResult("", null);
+        }
+
+        [HttpGet("users")]
+        public IActionResult GetByUserAdress([FromQuery] string userAdress)
+        {
+            if (userAdress != string.Empty)
+            {
+                return Ok(_requestsService.GetByUserAddress(userAdress));
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("ip")]
+        public IActionResult GetByIdentityProvider([FromQuery] string identityProvider)
+        {
+            if (identityProvider != string.Empty)
+            {
+                return Ok(_requestsService.GetByIdentityProvider(identityProvider));
+            }
+
+            return BadRequest();
         }
     }
 }
