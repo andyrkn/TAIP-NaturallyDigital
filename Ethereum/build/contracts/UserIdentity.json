@@ -7879,12 +7879,12 @@
         }
       },
       "links": {},
-      "address": "0xe01fC924E96f85B3598FB545Fb62D51e81b7Fe12",
-      "transactionHash": "0x002d7163cfd32346a445d1ba500ebc4afb453476e12587c469150ddba721e10c"
+      "address": "0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c",
+      "transactionHash": "0x8f44db065f217f0983f3b2d90b2dd492a2b4cedb5e5af999c0534c7b45b3e86b"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-05T22:32:22.703Z",
+  "updatedAt": "2019-11-12T20:47:11.968Z",
   "devdoc": {
     "details": "UserIdentity implements basic functions for managing user identity",
     "methods": {

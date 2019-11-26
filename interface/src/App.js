@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Credentials from './pages/credentials';
 import Home from './pages/home';
+import Wallet from "./pages/wallet";
+import Contact from "./pages/contact";
 
 
 export default function BasicExample() {
@@ -19,6 +21,12 @@ export default function BasicExample() {
           </Route>
           <Route path="/credentials">
             <Credentials />
+          </Route>
+          <Route path="/wallet">
+            <Wallet />
+          </Route>
+          <Route path="/contact">
+            <Contact />
           </Route>
         </Switch>
       </div>

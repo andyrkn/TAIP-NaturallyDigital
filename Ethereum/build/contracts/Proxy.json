@@ -4100,7 +4100,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-05T22:32:22.699Z",
+  "updatedAt": "2019-11-12T20:50:31.227Z",
   "devdoc": {
     "details": "Implements unstructured storage proxy pattern",
     "methods": {
