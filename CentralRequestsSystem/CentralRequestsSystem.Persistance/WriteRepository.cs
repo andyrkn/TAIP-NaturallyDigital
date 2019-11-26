@@ -25,6 +25,9 @@ namespace CentralRequestsSystem.Persistance
                 .Where(expression)
                 .AsAsyncEnumerable();
 
+        public async Task Delete(Guid id)
+            => context.Set<TEntity>().Remove(await context.Set<TEntity>().FindAsync(id));
+
         public Task SaveChanges()
             => context.SaveChangesAsync();
     }

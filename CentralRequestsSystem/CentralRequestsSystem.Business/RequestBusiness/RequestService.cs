@@ -26,5 +26,9 @@ namespace CentralRequestsSystem.Business.RequestBusiness
 
         public IAsyncEnumerable<Request> GetByIdentityProvider(string identityProvider)
             => _requestRepository.Where(request => request.IdentityProviderAdress == identityProvider);
+
+        public async Task<Result> Delete(Guid id)
+            => await Result.Try(async () => await _requestRepository.Delete(id), (Exception ex) => ex.Message)
+                .Tap(async () => await _requestRepository.SaveChanges());
     }
 }

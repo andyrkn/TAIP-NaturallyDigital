@@ -49,5 +49,18 @@ namespace CentralRequestsSystem.Presentation.Controllers
 
             return BadRequest();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRequest([FromRoute] Guid id)
+        {
+            var result = await _requestsService.Delete(id);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok();
+        }
     }
 }

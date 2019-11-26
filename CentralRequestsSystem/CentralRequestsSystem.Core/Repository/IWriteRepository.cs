@@ -11,6 +11,8 @@ namespace CentralRequestsSystem.Core.Repository
 
         IAsyncEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
 
+        Task Delete(Guid id);
+
         Task SaveChanges();
 
     }
