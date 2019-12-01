@@ -1,5 +1,6 @@
 import React from 'react';
 import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders } from '../../components/ethereum/ethereum';
+import { uploadContent, getContent } from '../../components/ipfs/ipfs';
 
 import Navbar from '../../components/navbar';
 import './wallet.styles.scss';
@@ -86,6 +87,10 @@ export default class Wallet extends React.Component {
         console.log("Preparing to make the API GET call for the wallet content...");
         axios.get(`http://localhost:3000/wallet`).then(response => this.setState({transcripts: response.data}));
         console.log("API GET call sucessfull! Wallet information rceived!");
+        const ipfsHash = await uploadContent(JSON.stringify({title: 'naturally digital e pe ipfs'}));
+        console.log(ipfsHash);
+        const file = await getContent(ipfsHash);
+        console.log(file);
     }
 
     render() {

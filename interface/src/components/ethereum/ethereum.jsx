@@ -2,8 +2,8 @@ import Web3 from 'web3';
 import userIdentityAbi from './userIdentity';
 import identityProviderAbi from './identityProvider';
 
-const userIdentityAddress = "0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c";
-const identityProviderAddress = "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1";
+const userIdentityAddress = "0x82e0f6882Ddb06142adCf1787Bc5E12d4e45Cee3";
+const identityProviderAddress = "0x3324C34F63df757B3b9e46612a18824Cf3c64050";
 
 export const getWeb3Instance = () => {
   let web3Provider;
@@ -22,6 +22,7 @@ export const getAccountAddress = async () => {
   let web3 = getWeb3Instance();
 
   let res = await web3.eth.getAccounts();
+  console.log(await web3.eth.accounts);
   return res[0];
 }
 
