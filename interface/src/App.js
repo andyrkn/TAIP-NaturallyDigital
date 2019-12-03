@@ -9,6 +9,7 @@ import Credentials from './pages/credentials';
 import Home from './pages/home';
 import Wallet from "./pages/wallet";
 import Contact from "./pages/contact";
+import Transcript from "./pages/transcript/transcript.component";
 
 
 export default function BasicExample() {
@@ -27,6 +28,9 @@ export default function BasicExample() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/transcript/:id">
+            <Transcript />
           </Route>
         </Switch>
       </div>
