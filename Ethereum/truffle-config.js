@@ -24,6 +24,12 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+require('dotenv').config();
+const HDWalletProvider = require('truffle-hdwallet-provider');
+const infuraKey = process.env.INFURA_KEY;
+const mnemonic = process.env.TEST_MNEMONIC;
+const infuraId = process.env.INFURA_ID;
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -34,6 +40,7 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
+  plugins: ["truffle-security"],
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -46,6 +53,23 @@ module.exports = {
      host: "127.0.0.1",     // Localhost (default: none)
      port: 7545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
+    },
+
+    "ropsten-infura": {
+      provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/e482ca7997684f5b8666b17fc27227fd/${infuraKey}`, 0),
+      network_id: 3,       // Ropsten's id
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      gasPrice: 100000000000,
+      // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    },
+
+    ropsten: {
+      provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${infuraId}`),
+      gas: 5500000,
+      gasPrice: 25000000000,
+      network_id: 3
     },
 
     // Another network with more advanced options...

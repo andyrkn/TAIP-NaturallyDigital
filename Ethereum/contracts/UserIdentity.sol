@@ -23,7 +23,7 @@ contract UserIdentity is IUserIdentity, Pausable {
 
     function addIdentity(string calldata _ipfsHash, address _identityProvider) external whenNotPaused returns (uint) {
         require(_identityProvider != address(0), "Invalid identity provider - address(0)");
-        require(!identityProvider.isIdentityProviderCreated(_identityProvider), "Invalid identity provider - not created");
+        require(identityProvider.isIdentityProviderCreated(_identityProvider), "Invalid identity provider - not created");
 
         Identity memory identity = Identity({ipfsHash: _ipfsHash, identityProvider: _identityProvider});
         uint id = userIdentities[msg.sender].push(identity) - 1;

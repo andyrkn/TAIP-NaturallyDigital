@@ -2,8 +2,10 @@ import Web3 from 'web3';
 import userIdentityAbi from './userIdentity';
 import identityProviderAbi from './identityProvider';
 
-const userIdentityAddress = "0x82e0f6882Ddb06142adCf1787Bc5E12d4e45Cee3";
-const identityProviderAddress = "0x3324C34F63df757B3b9e46612a18824Cf3c64050";
+const userIdentityAddress = "0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c";
+const identityProviderAddress = "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1";
+//0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c   0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1
+//ropsten 0xa71023E2aBE279520F881B369961b66a49e9436B  0xa71023E2aBE279520F881B369961b66a49e9436B
 
 export const getWeb3Instance = () => {
   let web3Provider;
@@ -63,10 +65,10 @@ export const deleteIdentity = async (userAddress, index) => {
   return result.transactionHash;
 }
 
-export const createIdentityProvider = async (userAddress, identityProviderAddress, ipfsHash) => {
+export const createIdentityProvider = async (userAddress, identityProvider, ipfsHash) => {
   let web3 = getWeb3Instance();
   const contract = new web3.eth.Contract(identityProviderAbi, identityProviderAddress);
-  let result = await contract.methods.addIdentityProvider(identityProviderAddress, ipfsHash).send({
+  let result = await contract.methods.addIdentityProvider(identityProvider, ipfsHash).send({
     from: userAddress
   });
   return result.transactionHash;
@@ -75,8 +77,8 @@ export const createIdentityProvider = async (userAddress, identityProviderAddres
 export const getIdentityProvider = async (index) => {
   let web3 = getWeb3Instance();
   const contract = new web3.eth.Contract(identityProviderAbi, identityProviderAddress);
-  let result = await contract.methods.identityProviders.call(index);
-  return { index: index, ipfsHash: result.ipfsHash, identityProvider: result.identifier };
+  let result = await contract.methods.getIdentityProvider(index).call();
+  return { index: index, ipfsHash: result.ipfsHash, identityProvider: result.account };
 }
 
 export const getAllIdentityProviders = async () => {
