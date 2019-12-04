@@ -3,7 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
+  
+  <PropertyGroup>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+  </PropertyGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\CentralRequestsSystem.Business\CentralRequestsSystem.Business.csproj" />
     <ProjectReference Include="..\CentralRequestsSystem.Persistance\CentralRequestsSystem.Persistance.csproj" />

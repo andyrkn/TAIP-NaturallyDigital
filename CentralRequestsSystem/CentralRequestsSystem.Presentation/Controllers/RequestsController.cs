@@ -62,5 +62,18 @@ namespace CentralRequestsSystem.Presentation.Controllers
 
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> GrantUserInformation(Guid id)
+        {
+            var result = await _requestsService.Grant(id);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return NoContent();
+        }
     }
 }
