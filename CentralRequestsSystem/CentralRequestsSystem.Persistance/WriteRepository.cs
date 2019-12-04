@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CentralRequestsSystem.Core;
 using CentralRequestsSystem.Core.Repository;
+using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CentralRequestsSystem.Persistance
@@ -30,5 +31,20 @@ namespace CentralRequestsSystem.Persistance
 
         public Task SaveChanges()
             => context.SaveChangesAsync();
+        public async Task<TEntity> Find(Guid id)
+            => await context.Set<TEntity>().FindAsync(id);
+
+        public Result Update(TEntity entity)
+        {
+            try
+            {
+                context.Update(entity);
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure(ex.Message);
+            }
+        }
     }
 }

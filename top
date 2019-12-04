@@ -1,0 +1,78 @@
+[33mcommit 76cbfd58c6026378d96497a33b720e1288a78b97[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 26 22:19:08 2019 +0200
+
+    added get routes for filtering user adress and identity providers
+
+[33mcommit 73b0fe74f69052abbff8f9377e06e95602f15541[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 09279983 a863485f
+Author: RazvanIonutBorsan <rborsan@vmware.com>
+Date:   Wed Nov 6 05:25:50 2019 +0200
+
+    Merge remote-tracking branch 'origin'
+
+[33mcommit 0927998348a9fa1e93b016fa26ca06608a2e7061[m
+Author: RazvanIonutBorsan <rborsan@vmware.com>
+Date:   Wed Nov 6 05:25:34 2019 +0200
+
+    Added home and credentials pages
+
+[33mcommit a863485f6f2b775ba32dc1361f2d986da97b69ea[m
+Author: GeoStefan <georgianspopescu@gmail.com>
+Date:   Wed Nov 6 00:44:28 2019 +0200
+
+    Add tests for contracts
+
+[33mcommit bb7c40ab23b974a1250d10395a84cf3b1a91ce7d[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 5 23:15:29 2019 +0200
+
+    add swagger
+
+[33mcommit 430274b8f5a6692b32ed4775ce3334eb75fbdfd0[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 5 22:50:00 2019 +0200
+
+    implemented method so addrequest service test passes
+
+[33mcommit d68b041026c8f329ceda3249479e00456512d5f1[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 5 22:38:18 2019 +0200
+
+    implement add request service test
+
+[33mcommit 468e41e925065c4b33674386afbe7b0f779d26a3[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 5 22:21:52 2019 +0200
+
+    implemented method for test to pass
+
+[33mcommit 0f1ca70e933cdc0c53998fbda179f448fac84a4c[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 5 22:13:49 2019 +0200
+
+    added test for request controller
+
+[33mcommit 38c20a2893ba6af119397229124807b635094242[m
+Author: andyrkn <andyfbgm@gmail.com>
+Date:   Tue Nov 5 21:22:29 2019 +0200
+
+    add plain unimplemented methods
+
+[33mcommit d5d218782e52ded87a41d81e8819570cec123d0c[m
+Author: RazvanIB <razvanborsan@gmail.com>
+Date:   Wed Oct 30 10:07:51 2019 +0200
+
+    Added initial interface structure
+
+[33mcommit cc3b2fc6f7bec6fb9786e0e780907800ed0a7821[m
+Author: Cristian Andrei <cristyurs@yahoo.com>
+Date:   Tue Oct 29 23:09:38 2019 +0200
+
+    Natural language init
+
+[33mcommit 2342cb042b5a0f59f974a4643a6d9e9818888758[m
+Author: GeoStefan <georgianspopescu@gmail.com>
+Date:   Mon Oct 28 20:25:00 2019 +0200
+
+    Add identity provider and ownable contracts, reuse proxy implementation

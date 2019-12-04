@@ -9,6 +9,8 @@ import Credentials from './pages/credentials';
 import Home from './pages/home';
 import Wallet from "./pages/wallet";
 import Contact from "./pages/contact";
+import Login from "./pages/login";
+import Register from "./pages/register";
 import Transcript from "./pages/transcript/transcript.component";
 
 
@@ -20,8 +22,11 @@ export default function BasicExample() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/credentials">
-            <Credentials />
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
           </Route>
           <Route path="/wallet">
             <Wallet />

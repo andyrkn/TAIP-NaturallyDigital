@@ -1,22 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Navbar from '../../components/navbar';
 import { MenuItem, Button } from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import TelegramIcon from '@material-ui/icons/Telegram';
-import {Redirect, Link } from 'react-router-dom';
-import './register.styles.scss';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import './login.styles.scss';
 
 const roles = [
     {
         value: 'User',
-        hiddenValue: 'usere',
     },
     {
         value: 'Identity Provider',
-        hiddenValue: 'usere',
     }
 ]
 
@@ -50,22 +48,14 @@ export default function Login() {
     const classes = useStyles();
     const [role, setRole] = React.useState('User');
     const [password, setPassword] = React.useState('');
-    const [confirmPassword, setConfirmPassword] = React.useState('');
     const [redirectHome, setRedirectHome] = React.useState(false);
 
     const handlePasswordChange = event => {
         setPassword(event.target.value);
     }
-    const handleConfirmPasswordChange = event => {
-        setConfirmPassword(event.target.value);
-    }
     const handleChange = event => {
         setRole(event.target.value);
     }
-
-    // useEffect(() => {
-        
-    // }, []);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -88,22 +78,9 @@ export default function Login() {
         <React.Fragment>
             <Navbar />
             <div className="home-message">
-                <p>Welcome! Please, write the password and the role that you would like to have:</p>
+                <p>Welcome! Please, write the password for your address and the role that you want to login as:</p>
                 <form className={classes.root} noValidate autoComplete="off">
-                    <TextField 
-                        id="outlined-basic" 
-                        onChange={handlePasswordChange} 
-                        label="Password" type="password" 
-                        variant="outlined" 
-                    />
-                    <TextField 
-                        error={password === confirmPassword ? false : true} 
-                        onChange={handleConfirmPasswordChange} 
-                        id="outlined-basic" 
-                        label="Confirm Password" 
-                        type="password" 
-                        variant="outlined" 
-                    />
+                    <TextField id="outlined-basic" onChange={handlePasswordChange} label="Password" type="password" variant="outlined" />
                     <TextField
                         id="outlined-select-role"
                         select
@@ -134,17 +111,17 @@ export default function Login() {
                     onClick={handleSubmit}
                     startIcon={<LockOpenIcon />}
                 >
-                    Register
+                    Login
                 </Button>
-                <p>Already have an account? Login here:</p>
-                <Link to="/login">
+                <p>Not a member yet? Don't worry! Register here:</p>
+                <Link to="/register">
                     <Button
                         variant="contained"
                         color="secondary"
                         className={classes.button}
                         startIcon={<TelegramIcon />}
                     >
-                        Login
+                        Register
                     </Button>
                 </Link>
             </div>
