@@ -22,6 +22,16 @@ namespace CentralRequestsSystem.Presentation
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                 {
+                     policy.AllowAnyOrigin();
+                     policy.AllowAnyHeader();
+                     policy.AllowAnyMethod();
+                 });
+            });
+
             services.AddMvc();
 
             services.AddSwaggerGen(config =>
@@ -38,14 +48,12 @@ namespace CentralRequestsSystem.Presentation
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage();
 
-                app.UseSwagger();
-                app.UseSwaggerUI(config =>
-                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "Central Request System"));
-            }
+            app.UseCors("AllowAll");
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "Central Request System"));
 
             app.UseHttpsRedirection();
             app.UseRouting();

@@ -14,6 +14,7 @@ namespace CentralRequestsSystem.Core
         public string IdentityProviderAdress { get; private set; }
         public DateTime Date { get; private set; }
         public string Payload { get; private set; }
+        public bool Granted { get; private set; }
 
         public static Result<Request> CreateRequest(string userAdress, string identityProviderAdress, DateTime date, string payload)
             => Result.Success(new Request
@@ -21,7 +22,14 @@ namespace CentralRequestsSystem.Core
                     UserAdress = userAdress,
                     IdentityProviderAdress = identityProviderAdress,
                     Date = date,
-                    Payload = payload
+                    Payload = payload,
+                    Granted = false
                 });
+
+        public Result<Request> Grant()
+        {
+            Granted = true;
+            return Result.Success(this);
+        }
     }
 }

@@ -15,6 +15,10 @@ namespace CentralRequestsSystem.Business.RequestBusiness
 
         IAsyncEnumerable<Request> GetByIdentityProvider(string identityProvider);
 
+        IAsyncEnumerable<Request> GetApprovedRequestsForUser(string userAdress);
+
         Task<Result> Delete(Guid id);
+
+        Task<Result> Grant(Guid id);
     }
 }
