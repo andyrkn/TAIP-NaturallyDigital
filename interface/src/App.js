@@ -11,6 +11,8 @@ import Wallet from "./pages/wallet";
 import Contact from "./pages/contact";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Transcript from "./pages/transcript/transcript.component";
+
 
 export default function BasicExample() {
   return (
@@ -31,6 +33,9 @@ export default function BasicExample() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/transcript/:id">
+            <Transcript />
           </Route>
         </Switch>
       </div>
