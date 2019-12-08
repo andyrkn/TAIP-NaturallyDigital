@@ -21,8 +21,8 @@ export default class Wallet extends React.Component {
     async componentDidMount() {
         let accountAddress = await getAccountAddress();
         this.setState({ accountAddress: accountAddress });
-        let ipc = await createIdentityProvider(accountAddress, "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e", "ipfsHash");
-        console.log(ipc);
+        // let ipc = await createIdentityProvider(accountAddress, "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e", "ipfsHash");
+        // console.log(ipc);
         let ips = await getAllIdentityProviders();
         console.log(ips);
         // let ide = await createIdentity(accountAddress, "hash", "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e");

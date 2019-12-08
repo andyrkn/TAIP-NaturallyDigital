@@ -37,6 +37,9 @@ export default function BasicExample() {
           <Route path="/transcript/:id">
             <Transcript />
           </Route>
+          <Route path="/credentials">
+            <Credentials></Credentials>
+          </Route>
         </Switch>
       </div>
     </Router>

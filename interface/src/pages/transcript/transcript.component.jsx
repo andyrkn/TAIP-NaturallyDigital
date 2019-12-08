@@ -38,20 +38,26 @@ export default class Transcript extends React.Component {
             ipfsHash: '',
             identityProvider: "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e",
             txHash: '',
+            requests: [],
+            encryptedFile: ''
         }
 
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     async componentDidMount() {
+        const { match: { params } } = this.props;
+
         let accountAddress = await getAccountAddress();
         this.setState({ accountAddress: accountAddress });
         axios.get(`http://109.100.27.188:5000/api/Requests/users?userAdress=${this.state.accountAddress}`)
-        .then(response => {
-            console.log("Raspuns de la server");
-            console.log(response.data[0]);
-           // this.setState({ identityProvider: response.data[0].identityProvider, request: JSON.parse(response.data[0].payload) });
-        });
+            .then(response => {
+                console.log("Raspuns de la server");
+                console.log(response.data);
+                this.setState({ identityProvider: response.data[1].identityProviderAdress, request: response.data[1].payload });
+            });
+        let requests = await getAllIdentities(accountAddress);
+        this.setState({ requests: requests });
     }
 
     readFile = (file, onSuccessCallback, onFailCallback) => {
@@ -67,7 +73,6 @@ export default class Transcript extends React.Component {
     }
 
     onRead = (file) => {
-        console.log(file);
         const jsonFile = JSON.parse(file);
         console.log(jsonFile);
         this.setState({ fileContent: jsonFile });
@@ -86,13 +91,16 @@ export default class Transcript extends React.Component {
         console.log(encrypted);
         const ipfsHash = await uploadContent(JSON.stringify({ encryptedContent: encrypted }));
         console.log(ipfsHash);
+        this.setState({ ipfsHash: ipfsHash });
         const file = JSON.parse(await getContent(ipfsHash));
         console.log(file);
+        this.setState({ encryptedFile: JSON.stringify(file) });
         const res = decrypt(file.encryptedContent, privateKey);
         console.log(res);
         let ide = await createIdentity(this.state.accountAddress, ipfsHash, this.state.identityProvider);
         console.log(ide);
-        this.setState({ txHash: ide, ipfsHash: ipfsHash, loading: false });
+        let requests = await getAllIdentities(this.state.accountAddress);
+        this.setState({ txHash: ide, loading: false, requests: requests });
     }
 
     populatFields() {
@@ -118,14 +126,19 @@ export default class Transcript extends React.Component {
                 <Navbar />
                 <main className="main">
                     <h2>Request</h2>
-                    {/* {this.state.request} */}
-                    {fields}
+                    {this.state.request}
                     {/* <label htmlFor="fileInput">Choose a profile picture:</label> */}
+                    <div>Please choose response</div>
                     <input type="file" id="fileInput" name="fileInput" onChange={this.onChange} />
+                    <h3>Your response</h3>
+                    {fields}
                     <div><button type="button" className="button button2" onClick={this.onSubmit}>Upload</button></div>
                     {this.state.loading ? <Loader /> : null}
+                    <div>Encrypted file {this.state.encryptedFile}</div>
                     <div>IPFS Hash: {this.state.ipfsHash}</div>
                     <div>TX Hash: {this.state.txHash}</div>
+                    <h3>User identities saved in Ethereum</h3>
+                    {JSON.stringify(this.state.requests)}
                 </main>
             </React.Fragment >
         )

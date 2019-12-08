@@ -45,6 +45,7 @@ export const getIdentity = async (userAddress, index) => {
 }
 
 export const getAllIdentities = async (userAddress) => {
+  console.log(userAddress);
   let web3 = getWeb3Instance();
   const contract = new web3.eth.Contract(userIdentityAbi, userIdentityAddress);
   let identitiesNumber = await contract.methods.getUserIdentityNumber(userAddress).call();
