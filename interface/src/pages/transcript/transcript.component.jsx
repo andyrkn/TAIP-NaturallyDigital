@@ -7,6 +7,7 @@ import axios from 'axios';
 import { uploadContent, getContent } from '../../components/ipfs/ipfs';
 import { encrypt, decrypt } from '../../components/crypto';
 import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
+import centralDatabaseAPI from '../../shared/centralDatabase';
 
 const privateKey = '123';
 
@@ -28,7 +29,12 @@ export default class Transcript extends React.Component {
                 },
 
             },
-            request: '',
+            request: {
+                "userAdress": "0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b",
+                "identityProviderAdress": "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e",
+                "date": "2019-12-04T00:27:18.140Z",
+                "payload": { "id": 1, "fullName": "Politia Rutiera Iasi", "transcript": "istoric-amenzi" }
+            },
             selectedFile: '',
             filename: 'Choose file',
             loading: false,
@@ -36,10 +42,10 @@ export default class Transcript extends React.Component {
             fileError: '',
             fileContent: '',
             ipfsHash: '',
-            identityProvider: "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e",
             txHash: '',
             requests: [],
-            encryptedFile: ''
+            encryptedFile: '',
+            status: ''
         }
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -50,14 +56,12 @@ export default class Transcript extends React.Component {
 
         let accountAddress = await getAccountAddress();
         this.setState({ accountAddress: accountAddress });
-        axios.get(`http://109.100.27.188:5000/api/Requests/users?userAdress=${this.state.accountAddress}`)
+        axios.get(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${params.id}`)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
-                this.setState({ identityProvider: response.data[1].identityProviderAdress, request: response.data[1].payload });
+                this.setState({ request: response });
             });
-        let requests = await getAllIdentities(accountAddress);
-        this.setState({ requests: requests });
     }
 
     readFile = (file, onSuccessCallback, onFailCallback) => {
@@ -86,7 +90,6 @@ export default class Transcript extends React.Component {
 
     async onSubmit() {
         this.setState({ loading: true });
-        // put la db
         const encrypted = encrypt({ name: this.state.fileContent }, privateKey);
         console.log(encrypted);
         const ipfsHash = await uploadContent(JSON.stringify({ encryptedContent: encrypted }));
@@ -101,6 +104,26 @@ export default class Transcript extends React.Component {
         console.log(ide);
         let requests = await getAllIdentities(this.state.accountAddress);
         this.setState({ txHash: ide, loading: false, requests: requests });
+    }
+
+    onReject() {
+        this.setState({ loading: true });
+        axios.put(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${params.id}`, this.state.request)
+            .then(response => {
+                console.log("Raspuns de la server");
+                console.log(response.data);
+                this.setState({ request: response, loading: false, status: 'Successfully rejected' });
+            });
+    }
+
+    onAccept() {
+        this.setState({ loading: true });
+        axios.post(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${params.id}`, this.state.request)
+            .then(response => {
+                console.log("Raspuns de la server");
+                console.log(response.data);
+                this.setState({ request: response, loading: false, status: 'Successfully accepted' });
+            });
     }
 
     populatFields() {
@@ -119,26 +142,29 @@ export default class Transcript extends React.Component {
     }
 
     render() {
+        let { institution, requestType, description } = this.state.request.payload;
         let fields = this.populatFields();
 
         return (
             <React.Fragment>
                 <Navbar />
                 <main className="main">
-                    <h2>Request</h2>
-                    {this.state.request}
-                    {/* <label htmlFor="fileInput">Choose a profile picture:</label> */}
+                <h2>Request</h2>
+                    <div><span>Institution</span><span>{institution}</span></div>
+                    <div><span>Request type</span><span>{requestType}</span></div>
                     <div>Please choose response</div>
                     <input type="file" id="fileInput" name="fileInput" onChange={this.onChange} />
                     <h3>Your response</h3>
                     {fields}
                     <div><button type="button" className="button button2" onClick={this.onSubmit}>Upload</button></div>
+                    <div><button type="button" className="button button2" onClick={this.onReject}>Reject</button></div>
                     {this.state.loading ? <Loader /> : null}
-                    <div>Encrypted file {this.state.encryptedFile}</div>
-                    <div>IPFS Hash: {this.state.ipfsHash}</div>
+                    <div>Encrypteded file de somon {this.state.encryptedFile}</div>
+                    <div>IPFS Hashpeste-o de aici: {this.state.ipfsHash}</div>
                     <div>TX Hash: {this.state.txHash}</div>
-                    <h3>User identities saved in Ethereum</h3>
+                    <h3>User iden(titties) saved in Ethereum Blyat</h3>
                     {JSON.stringify(this.state.requests)}
+                    {status}
                 </main>
             </React.Fragment >
         )
