@@ -90,7 +90,8 @@ export default function Navbar() {
     Home: '/',
     'Get Credentials': '/credentials',
     Wallet: '/wallet',
-    Contact: '/contact'
+    Contact: '/contact',
+    Transcript: '/transcript/1'
   }
 
   let logo = require('../../assets/images/spiderman.png');
@@ -103,7 +104,7 @@ export default function Navbar() {
       onKeyDown={toggleDrawer(false)}
     >
       <List className={classes.list}>
-        {['Home', 'Wallet', 'Get Credentials', 'Contact'].map((text) => (
+        {['Home', 'Wallet', 'Get Credentials', 'Contact', 'Transcript'].map((text) => (
           <Link to={menuDictionary[text]} key={text} style={{ textDecoration: 'none' }}>
             <ListItem classes={{ root: classes.listItem}} button key={text}>
                 <ListItemText classes={{ primary: classes.listItemText }} primary={text} />

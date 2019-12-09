@@ -4,10 +4,11 @@ import Loader from '../../components/loader';
 
 import "./transcript.styles.css";
 import axios from 'axios';
-import { uploadContent, getContent } from '../../components/ipfs/ipfs';
-import { encrypt, decrypt } from '../../components/crypto';
-import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
+import { getAccountAddress } from '../../components/ethereum/ethereum';
 import centralDatabaseAPI from '../../shared/centralDatabase';
+import FileInput from "../../components/fileInput/fileInput";
+import Request from "../../components/request/request.component";
+import Response from "../../components/response/response.component";
 
 const privateKey = '123';
 
@@ -16,43 +17,27 @@ export default class Transcript extends React.Component {
         super(props);
         this.state = {
             accountAddress: '',
-            transcript: {
-                "id": 1,
-                "fullName": "Politia Rutiera Iasi",
-                "transcript": "istoric-amenzi",
-                "content":
-                {
-                    "date": "10.09.2019",
-                    "amount": "$300",
-                    "reason": "Speeding",
-                    "officer": "Capraru Daniel"
-                },
-
-            },
             request: {
                 "userAdress": "0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b",
                 "identityProviderAdress": "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e",
                 "date": "2019-12-04T00:27:18.140Z",
-                "payload": { "id": 1, "fullName": "Politia Rutiera Iasi", "transcript": "istoric-amenzi" }
+                "payload": { "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi" }
             },
-            selectedFile: '',
-            filename: 'Choose file',
             loading: false,
-            fileRegex: new RegExp('[^.]+(.png|.jpeg|.gif|.tiff|.bmp|.jpg)'),
-            fileError: '',
             fileContent: '',
             ipfsHash: '',
             txHash: '',
-            requests: [],
             encryptedFile: '',
-            status: ''
+            status: '',
+            id: ''
         }
-
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onAccept = this.onAccept.bind(this);
+        this.onReject = this.onReject.bind(this);
     }
 
     async componentDidMount() {
         const { match: { params } } = this.props;
+        this.setState({ id: params.id });
 
         let accountAddress = await getAccountAddress();
         this.setState({ accountAddress: accountAddress });
@@ -64,107 +49,64 @@ export default class Transcript extends React.Component {
             });
     }
 
-    readFile = (file, onSuccessCallback, onFailCallback) => {
-        let reader = new FileReader();
-        reader.readAsText(file);
-
-        reader.onloadend = function () {
-            onSuccessCallback(reader.result);
-        };
-        reader.onerror = function (error) {
-            onFailCallback(error.message);
-        };
-    }
-
     onRead = (file) => {
         const jsonFile = JSON.parse(file);
         console.log(jsonFile);
         this.setState({ fileContent: jsonFile });
     };
 
-    onChange = (event) => {
-        const file = event.target.files[0];
-        this.setState({ selectedFile: file.name })
-        this.readFile(file, this.onRead);
-    }
-
-    async onSubmit() {
-        this.setState({ loading: true });
-        const encrypted = encrypt({ name: this.state.fileContent }, privateKey);
-        console.log(encrypted);
-        const ipfsHash = await uploadContent(JSON.stringify({ encryptedContent: encrypted }));
-        console.log(ipfsHash);
-        this.setState({ ipfsHash: ipfsHash });
-        const file = JSON.parse(await getContent(ipfsHash));
-        console.log(file);
-        this.setState({ encryptedFile: JSON.stringify(file) });
-        const res = decrypt(file.encryptedContent, privateKey);
-        console.log(res);
-        let ide = await createIdentity(this.state.accountAddress, ipfsHash, this.state.identityProvider);
-        console.log(ide);
-        let requests = await getAllIdentities(this.state.accountAddress);
-        this.setState({ txHash: ide, loading: false, requests: requests });
-    }
-
     onReject() {
         this.setState({ loading: true });
-        axios.put(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${params.id}`, this.state.request)
+        axios.put(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${this.state.id}`, this.state.request)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
                 this.setState({ request: response, loading: false, status: 'Successfully rejected' });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ loading: false, status: 'Response submision failed' });
             });
     }
 
     onAccept() {
         this.setState({ loading: true });
-        axios.post(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${params.id}`, this.state.request)
+        let response = this.state.request;
+        response.payload.response = JSON.stringify(this.state.fileContent);
+        console.log(response);
+        axios.post(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${this.state.id}`, response)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
                 this.setState({ request: response, loading: false, status: 'Successfully accepted' });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ loading: false, status: 'Response submision failed' });
+                throw err;
             });
     }
 
-    populatFields() {
-        let fields = [];
-        for (let [key, value] of Object.entries(this.state.fileContent)) {
-            if (typeof value === 'object') {
-                fields.push(<div className="key">{key}</div>);
-                for (let [subkey, subvalue] of Object.entries(value)) {
-                    fields.push(<div>{subkey}:  {subvalue}</div>)
-                }
-            } else {
-                fields.push(<div><span className="key">{key}</span><span>:  {value}</span></div>);
-            }
-        }
-        return fields;
-    }
-
     render() {
-        let { institution, requestType, description } = this.state.request.payload;
-        let fields = this.populatFields();
+        let notFileUploaded = this.state.fileContent == '';
 
         return (
             <React.Fragment>
                 <Navbar />
                 <main className="main">
-                <h2>Request</h2>
-                    <div><span>Institution</span><span>{institution}</span></div>
-                    <div><span>Request type</span><span>{requestType}</span></div>
-                    <div>Please choose response</div>
-                    <input type="file" id="fileInput" name="fileInput" onChange={this.onChange} />
-                    <h3>Your response</h3>
-                    {fields}
-                    <div><button type="button" className="button button2" onClick={this.onSubmit}>Upload</button></div>
-                    <div><button type="button" className="button button2" onClick={this.onReject}>Reject</button></div>
+                    <Request {...this.state.request.payload} />
+                    <div>
+                        <FileInput onRead={this.onRead} />
+                    </div>
+                    {notFileUploaded ? null : <div>
+                        <Response payload={this.state.fileContent} />
+                    </div>}
+                    <div>
+                        <button type="button" className="button button2" onClick={this.onAccept} disabled={notFileUploaded}>Upload</button>
+                        <button type="button" className="button button2" onClick={this.onReject}>Reject</button>
+                    </div>
                     {this.state.loading ? <Loader /> : null}
-                    <div>Encrypteded file de somon {this.state.encryptedFile}</div>
-                    <div>IPFS Hashpeste-o de aici: {this.state.ipfsHash}</div>
-                    <div>TX Hash: {this.state.txHash}</div>
-                    <h3>User iden(titties) saved in Ethereum Blyat</h3>
-                    {JSON.stringify(this.state.requests)}
-                    {status}
+                    <div className="error">{this.state.status}</div>
                 </main>
             </React.Fragment >
         )

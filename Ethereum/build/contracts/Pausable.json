@@ -2038,7 +2038,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-12-04T06:30:01.229Z",
+  "updatedAt": "2019-12-09T19:19:49.849Z",
   "devdoc": {
     "details": "Pausable contract implements Emergency stop mechanism design pattern",
     "methods": {

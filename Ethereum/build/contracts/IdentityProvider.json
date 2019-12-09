@@ -7786,6 +7786,89 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x68ec2b9944c5fba8256d4113e96c33146ca2d103a04bc7eac7bd68ddb50a33ea": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "identifier",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "ipfsHash",
+              "type": "string"
+            }
+          ],
+          "name": "AddIP",
+          "type": "event",
+          "signature": "0x68ec2b9944c5fba8256d4113e96c33146ca2d103a04bc7eac7bd68ddb50a33ea"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event",
+          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+        },
+        "0xb48fdf3f028b42ae7a4e52007fd20f3e8e42445278329ccde0001706edef3b8a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "RemoveIP",
+          "type": "event",
+          "signature": "0xb48fdf3f028b42ae7a4e52007fd20f3e8e42445278329ccde0001706edef3b8a"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event",
+          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+        },
+        "0x147d93cafe8a4f74e7041fed9a3c4a59b9147c6e923fb45f188379856f85ec84": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "UpdateIP",
+          "type": "event",
+          "signature": "0x147d93cafe8a4f74e7041fed9a3c4a59b9147c6e923fb45f188379856f85ec84"
+        }
+      },
+      "links": {},
+      "address": "0x0d4192A4230EE75c48a02f03cd91317607380B62",
+      "transactionHash": "0xdd7d301a76d7372c69ed0d6cb4d88cc8751b387b5e47feaf0ffc07cfdfe8d4b0"
+    },
     "5777": {
       "events": {
         "0x68ec2b9944c5fba8256d4113e96c33146ca2d103a04bc7eac7bd68ddb50a33ea": {
@@ -7866,12 +7949,12 @@
         }
       },
       "links": {},
-      "address": "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1",
-      "transactionHash": "0xaf9ff56c64f6d21e54c1ae9ff0ee7263b8a117eafcc77cff591fa7a502ef54c1"
+      "address": "0x7889013Da6B92Ad5738c27dBedB1EfEA3b01dC6e",
+      "transactionHash": "0x77793da40b48f7b3a8f544026f9c65d0089d733ce8805680c54b9962801e2ec2"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-12-04T06:30:03.072Z",
+  "updatedAt": "2019-12-09T19:26:19.512Z",
   "devdoc": {
     "details": "Identity provider contracts manages identity providers structures and restricts control only to owner",
     "methods": {

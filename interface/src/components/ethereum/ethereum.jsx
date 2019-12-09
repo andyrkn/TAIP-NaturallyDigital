@@ -2,8 +2,8 @@ import Web3 from 'web3';
 import userIdentityAbi from './userIdentity';
 import identityProviderAbi from './identityProvider';
 
-const userIdentityAddress = "0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c";
-const identityProviderAddress = "0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1";
+const userIdentityAddress = "0x9B9beE208818f7FBb3429b099BB21B40CC523D0B";
+const identityProviderAddress = "0x0d4192A4230EE75c48a02f03cd91317607380B62";
 //0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c   0x8e3C7B180D670BA781b2Bd1fB3415Dc0468abCa1
 //ropsten 0xa71023E2aBE279520F881B369961b66a49e9436B  0xa71023E2aBE279520F881B369961b66a49e9436B
 

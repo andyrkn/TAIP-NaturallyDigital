@@ -231,15 +231,21 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x9e3dE0FE327574501C5d1fEbE7d7Aed5291cf4d5",
+      "transactionHash": "0x70358da7415f22ee8773e571d2dd6b636aff088273768bbd03baf1e71a1125ec"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xbE9497691Ad7405dc8a7492BbB4c135147bAF795",
-      "transactionHash": "0xfdbdeef9924a722bdcec876d4adcdec44d09dea9b3601270a7d99dd47502621f"
+      "address": "0x8a83c978aD62514Ae7aca40D2a2b343d8392153F",
+      "transactionHash": "0x44056229d3b88676456ed2681bfa3825b4773eb1c421aac5499c7e6892e6be26"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-12-04T06:30:03.084Z",
+  "updatedAt": "2019-12-09T19:26:19.516Z",
   "devdoc": {
     "details": "Proxy for identity provider logic and storage",
     "methods": {

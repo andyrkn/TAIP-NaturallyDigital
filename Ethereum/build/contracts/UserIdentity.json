@@ -7717,6 +7717,139 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x55f2912a3f979c05cf5175ee79efb35228ac6068dd5d4eb7071f723c91fba562": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "ipfsHash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "identityProvider",
+              "type": "address"
+            }
+          ],
+          "name": "AddIdentity",
+          "type": "event",
+          "signature": "0x55f2912a3f979c05cf5175ee79efb35228ac6068dd5d4eb7071f723c91fba562"
+        },
+        "0xc667f2254e71cc2e2a51eea68c65daed57020f7bcfd87f8bd5bf149e775b14d0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "userDataHash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "IP",
+              "type": "address"
+            }
+          ],
+          "name": "AddIdentity",
+          "type": "event",
+          "signature": "0xc667f2254e71cc2e2a51eea68c65daed57020f7bcfd87f8bd5bf149e775b14d0"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event",
+          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+        },
+        "0xabca378e8f171a694e831dcb74f877ae039e20fad1804d3fbf39284ecc1deb13": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "ipfsHash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "identityProvider",
+              "type": "address"
+            }
+          ],
+          "name": "RemoveIdentity",
+          "type": "event",
+          "signature": "0xabca378e8f171a694e831dcb74f877ae039e20fad1804d3fbf39284ecc1deb13"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event",
+          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+        },
+        "0xd953e12934184658f7ac0d87a9b730154d254bc03af8b38d30737924996b9a0c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "ipContract",
+              "type": "address"
+            }
+          ],
+          "name": "UpdateIdentityProviderContact",
+          "type": "event",
+          "signature": "0xd953e12934184658f7ac0d87a9b730154d254bc03af8b38d30737924996b9a0c"
+        }
+      },
+      "links": {},
+      "address": "0x9B9beE208818f7FBb3429b099BB21B40CC523D0B",
+      "transactionHash": "0x1ad8a0ede27cb288231f2b972d072fea7933099b34d3dcfd7edb797a9c86b2cd"
+    },
     "5777": {
       "events": {
         "0x55f2912a3f979c05cf5175ee79efb35228ac6068dd5d4eb7071f723c91fba562": {
@@ -7847,12 +7980,12 @@
         }
       },
       "links": {},
-      "address": "0xe4d31CB79d5Ac29f221666a5F302bF82F3c6786c",
-      "transactionHash": "0x917e31e81f07bdd52dd6aa6cb7c28918707f3e187fa1e20103260b98a6919fbd"
+      "address": "0xf6379FA46Bd875798dd8393ef288cBAaB8A1Eb8F",
+      "transactionHash": "0x240fc4343f7e696329e0dd25fcf2e70d3661ac8dfb15a06b80bc2caf833de654"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-12-04T06:30:03.062Z",
+  "updatedAt": "2019-12-09T19:26:19.398Z",
   "devdoc": {
     "details": "UserIdentity implements basic functions for managing user identity",
     "methods": {
