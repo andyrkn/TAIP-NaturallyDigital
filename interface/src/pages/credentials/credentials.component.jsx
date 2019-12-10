@@ -34,8 +34,6 @@ export default function Credentials() {
     React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
-
-    // let accountAddress = await getAccountAddress();
     
     const handleInstitutionChange = event => {
         setInstitution(event.target.value);
@@ -47,16 +45,14 @@ export default function Credentials() {
 
     const handleTranscriptRequest = async (e) => {
         e.preventDefault();
-        await console.log("Initiating API GET call for transcripts...")
+        let accountAddress = await getAccountAddress();
         // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
         // await console.log("API GET call succesfull!");
-        await console.log("Saving the API GET call response to the wallet...");
         await axios.post('http://109.100.27.188:5000/api/Requests', {
-            userAdress: "0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b",
+            userAdress: accountAddress,
             identityProviderAdress: "add",
             payload:  JSON.stringify({"fullName":institution, "transcript":transcript })
         })
-        await console.log("Transcript sucesfully saved in the wallet!");
     }
 
     return (
@@ -74,6 +70,9 @@ export default function Credentials() {
                             labelWidth={labelWidth}
                         >
                             <MenuItem value={"rutiera"}>Politia Rutiera Iasi</MenuItem>
+                            <MenuItem value={"spclep"}>SPCLEP Iasi</MenuItem>
+                            <MenuItem value={"omniasig_insurance"}>Omniasig</MenuItem>
+                            <MenuItem value={"medical-records"}>Spitalul Clinic Parhon, Iasi</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -88,27 +87,11 @@ export default function Credentials() {
                             onChange={handleTranscriptChange}
                             labelWidth={labelWidth}
                         >
-                            <MenuItem value={"istoric-amenzi"}>Istoric amenzi</MenuItem>
-                            <MenuItem value={"plata-amenzi"}>Plata amenzi</MenuItem>
+                            <MenuItem value={"istoric"}>Istoric</MenuItem>
+                            <MenuItem value={"plata"}>Plata</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
-
-                {/* <div className="row">
-                    <p>Select time intervals:</p>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel}>
-                            Time
-                        </InputLabel>
-                        <Select
-                            labelWidth={labelWidth}
-                        >
-                            <MenuItem value={10}>Last month</MenuItem>
-                            <MenuItem value={20}>Last year</MenuItem>
-                            <MenuItem value={20}>Since first item</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div> */}
 
                 <Button variant="contained" color="primary" className={classes.button} onClick={handleTranscriptRequest}>
                     Send request
