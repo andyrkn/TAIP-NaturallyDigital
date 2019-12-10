@@ -11,6 +11,6 @@ namespace CentralRequestsSystem.Business.RequestBusiness.Extensions
                 requestModel.UserAdress,
                 requestModel.IdentityProviderAdress,
                 requestModel.Date,
-                null);
+                requestModel.Payload);
     }
 }

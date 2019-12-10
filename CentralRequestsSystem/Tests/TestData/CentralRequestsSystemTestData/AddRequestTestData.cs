@@ -10,7 +10,8 @@ namespace CentralRequestsSystem.TestData
             {
                 Date = new DateTime(2000, 1, 1),
                 IdentityProviderAdress = "adress",
-                UserAdress = "adress"
+                UserAdress = "adress",
+                Payload = "payload"
             };
     }
 }
