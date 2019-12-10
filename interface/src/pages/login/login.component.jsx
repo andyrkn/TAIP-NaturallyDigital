@@ -11,7 +11,7 @@ import './login.styles.scss';
 
 const roles = [
     {
-        value: 'User',
+        value: 'user',
     },
     {
         value: 'Identity Provider',
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 export default function Login() {
     let logo = require('../../assets/images/icons8-spider-64.png');
     const classes = useStyles();
-    const [role, setRole] = React.useState('User');
+    const [role, setRole] = React.useState('user');
     const [password, setPassword] = React.useState('');
     const [redirectHome, setRedirectHome] = React.useState(false);
 
@@ -59,7 +59,7 @@ export default function Login() {
 
     const handleSubmit = event => {
         event.preventDefault();
-
+        sessionStorage.setItem('role', role);
         axios.get(`http://109.100.27.188:5000/api/Login?userName=user&password=${password}`)
             .then(res => {
                 if (res.status === 200) {

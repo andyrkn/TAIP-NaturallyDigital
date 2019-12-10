@@ -9,7 +9,7 @@ import "./request-list.styles.css";
 import { Link } from 'react-router-dom';
 import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
 
-const role = "user";
+const role = sessionStorage.getItem('role');
 
 export default class RequestList extends React.Component {
     constructor(props) {

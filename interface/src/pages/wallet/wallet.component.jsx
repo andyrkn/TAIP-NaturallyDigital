@@ -14,7 +14,81 @@ export default class Wallet extends React.Component {
         super(props);
         this.state = {
             accountAddress: '',
-            transcripts: [],
+            transcripts: [
+                    // {
+                    //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                    //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                    //     "date": "2019-12-04T00:27:18.140Z",
+                    //     "payload": {
+                    //         "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric", "description": {
+                    //             "date": "10.09.2019",
+                    //             "amount": "$1300",
+                    //             "reason": "Speeding",
+                    //             "officer": "Pomohaci Alex"
+                    //         }
+                    //     }
+                    // },
+                    // {
+                    //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                    //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                    //     "date": "2019-12-04T00:27:18.140Z",
+                    //     "payload": {
+                    //         "id": 1, "institution": "SPCLEP Iasi", "requestType": "identity_card", "description": {
+                    //             "date": "10.09.2019",
+                    //             "name": "Pomohaci Alex",
+                    //             "address": "Anastasie Panu nr. 33",
+                    //             "city": "Miroslava",
+                    //             "region": "Iasi", 
+                    //             "CNP": "1972196333663",
+                    //             "series": "XT",
+                    //             "number": "333444"
+                    //         }
+                    //     }
+                    // },
+                    // {
+                    //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                    //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                    //     "date": "2019-12-04T00:27:18.140Z",
+                    //     "payload": {
+                    //         "id": 1, "institution": "Omniasig Iasi", "requestType": "istoric", "description": {
+                    //             "date": "10.09.2019",
+                    //             "name": "Pomohaci Alex",
+                    //             "type": "Life Insurance",
+                    //             "value": "$250000",
+                    //             "region": "Iasi", 
+                    //         }
+                    //     }
+                    // },
+
+                    // {
+                    //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                    //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                    //     "date": "2019-12-04T00:27:18.140Z",
+                    //     "payload": {
+                    //         "id": 1, "institution": "Omniasig Iasi", "requestType": "plata", "description": {
+                    //             "date": "10.09.2019",
+                    //             "name": "Pomohaci Alex",
+                    //             "monthly_payment": "$50",
+                    //             "amount_payed": "$50000",
+                    //             "amount_left": "$200000", 
+                    //             "date_of_last_payment": "06.09.2019",
+                    //         }
+                    //     }
+                    // },
+                    // {
+                    //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                    //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                    //     "date": "2019-12-04T00:27:18.140Z",
+                    //     "payload": {
+                    //         "id": 1, "institution": "Spitalul Clinic Parhon, Iasi", "requestType": "istoric", "description": {
+                    //             "date": "10.09.2019",
+                    //             "name": "Pomohaci Alex",
+                    //             "cause": "Blood Analysis",
+                    //             "gravity": "4",
+                    //         }
+                    //     }
+                    // },
+            ],
         }
     }
 
