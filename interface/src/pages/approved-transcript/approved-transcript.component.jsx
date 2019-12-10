@@ -24,9 +24,9 @@ export default class ApprovedTranscript extends React.Component {
                 "payload": {
                     "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
                         "date": "10.09.2019",
-                        "amount": "$300",
+                        "amount": "$1300",
                         "reason": "Speeding",
-                        "officer": "Capraru Daniel"
+                        "officer": "Pomohaci Alex"
                     }
                 }
             },
@@ -47,6 +47,7 @@ export default class ApprovedTranscript extends React.Component {
         this.setState({ id: params.id });
 
         let accountAddress = await getAccountAddress();
+        console.log(accountAddress);
         this.setState({ accountAddress: accountAddress });
         axios.get(`${centralDatabaseAPI}/ApprovedRequests/users?userAdress=${this.state.accountAddress}&id=${params.id}`)
             .then(response => {

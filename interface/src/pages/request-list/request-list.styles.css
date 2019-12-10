@@ -1,0 +1,23 @@
+.request-card {
+    display: inline-block;
+    /* border: 5px solid #008CBA; */
+    border-radius: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 20rem;
+    margin: 1rem 2rem;
+}
+
+.request-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-container {
+    padding: 1rem;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
