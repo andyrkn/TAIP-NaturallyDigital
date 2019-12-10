@@ -6,6 +6,7 @@ import { getAccountAddress, getIdentity, deleteIdentity } from '../../components
 import { decrypt } from '../../components/crypto';
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
+import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
 
 const privateKey = '123';
 

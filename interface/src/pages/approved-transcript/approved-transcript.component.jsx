@@ -9,6 +9,7 @@ import { encrypt } from '../../components/crypto';
 import centralDatabaseAPI from '../../shared/centralDatabase';
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
+import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
 
 const privateKey = '123';
 
@@ -49,7 +50,7 @@ export default class ApprovedTranscript extends React.Component {
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
-                this.setState({ request: response });
+                this.setState({ request: decodeRequest(response.data) });
             });
     }
 
@@ -69,7 +70,7 @@ export default class ApprovedTranscript extends React.Component {
             console.log(ide);
             this.setState({ txHash: ide });
 
-            this.setState({status: "Deleting request from database"});
+            this.setState({ status: "Deleting request from database" });
             axios.delete(`${centralDatabaseAPI}/Requests/${this.state.id}`)
                 .then(response => {
                     console.log("Raspuns de la server");
