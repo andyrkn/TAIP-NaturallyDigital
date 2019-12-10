@@ -27,10 +27,10 @@ namespace CentralRequestsSystem.Business.RequestBusiness
                 .Tap(async _ => await _requestWriteRepository.SaveChanges());
 
         public IAsyncEnumerable<Request> GetByUserAddress(string userAdress)
-            => _requestReadRepository.Where(request => request.UserAdress == userAdress && request.Granted == false);
+            => _requestReadRepository.Where(request => request.UserAdress == userAdress && !request.Granted);
 
         public IAsyncEnumerable<Request> GetByIdentityProvider(string identityProvider)
-            => _requestReadRepository.Where(request => request.IdentityProviderAdress == identityProvider && request.Granted == false);
+            => _requestReadRepository.Where(request => request.IdentityProviderAdress == identityProvider && !request.Granted);
 
         public async Task<Result> Delete(Guid id)
             => await Result.Try(async () => await _requestWriteRepository.Delete(id), (Exception ex) => ex.Message)
@@ -45,7 +45,7 @@ namespace CentralRequestsSystem.Business.RequestBusiness
                 .Tap(async request => await _requestWriteRepository.SaveChanges());
 
         public IAsyncEnumerable<Request> GetApprovedRequestsForUser(string userAdress)
-            => _requestReadRepository.Where(request => request.UserAdress == userAdress && request.Granted == true);
+            => _requestReadRepository.Where(request => request.UserAdress == userAdress && !request.Granted);
 
         public async Task<Result<Request>> Find(Guid id)
             => await _requestReadRepository.Find(id)

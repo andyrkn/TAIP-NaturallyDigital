@@ -1,5 +1,3 @@
-using Moq;
-
 namespace CentralRequestsSystem.BaseTests
 {
     public abstract class CentralRequestsSystemBaseTest<T> where T : class

@@ -89,6 +89,7 @@ namespace CentralRequestsSystem.Presentation.Controllers
         /// Mark a request with the {id} as accepted.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="payloadModel"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> GrantUserInformation([FromRoute] Guid id, [FromBody] UpdatePayloadModel payloadModel)
