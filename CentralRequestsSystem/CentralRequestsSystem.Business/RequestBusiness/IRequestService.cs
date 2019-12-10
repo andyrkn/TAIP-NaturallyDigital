@@ -20,5 +20,7 @@ namespace CentralRequestsSystem.Business.RequestBusiness
         Task<Result> Delete(Guid id);
 
         Task<Result> Grant(Guid id);
+
+        Task<Result<Request>> Find(Guid id);
     }
 }

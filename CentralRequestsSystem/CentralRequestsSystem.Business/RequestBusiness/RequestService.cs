@@ -10,34 +10,44 @@ namespace CentralRequestsSystem.Business.RequestBusiness
 {
     public class RequestService : IRequestService
     {
-        private readonly IRequestRepository _requestRepository;
+        private readonly IRequestReadRepository _requestReadRepository;
+        private readonly IRequestWriteRepository _requestWriteRepository;
 
-        public RequestService(IRequestRepository requestRepository) 
-            => _requestRepository = requestRepository;
+        public RequestService(IRequestReadRepository requestReadRepository, IRequestWriteRepository requestWriteRepository)
+        {
+            _requestReadRepository = requestReadRepository;
+            _requestWriteRepository = requestWriteRepository;
+        }
+          
 
         public async Task AddRequest(RequestModel addRequestModel)
             => await addRequestModel
                 .ToEntity()
-                .Tap(async request => await _requestRepository.Add(request))
-                .Tap(async _ => await _requestRepository.SaveChanges());
+                .Tap(async request => await _requestWriteRepository.Add(request))
+                .Tap(async _ => await _requestWriteRepository.SaveChanges());
 
         public IAsyncEnumerable<Request> GetByUserAddress(string userAdress)
-            => _requestRepository.Where(request => request.UserAdress == userAdress && request.Granted == false);
+            => _requestReadRepository.Where(request => request.UserAdress == userAdress && request.Granted == false);
 
         public IAsyncEnumerable<Request> GetByIdentityProvider(string identityProvider)
-            => _requestRepository.Where(request => request.IdentityProviderAdress == identityProvider && request.Granted == false);
+            => _requestReadRepository.Where(request => request.IdentityProviderAdress == identityProvider && request.Granted == false);
 
         public async Task<Result> Delete(Guid id)
-            => await Result.Try(async () => await _requestRepository.Delete(id), (Exception ex) => ex.Message)
-                .Tap(async () => await _requestRepository.SaveChanges());
+            => await Result.Try(async () => await _requestWriteRepository.Delete(id), (Exception ex) => ex.Message)
+                .Tap(async () => await _requestWriteRepository.SaveChanges());
 
         public async Task<Result> Grant(Guid id)
-            => await Result.Try(async () => await _requestRepository.Find(id), (Exception ex) => ex.Message)
+            => await _requestReadRepository.Find(id)
+                .ToResult($"Request with Id {id} does not exist")
                 .Bind(request => request.Grant())
-                .Tap(request => _requestRepository.Update(request))
-                .Tap(async request => await _requestRepository.SaveChanges());
+                .Tap(request => _requestWriteRepository.Update(request))
+                .Tap(async request => await _requestWriteRepository.SaveChanges());
 
         public IAsyncEnumerable<Request> GetApprovedRequestsForUser(string userAdress)
-            => _requestRepository.Where(request => request.UserAdress == userAdress && request.Granted == true);
+            => _requestReadRepository.Where(request => request.UserAdress == userAdress && request.Granted == true);
+
+        public async Task<Result<Request>> Find(Guid id)
+            => await _requestReadRepository.Find(id)
+                .ToResult($"Request with Id {id} does not exist");
     }
 }

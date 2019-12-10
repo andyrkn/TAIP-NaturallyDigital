@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace CentralRequestsSystem.Presentation
 {
@@ -35,14 +38,22 @@ namespace CentralRequestsSystem.Presentation
             services.AddMvc();
 
             services.AddSwaggerGen(config =>
-                config.SwaggerDoc("v1", new OpenApiInfo { Title = "Central Request System API", Version = "1.0" }));
+            {
+                config.SwaggerDoc("v1", new OpenApiInfo { Title = "Central Request System API", Version = "1.0" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+            });
 
             services.AddControllers();
             services.AddDbContext<CentralRequestsSystemContext>(options =>
                 options.UseSqlServer(@"Server=BEAN\SQLEXPRESS;Database=CentralRequestsSystem;Integrated Security=True"));
 
 
-            services.AddTransient<IRequestRepository, RequestsRepository>();
+            services.AddTransient<IRequestReadRepository, ReadRequestsRepository>();
+            services.AddTransient<IRequestWriteRepository, WriteRequestsRepository>();
+
             services.AddTransient<IRequestService, RequestService>();
         }
 

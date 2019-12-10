@@ -27,7 +27,11 @@ namespace CentralRequestsSystem.Presentation.Controllers
 
             return new CreatedResult("", null);
         }
-
+        /// <summary>
+        /// Returns all requests that are made by the {userAdress} hash that have not yet been accepted
+        /// </summary>
+        /// <param name="userAdress"></param>
+        /// <returns></returns>
         [HttpGet("users")]
         public IActionResult GetByUserAdress([FromQuery] string userAdress)
         {
@@ -39,6 +43,11 @@ namespace CentralRequestsSystem.Presentation.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// Returns all requests pending to a certain IdentityProvider with the {ip} hash
+        /// </summary>
+        /// <param name="identityProvider"></param>
+        /// <returns></returns>
         [HttpGet("ip")]
         public IActionResult GetByIdentityProvider([FromQuery] string identityProvider)
         {
@@ -48,6 +57,19 @@ namespace CentralRequestsSystem.Presentation.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        {
+            var result = await _requestsService.Find(id);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Value);
         }
 
         [HttpDelete("{id}")]
@@ -63,8 +85,13 @@ namespace CentralRequestsSystem.Presentation.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        public async Task<IActionResult> GrantUserInformation(Guid id)
+        /// <summary>
+        /// Mark a request with the {id} as accepted.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> GrantUserInformation([FromRoute] Guid id)
         {
             var result = await _requestsService.Grant(id);
 

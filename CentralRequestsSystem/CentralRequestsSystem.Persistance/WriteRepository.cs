@@ -21,18 +21,11 @@ namespace CentralRequestsSystem.Persistance
         public async Task Add(TEntity entity)
             => await context.Set<TEntity>().AddAsync(entity);
 
-        public IAsyncEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
-            => context.Set<TEntity>()
-                .Where(expression)
-                .AsAsyncEnumerable();
-
         public async Task Delete(Guid id)
             => context.Set<TEntity>().Remove(await context.Set<TEntity>().FindAsync(id));
 
         public Task SaveChanges()
             => context.SaveChangesAsync();
-        public async Task<TEntity> Find(Guid id)
-            => await context.Set<TEntity>().FindAsync(id);
 
         public Result Update(TEntity entity)
         {
