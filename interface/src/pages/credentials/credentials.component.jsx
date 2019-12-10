@@ -4,24 +4,25 @@ import Navbar from '../../components/navbar';
 import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core';
 import axios from 'axios';
 import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
+import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
 
 import "./credentials.styles.scss";
 import "../../shared/shared.scss";
 
 const useStyles = makeStyles(theme => ({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        },
-        selectEmpty: {
-            marginTop: theme.spacing(2),
-        },
-        button: {
-            margin: theme.spacing(13),
-        },
-        input: {
-            display: 'none',
-        },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+    button: {
+        margin: theme.spacing(13),
+    },
+    input: {
+        display: 'none',
+    },
 }));
 
 export default function Credentials() {
@@ -34,7 +35,7 @@ export default function Credentials() {
     React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
-    
+
     const handleInstitutionChange = event => {
         setInstitution(event.target.value);
     };
@@ -48,11 +49,11 @@ export default function Credentials() {
         let accountAddress = await getAccountAddress();
         // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
         // await console.log("API GET call succesfull!");
-        await axios.post('http://109.100.27.188:5000/api/Requests', {
+        await axios.post('http://109.100.27.188:5000/api/Requests', encodeRequest({
             userAdress: accountAddress,
-            identityProviderAdress: "add",
-            payload:  JSON.stringify({"fullName":institution, "transcript":transcript })
-        })
+            identityProviderAdress: "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+            payload: { "institution": institution, "requestType": transcript }
+        }))
     }
 
     return (

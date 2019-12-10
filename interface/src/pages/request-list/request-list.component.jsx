@@ -9,7 +9,7 @@ import "./request-list.styles.css";
 import { Link } from 'react-router-dom';
 import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
 
-const role = "ip";
+const role = "user";
 
 export default class RequestList extends React.Component {
     constructor(props) {
@@ -96,7 +96,7 @@ export default class RequestList extends React.Component {
                     console.log(requests.data);
                     this.setState({ submitedRequests: decodeRequestList(requests.data) });
                 });
-            axios.get(`${centralDatabaseAPI}/ApprovedRequests/users?userAdress=${account}`)
+            axios.get(`${centralDatabaseAPI}/ApprovedRequests/?userAdress=${account}`)
                 .then(requests => {
                     console.log(requests.data);
                     this.setState({ approvedRequests: decodeRequestList(requests.data) });
@@ -139,7 +139,7 @@ export default class RequestList extends React.Component {
                 {this.state.approvedRequests.length == 0 ? null : this.state.approvedRequests.map(request =>
                     <div className="request-card">
                         <div className="card-container">
-                            <Link to={`/transcript/${request.id}`} key={request.id} style={{ textDecoration: 'none', color: 'black' }}>
+                            <Link to={`/approved-transcript/${request.id}`} key={request.id} style={{ textDecoration: 'none', color: 'black' }}>
                                 <Request institution={request.payload.institution} requestType={request.payload.requestType} />
                             </Link>
                         </div>
