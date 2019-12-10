@@ -6,11 +6,11 @@ namespace CentralRequestsSystem.Business.RequestBusiness.Extensions
 {
     public static class RequestModelExtensions
     {
-        public static Result<Request> ToEntity(this RequestModel requestModel)
+        public static Result<Request> ToEntity(this CreateRequestModel requestModel)
             => Request.CreateRequest(
                 requestModel.UserAdress,
                 requestModel.IdentityProviderAdress,
                 requestModel.Date,
-                requestModel.Payload);
+                null);
     }
 }

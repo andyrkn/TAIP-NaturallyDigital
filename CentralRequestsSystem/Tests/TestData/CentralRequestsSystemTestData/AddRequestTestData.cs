@@ -5,12 +5,11 @@ namespace CentralRequestsSystem.TestData
 {
     public static class AddRequestTestData
     {
-        public static RequestModel AddRequestTestModel()
-            => new RequestModel
+        public static CreateRequestModel AddRequestTestModel()
+            => new CreateRequestModel
             {
                 Date = new DateTime(2000, 1, 1),
                 IdentityProviderAdress = "adress",
-                Payload = "payload",
                 UserAdress = "adress"
             };
     }

@@ -31,5 +31,11 @@ namespace CentralRequestsSystem.Core
             Granted = true;
             return Result.Success(this);
         }
+
+        public Result<Request> AddPayload(string _payload)
+        {
+            this.Payload = _payload;
+            return Result.Success(this);
+        }
     }
 }

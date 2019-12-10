@@ -10,24 +10,26 @@ namespace CentralRequestsSystem.Business.Tests
 {
     public class RequestServiceTests : CentralRequestsSystemBaseTest<RequestService>
     {
-        Mock<IRequestRepository> requestRepository;
+        Mock<IRequestWriteRepository> _writeRepository;
+        Mock<IRequestReadRepository> _readRepository;
 
         [Fact]
         public async Task When_AddRequestService_Should_CallRepositoryOnce_AndSavesChanges()
         {
             var model = AddRequestTestData.AddRequestTestModel();
-            requestRepository.Setup(repository => repository.Add(It.IsAny<Request>())).Returns(Task.CompletedTask);
-            requestRepository.Setup(repository => repository.SaveChanges()).Returns(Task.CompletedTask);
+            _writeRepository.Setup(repository => repository.Add(It.IsAny<Request>())).Returns(Task.CompletedTask);
+            _writeRepository.Setup(repository => repository.SaveChanges()).Returns(Task.CompletedTask);
 
             await sut.AddRequest(model);
 
-            requestRepository.Verify(repository => repository.Add(It.IsAny<Request>()), Times.Once);
-            requestRepository.Verify(repository => repository.SaveChanges(), Times.Once);
+            _writeRepository.Verify(repository => repository.Add(It.IsAny<Request>()), Times.Once);
+            _writeRepository.Verify(repository => repository.SaveChanges(), Times.Once);
         }
         public override void InitSut()
         {
-            requestRepository = new Mock<IRequestRepository>(MockBehavior.Strict);
-            sut = new RequestService(requestRepository.Object);
+            _readRepository = new Mock<IRequestReadRepository>(MockBehavior.Strict);
+            _writeRepository = new Mock<IRequestWriteRepository>(MockBehavior.Strict);
+            sut = new RequestService(_readRepository.Object, _writeRepository.Object);
         }
     }
 }

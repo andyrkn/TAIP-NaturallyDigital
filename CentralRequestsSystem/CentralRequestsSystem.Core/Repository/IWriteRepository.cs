@@ -10,8 +10,6 @@ namespace CentralRequestsSystem.Core.Repository
     {
         Task Add(TEntity entity);
 
-        IAsyncEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
-
         Task Delete(Guid id);
 
         Task SaveChanges();
