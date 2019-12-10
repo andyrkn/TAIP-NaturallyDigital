@@ -9,6 +9,7 @@ import centralDatabaseAPI from '../../shared/centralDatabase';
 import FileInput from "../../components/fileInput/fileInput";
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
+import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
 
 const privateKey = '123';
 
@@ -21,7 +22,7 @@ export default class Transcript extends React.Component {
                 "userAdress": "",
                 "identityProviderAdress": "",
                 "date": "",
-                "payload": {"institution": "", "requestType": "", "description": "" },
+                "payload": { "institution": "", "requestType": "", "description": "" },
                 "id": ""
             },
             loading: false,
@@ -46,7 +47,7 @@ export default class Transcript extends React.Component {
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
-                this.setState({ request: response });
+                this.setState({ request: decodeRequest(response.data) });
             });
     }
 
@@ -72,10 +73,10 @@ export default class Transcript extends React.Component {
 
     onAccept() {
         this.setState({ loading: true });
-        let response = this.state.request;
-        response.payload.description = JSON.stringify(this.state.fileContent);
-        console.log(response);
-        axios.put(`${centralDatabaseAPI}/Requests/${this.state.id}`, response)
+        let payload = this.state.request.payload;
+        payload.description = this.state.fileContent;
+        console.log(payload);
+        axios.put(`${centralDatabaseAPI}/Requests/${this.state.id}`, { payload: btoa(JSON.stringify(payload)) })
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
