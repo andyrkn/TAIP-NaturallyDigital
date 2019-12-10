@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '../../components/navbar';
 import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core';
 import axios from 'axios';
+import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
 
 import "./credentials.styles.scss";
 import "../../shared/shared.scss";
@@ -33,6 +34,8 @@ export default function Credentials() {
     React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
+
+    // let accountAddress = await getAccountAddress();
     
     const handleInstitutionChange = event => {
         setInstitution(event.target.value);
@@ -45,12 +48,13 @@ export default function Credentials() {
     const handleTranscriptRequest = async (e) => {
         e.preventDefault();
         await console.log("Initiating API GET call for transcripts...")
-        let res = await axios.get(`http://localhost:3000/${institution}?transcript=${transcript}`);
-        await console.log("API GET call succesfull!");
+        // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
+        // await console.log("API GET call succesfull!");
         await console.log("Saving the API GET call response to the wallet...");
-        await axios.post('http://localhost:3000/wallet', {
-            institutionName: institution,
-            transcriptContent: res.data,
+        await axios.post('http://109.100.27.188:5000/api/Requests', {
+            userAdress: "0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b",
+            identityProviderAdress: "add",
+            payload:  JSON.stringify({"fullName":institution, "transcript":transcript })
         })
         await console.log("Transcript sucesfully saved in the wallet!");
     }

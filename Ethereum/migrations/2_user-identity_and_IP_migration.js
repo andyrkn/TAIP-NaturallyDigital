@@ -7,6 +7,7 @@ module.exports = function (deployer) {
     var userIdentity;
     var userIdentityProxy;
     var identityProviderProxy;
+    var identityProvider;
 
     deployer.deploy(UserIdentityProxy)
         .then(() => UserIdentityProxy.deployed())
@@ -25,8 +26,11 @@ module.exports = function (deployer) {
             return deployer.deploy(IdentityProvider)
         })
         .then(() => IdentityProvider.deployed())
+        .then((instance) => {
+            identityProvider = instance;
+        })
         .then(() => {
             identityProviderProxy.upgradeTo(IdentityProvider.address);
-            userIdentity.setIdentityProvider(IdentityProviderProxy.address);
+            userIdentity.setIdentityProvider(IdentityProvider.address);
         });
 }

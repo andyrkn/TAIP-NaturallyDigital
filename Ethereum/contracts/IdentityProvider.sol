@@ -68,4 +68,12 @@ contract IdentityProvider is Pausable {
         }
         return false;
     }
+
+    function getIdentityProvider(uint _index) external view returns (address account, string memory ipfsHash) {
+         uint length = _identityProviderNumber();
+        require(_index >= 0 && _index < length, "Invalid index");
+
+        account = identityProviders[_index].identifier;
+        ipfsHash = identityProviders[_index].ipfsHash;
+    }
 }

@@ -78,14 +78,14 @@
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/UserIdentityProxy.sol",
     "exportedSymbols": {
       "UserIdentityProxy": [
-        907
+        947
       ]
     },
-    "id": 908,
+    "id": 948,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 903,
+        "id": 943,
         "literals": [
           "solidity",
           ">=",
@@ -101,10 +101,10 @@
       {
         "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/Proxy.sol",
         "file": "./Proxy.sol",
-        "id": 904,
+        "id": 944,
         "nodeType": "ImportDirective",
-        "scope": 908,
-        "sourceUnit": 628,
+        "scope": 948,
+        "sourceUnit": 668,
         "src": "37:21:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -115,36 +115,36 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 905,
+              "id": 945,
               "name": "Proxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 627,
+              "referencedDeclaration": 667,
               "src": "153:5:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Proxy_$627",
+                "typeIdentifier": "t_contract$_Proxy_$667",
                 "typeString": "contract Proxy"
               }
             },
-            "id": 906,
+            "id": 946,
             "nodeType": "InheritanceSpecifier",
             "src": "153:5:8"
           }
         ],
         "contractDependencies": [
-          627
+          667
         ],
         "contractKind": "contract",
         "documentation": "@dev Proxy for user identity logic and storage",
         "fullyImplemented": true,
-        "id": 907,
+        "id": 947,
         "linearizedBaseContracts": [
-          907,
-          627
+          947,
+          667
         ],
         "name": "UserIdentityProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 908,
+        "scope": 948,
         "src": "123:38:8"
       }
     ],
@@ -154,14 +154,14 @@
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/UserIdentityProxy.sol",
     "exportedSymbols": {
       "UserIdentityProxy": [
-        907
+        947
       ]
     },
-    "id": 908,
+    "id": 948,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 903,
+        "id": 943,
         "literals": [
           "solidity",
           ">=",
@@ -177,10 +177,10 @@
       {
         "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/Proxy.sol",
         "file": "./Proxy.sol",
-        "id": 904,
+        "id": 944,
         "nodeType": "ImportDirective",
-        "scope": 908,
-        "sourceUnit": 628,
+        "scope": 948,
+        "sourceUnit": 668,
         "src": "37:21:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -191,36 +191,36 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 905,
+              "id": 945,
               "name": "Proxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 627,
+              "referencedDeclaration": 667,
               "src": "153:5:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Proxy_$627",
+                "typeIdentifier": "t_contract$_Proxy_$667",
                 "typeString": "contract Proxy"
               }
             },
-            "id": 906,
+            "id": 946,
             "nodeType": "InheritanceSpecifier",
             "src": "153:5:8"
           }
         ],
         "contractDependencies": [
-          627
+          667
         ],
         "contractKind": "contract",
         "documentation": "@dev Proxy for user identity logic and storage",
         "fullyImplemented": true,
-        "id": 907,
+        "id": 947,
         "linearizedBaseContracts": [
-          907,
-          627
+          947,
+          667
         ],
         "name": "UserIdentityProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 908,
+        "scope": 948,
         "src": "123:38:8"
       }
     ],
@@ -231,15 +231,21 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x809c710421d78725Ac247280eb1F015ad007feE9",
+      "transactionHash": "0x4187acbbac3ff1873c49afc46b8d1cffbb14133b633b6b8c2c7fb356076c6c99"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x0fB7396e35e2296526F72bb6Ad1Efcdb827b6b1B",
-      "transactionHash": "0x0316646e732bdd224f5e613c935b888bb2256d7e87961b63800c0d394159ff44"
+      "address": "0xF57f28563849C50f8050C8F9070e01d6b7Ae4C4D",
+      "transactionHash": "0xfef0f704d9b97c47496e2a93b58669b9949ac7e05ac3fc9bc99871be18e8cc4b"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-12T20:47:11.975Z",
+  "updatedAt": "2019-12-09T19:26:19.407Z",
   "devdoc": {
     "details": "Proxy for user identity logic and storage",
     "methods": {

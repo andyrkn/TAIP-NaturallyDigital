@@ -3,95 +3,111 @@ import Navbar from '../../components/navbar';
 import Loader from '../../components/loader';
 
 import "./transcript.styles.css";
+import axios from 'axios';
+import { getAccountAddress } from '../../components/ethereum/ethereum';
+import centralDatabaseAPI from '../../shared/centralDatabase';
+import FileInput from "../../components/fileInput/fileInput";
+import Request from "../../components/request/request.component";
+import Response from "../../components/response/response.component";
 
+const privateKey = '123';
 
 export default class Transcript extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             accountAddress: '',
-            transcript: {
-                "id": 1,
-                "fullName": "Politia Rutiera Iasi",
-                "transcript": "istoric-amenzi",
-                "content":
-                {
-                    "date": "10.09.2019",
-                    "amount": "$300",
-                    "reason": "Speeding",
-                    "officer": "Capraru Daniel"
-                },
-
+            request: {
+                "userAdress": "",
+                "identityProviderAdress": "",
+                "date": "",
+                "payload": {"institution": "", "requestType": "", "description": "" },
+                "id": ""
             },
-            selectedFile: '',
-            filename: 'Choose file',
             loading: false,
-            fileRegex: new RegExp('[^.]+(.png|.jpeg|.gif|.tiff|.bmp|.jpg)'),
-            fileError: '',
             fileContent: '',
+            ipfsHash: '',
+            txHash: '',
+            encryptedFile: '',
+            status: '',
+            id: ''
         }
-
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onAccept = this.onAccept.bind(this);
+        this.onReject = this.onReject.bind(this);
     }
 
-    readFile = (file, onSuccessCallback, onFailCallback) => {
-        let reader = new FileReader();
-        reader.readAsText(file);
+    async componentDidMount() {
+        const { match: { params } } = this.props;
+        this.setState({ id: params.id });
 
-        reader.onloadend = function () {
-            onSuccessCallback(reader.result);
-        };
-        reader.onerror = function (error) {
-            onFailCallback(error.message);
-        };
+        let accountAddress = await getAccountAddress();
+        this.setState({ accountAddress: accountAddress });
+        axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
+            .then(response => {
+                console.log("Raspuns de la server");
+                console.log(response.data);
+                this.setState({ request: response });
+            });
     }
 
     onRead = (file) => {
-        console.log(file);
         const jsonFile = JSON.parse(file);
         console.log(jsonFile);
         this.setState({ fileContent: jsonFile });
     };
 
-    onChange = (event) => {
-        const file = event.target.files[0];
-        this.setState({ selectedFile: file.name })
-        this.readFile(file, this.onRead);
-    }
-
-    onSubmit() {
+    onReject() {
         this.setState({ loading: true });
-        // put la db
+        axios.put(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${this.state.id}`, this.state.request)
+            .then(response => {
+                console.log("Raspuns de la server");
+                console.log(response.data);
+                this.setState({ request: response, loading: false, status: 'Successfully rejected' });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ loading: false, status: 'Response submision failed' });
+            });
     }
 
-    populatFields() {
-        let fields = [];
-        for (let [key, value] of Object.entries(this.state.fileContent)) {
-            if (typeof value === 'object') {
-                fields.push(<div className="key">{key}</div>);
-                for (let [subkey, subvalue] of Object.entries(value)) {
-                    fields.push(<div>{subkey}:  {subvalue}</div>)
-                }
-            } else {
-                fields.push(<div><span className="key">{key}</span><span>:  {value}</span></div>);
-            }
-        }
-        return fields;
+    onAccept() {
+        this.setState({ loading: true });
+        let response = this.state.request;
+        response.payload.description = JSON.stringify(this.state.fileContent);
+        console.log(response);
+        axios.put(`${centralDatabaseAPI}/Requests/${this.state.id}`, response)
+            .then(response => {
+                console.log("Raspuns de la server");
+                console.log(response.data);
+                this.setState({ request: response, loading: false, status: 'Successfully accepted' });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ loading: false, status: 'Response submision failed' });
+                throw err;
+            });
     }
 
     render() {
-        let fields = this.populatFields();
+        let notFileUploaded = this.state.fileContent == '';
 
         return (
             <React.Fragment>
                 <Navbar />
                 <main className="main">
-                    <h2>Request</h2>
-                    {fields}
-                    {/* <label htmlFor="fileInput">Choose a profile picture:</label> */}
-                    <input type="file" id="fileInput" name="fileInput" onChange={this.onChange} />
-                    <div><button type="button" className="button button2" onClick={this.onSubmit}>Upload</button></div>
+                    <Request {...this.state.request.payload} />
+                    <div>
+                        <FileInput onRead={this.onRead} />
+                    </div>
+                    {notFileUploaded ? null : <div>
+                        <Response payload={this.state.fileContent} />
+                    </div>}
+                    <div>
+                        <button type="button" className="button button2" onClick={this.onAccept} disabled={notFileUploaded}>Upload</button>
+                        <button type="button" className="button button2" onClick={this.onReject}>Reject</button>
+                    </div>
                     {this.state.loading ? <Loader /> : null}
+                    <div className="error">{this.state.status}</div>
                 </main>
             </React.Fragment >
         )

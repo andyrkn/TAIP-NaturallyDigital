@@ -78,14 +78,14 @@
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IdentityProviderProxy.sol",
     "exportedSymbols": {
       "IdentityProviderProxy": [
-        285
+        325
       ]
     },
-    "id": 286,
+    "id": 326,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 281,
+        "id": 321,
         "literals": [
           "solidity",
           ">=",
@@ -101,10 +101,10 @@
       {
         "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/Proxy.sol",
         "file": "./Proxy.sol",
-        "id": 282,
+        "id": 322,
         "nodeType": "ImportDirective",
-        "scope": 286,
-        "sourceUnit": 628,
+        "scope": 326,
+        "sourceUnit": 668,
         "src": "37:21:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -115,36 +115,36 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 283,
+              "id": 323,
               "name": "Proxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 627,
+              "referencedDeclaration": 667,
               "src": "161:5:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Proxy_$627",
+                "typeIdentifier": "t_contract$_Proxy_$667",
                 "typeString": "contract Proxy"
               }
             },
-            "id": 284,
+            "id": 324,
             "nodeType": "InheritanceSpecifier",
             "src": "161:5:2"
           }
         ],
         "contractDependencies": [
-          627
+          667
         ],
         "contractKind": "contract",
         "documentation": "@dev Proxy for identity provider logic and storage",
         "fullyImplemented": true,
-        "id": 285,
+        "id": 325,
         "linearizedBaseContracts": [
-          285,
-          627
+          325,
+          667
         ],
         "name": "IdentityProviderProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 286,
+        "scope": 326,
         "src": "127:42:2"
       }
     ],
@@ -154,14 +154,14 @@
     "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/IdentityProviderProxy.sol",
     "exportedSymbols": {
       "IdentityProviderProxy": [
-        285
+        325
       ]
     },
-    "id": 286,
+    "id": 326,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 281,
+        "id": 321,
         "literals": [
           "solidity",
           ">=",
@@ -177,10 +177,10 @@
       {
         "absolutePath": "/D/Facultate/MASTER/TAIP/TAIP-NaturallyDigital/Ethereum/contracts/Proxy.sol",
         "file": "./Proxy.sol",
-        "id": 282,
+        "id": 322,
         "nodeType": "ImportDirective",
-        "scope": 286,
-        "sourceUnit": 628,
+        "scope": 326,
+        "sourceUnit": 668,
         "src": "37:21:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -191,36 +191,36 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 283,
+              "id": 323,
               "name": "Proxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 627,
+              "referencedDeclaration": 667,
               "src": "161:5:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Proxy_$627",
+                "typeIdentifier": "t_contract$_Proxy_$667",
                 "typeString": "contract Proxy"
               }
             },
-            "id": 284,
+            "id": 324,
             "nodeType": "InheritanceSpecifier",
             "src": "161:5:2"
           }
         ],
         "contractDependencies": [
-          627
+          667
         ],
         "contractKind": "contract",
         "documentation": "@dev Proxy for identity provider logic and storage",
         "fullyImplemented": true,
-        "id": 285,
+        "id": 325,
         "linearizedBaseContracts": [
-          285,
-          627
+          325,
+          667
         ],
         "name": "IdentityProviderProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 286,
+        "scope": 326,
         "src": "127:42:2"
       }
     ],
@@ -231,15 +231,21 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x9e3dE0FE327574501C5d1fEbE7d7Aed5291cf4d5",
+      "transactionHash": "0x70358da7415f22ee8773e571d2dd6b636aff088273768bbd03baf1e71a1125ec"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xbE9497691Ad7405dc8a7492BbB4c135147bAF795",
-      "transactionHash": "0xfdbdeef9924a722bdcec876d4adcdec44d09dea9b3601270a7d99dd47502621f"
+      "address": "0x8a83c978aD62514Ae7aca40D2a2b343d8392153F",
+      "transactionHash": "0x44056229d3b88676456ed2681bfa3825b4773eb1c421aac5499c7e6892e6be26"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-12T20:47:11.983Z",
+  "updatedAt": "2019-12-09T19:26:19.516Z",
   "devdoc": {
     "details": "Proxy for identity provider logic and storage",
     "methods": {
