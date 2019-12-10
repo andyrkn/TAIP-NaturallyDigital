@@ -16,7 +16,7 @@ namespace CentralRequestsSystem.Presentation.Controllers
             => _requestsService = requestService;
 
         [HttpPost]
-        public async Task<IActionResult> AddRequest([FromBody] RequestModel requestModel)
+        public async Task<IActionResult> AddRequest([FromBody] CreateRequestModel requestModel)
         {
             if(requestModel is null)
             {
@@ -91,9 +91,9 @@ namespace CentralRequestsSystem.Presentation.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> GrantUserInformation([FromRoute] Guid id)
+        public async Task<IActionResult> GrantUserInformation([FromRoute] Guid id, [FromBody] UpdatePayloadModel payloadModel)
         {
-            var result = await _requestsService.Grant(id);
+            var result = await _requestsService.Grant(id, payloadModel);
 
             if (result.IsFailure)
             {

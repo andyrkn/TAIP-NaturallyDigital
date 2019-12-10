@@ -20,7 +20,7 @@ namespace CentralRequestsSystem.Business.RequestBusiness
         }
           
 
-        public async Task AddRequest(RequestModel addRequestModel)
+        public async Task AddRequest(CreateRequestModel addRequestModel)
             => await addRequestModel
                 .ToEntity()
                 .Tap(async request => await _requestWriteRepository.Add(request))
@@ -36,10 +36,11 @@ namespace CentralRequestsSystem.Business.RequestBusiness
             => await Result.Try(async () => await _requestWriteRepository.Delete(id), (Exception ex) => ex.Message)
                 .Tap(async () => await _requestWriteRepository.SaveChanges());
 
-        public async Task<Result> Grant(Guid id)
+        public async Task<Result> Grant(Guid id, UpdatePayloadModel payloadModel)
             => await _requestReadRepository.Find(id)
                 .ToResult($"Request with Id {id} does not exist")
                 .Bind(request => request.Grant())
+                .Bind(request => request.AddPayload(payloadModel.Payload))
                 .Tap(request => _requestWriteRepository.Update(request))
                 .Tap(async request => await _requestWriteRepository.SaveChanges());
 

@@ -9,7 +9,7 @@ namespace CentralRequestsSystem.Business.RequestBusiness
 {
     public interface IRequestService
     {
-        Task AddRequest(RequestModel addRequestModel);
+        Task AddRequest(CreateRequestModel addRequestModel);
 
         IAsyncEnumerable<Request> GetByUserAddress(string userAdress);
 
@@ -19,7 +19,7 @@ namespace CentralRequestsSystem.Business.RequestBusiness
 
         Task<Result> Delete(Guid id);
 
-        Task<Result> Grant(Guid id);
+        Task<Result> Grant(Guid id, UpdatePayloadModel payloadModel);
 
         Task<Result<Request>> Find(Guid id);
     }
