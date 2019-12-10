@@ -18,10 +18,11 @@ export default class Transcript extends React.Component {
         this.state = {
             accountAddress: '',
             request: {
-                "userAdress": "0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b",
-                "identityProviderAdress": "0x9eE22087c9C06922145c3F7D6aEBd8e486f3A18e",
-                "date": "2019-12-04T00:27:18.140Z",
-                "payload": { "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi" }
+                "userAdress": "",
+                "identityProviderAdress": "",
+                "date": "",
+                "payload": {"institution": "", "requestType": "", "description": "" },
+                "id": ""
             },
             loading: false,
             fileContent: '',
@@ -41,7 +42,7 @@ export default class Transcript extends React.Component {
 
         let accountAddress = await getAccountAddress();
         this.setState({ accountAddress: accountAddress });
-        axios.get(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${params.id}`)
+        axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
@@ -72,9 +73,9 @@ export default class Transcript extends React.Component {
     onAccept() {
         this.setState({ loading: true });
         let response = this.state.request;
-        response.payload.response = JSON.stringify(this.state.fileContent);
+        response.payload.description = JSON.stringify(this.state.fileContent);
         console.log(response);
-        axios.post(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${this.state.id}`, response)
+        axios.put(`${centralDatabaseAPI}/Requests/${this.state.id}`, response)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);

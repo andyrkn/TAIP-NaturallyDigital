@@ -12,12 +12,13 @@ const privateKey = '123';
 const ApprovedTranscript = (props) => {
     let [accountAddress, setAccountAddress] = useState('');
     let [request, setRequest] = useState({
-        "userAdress": "0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b",
-        "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
-        "date": "2019-12-04T00:27:18.140Z",
+        "userAdress": "",
+        "identityProviderAdress": "",
+        "date": "",
         "payload": {
-            "id": 1, "institution": "", "requestType": "", "description": {}
-        }
+            "institution": "", "requestType": "", "description": {}
+        },
+        "id": ""
     });
     let [id, setId] = useState(null);
     let [txHash, setTxHash] = useState('');

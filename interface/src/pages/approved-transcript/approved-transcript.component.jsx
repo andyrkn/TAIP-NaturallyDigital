@@ -18,17 +18,13 @@ export default class ApprovedTranscript extends React.Component {
         this.state = {
             accountAddress: '',
             request: {
-                "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
-                "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
-                "date": "2019-12-04T00:27:18.140Z",
+                "userAdress": "",
+                "identityProviderAdress": "",
+                "date": "",
                 "payload": {
-                    "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
-                        "date": "10.09.2019",
-                        "amount": "$1300",
-                        "reason": "Speeding",
-                        "officer": "Pomohaci Alex"
-                    }
-                }
+                    "institution": "", "requestType": "", "description": {}
+                },
+                "id": ""
             },
             loading: false,
             fileContent: '',
@@ -49,7 +45,7 @@ export default class ApprovedTranscript extends React.Component {
         let accountAddress = await getAccountAddress();
         console.log(accountAddress);
         this.setState({ accountAddress: accountAddress });
-        axios.get(`${centralDatabaseAPI}/ApprovedRequests/users?userAdress=${this.state.accountAddress}&id=${params.id}`)
+        axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
@@ -64,16 +60,17 @@ export default class ApprovedTranscript extends React.Component {
         console.log(encrypted);
 
         try {
-            this.setState({ status: "Save identity on IPFS" });
+            this.setState({ status: "Saving identity on IPFS" });
             const ipfsHash = await uploadContent(JSON.stringify({ encryptedContent: encrypted }));
             console.log(ipfsHash);
-            this.setState({ ipfsHash: ipfsHash, status: "Save identity on Ethereum" });
+            this.setState({ ipfsHash: ipfsHash, status: "Saving identity on Ethereum" });
 
             let ide = await createIdentity(this.state.accountAddress, ipfsHash, this.state.request.identityProviderAdress);
             console.log(ide);
             this.setState({ txHash: ide });
 
-            axios.delete(`${centralDatabaseAPI}/ApprovedRequests/users?userAdress=${this.state.accountAddress}&id=${this.state.id}`)
+            this.setState({status: "Deleting request from database"});
+            axios.delete(`${centralDatabaseAPI}/Requests/${this.state.id}`)
                 .then(response => {
                     console.log("Raspuns de la server");
                     console.log(response.data);

@@ -19,58 +19,36 @@ import RequestList from "./pages/request-list/request-list.component";
 
 
 export default function BasicExample() {
-    return ( <
-        Router >
-        <
-        div >
-        <
-        Switch >
-        <
-        Route exact path = "/" >
-        <
-        Home / >
-        <
-        /Route> <Route exact path="/login
-        " > <
-        Login / >
-        <
-        /Route> <
-        Route exact path = "/register" >
-        <
-        Register / >
-        <
-        /Route> <
-        Route path = "/wallet" >
-        <
-        Wallet / >
-        <
-        /Route> <
-        Route path = "/contact" >
-        <
-        Contact / >
-        <
-        /Route> <
-        Route path = "/transcript/:id"
-        component = { Transcript }
-        /> <
-        Route path = "/approved-transcript/:id"
-        component = { ApprovedTranscript }
-        /> <
-        Route path = "/saved-transcript/:id"
-        component = { SavedTranscript }
-        /> <
-        Route path = "/credentials" >
-        <
-        Credentials > < /Credentials> </Route >
-        <
-        Route path = "/identity-provider"
-        component = { IdentityProvider }
-        /> <
-        Route path = "/requests"
-        component = { RequestList }
-        /> < /
-        Switch > <
-        /div > < /
-        Router >
+    return (<Router >
+        <div >
+            <Switch >
+                <Route exact path="/" >
+                    <Home />
+                </Route>
+                <Route exact path="/login" >
+                    <Login />
+                </Route>
+                <Route exact path="/register" >
+                    <Register />
+                </Route>
+                <Route path="/wallet" >
+                    <Wallet />
+                </Route>
+                <Route path="/contact" >
+                    <Contact />
+                </Route>
+                <Route path="/transcript/:id" component={Transcript}
+                />
+                <Route path="/approved-transcript/:id" component={ApprovedTranscript}
+                />
+                <Route path="/saved-transcript/:id" component={SavedTranscript}
+                />
+                <Route path="/credentials" >
+                    <Credentials > </Credentials> </Route >
+                <Route path="/identity-provider" component={IdentityProvider}
+                />
+                <Route path="/requests" component={RequestList} />
+            </Switch > </div >
+    </Router >
     );
 }

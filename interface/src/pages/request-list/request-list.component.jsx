@@ -14,58 +14,60 @@ export default class RequestList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            requests: [{
-                "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
-                "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
-                "date": "2019-12-04T00:27:18.140Z",
-                "payload": {
-                    "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
-                        "date": "10.09.2019",
-                        "amount": "$1300",
-                        "reason": "Speeding",
-                        "officer": "Pomohaci Alex"
-                    }
-                }
-            },
-            {
-                "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
-                "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
-                "date": "2019-12-04T00:27:18.140Z",
-                "payload": {
-                    "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
-                        "date": "10.09.2019",
-                        "amount": "$1300",
-                        "reason": "Speeding",
-                        "officer": "Pomohaci Alex"
-                    }
-                }
-            },
-            {
-                "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
-                "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
-                "date": "2019-12-04T00:27:18.140Z",
-                "payload": {
-                    "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
-                        "date": "10.09.2019",
-                        "amount": "$1300",
-                        "reason": "Speeding",
-                        "officer": "Pomohaci Alex"
-                    }
-                }
-            },
-            {
-                "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
-                "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
-                "date": "2019-12-04T00:27:18.140Z",
-                "payload": {
-                    "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
-                        "date": "10.09.2019",
-                        "amount": "$1300",
-                        "reason": "Speeding",
-                        "officer": "Pomohaci Alex"
-                    }
-                }
-            }]
+            requests: [
+                // {
+                //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                //     "date": "2019-12-04T00:27:18.140Z",
+                //     "payload": {
+                //         "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
+                //             "date": "10.09.2019",
+                //             "amount": "$1300",
+                //             "reason": "Speeding",
+                //             "officer": "Pomohaci Alex"
+                //         }
+                //     }
+                // },
+                // {
+                //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                //     "date": "2019-12-04T00:27:18.140Z",
+                //     "payload": {
+                //         "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
+                //             "date": "10.09.2019",
+                //             "amount": "$1300",
+                //             "reason": "Speeding",
+                //             "officer": "Pomohaci Alex"
+                //         }
+                //     }
+                // },
+                // {
+                //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                //     "date": "2019-12-04T00:27:18.140Z",
+                //     "payload": {
+                //         "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
+                //             "date": "10.09.2019",
+                //             "amount": "$1300",
+                //             "reason": "Speeding",
+                //             "officer": "Pomohaci Alex"
+                //         }
+                //     }
+                // },
+                // {
+                //     "userAdress": "0x2a1f9582d39b35f548D9aeCBCdeaC4f3c42fb199",
+                //     "identityProviderAdress": "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
+                //     "date": "2019-12-04T00:27:18.140Z",
+                //     "payload": {
+                //         "id": 1, "institution": "Politia Rutiera Iasi", "requestType": "istoric-amenzi", "description": {
+                //             "date": "10.09.2019",
+                //             "amount": "$1300",
+                //             "reason": "Speeding",
+                //             "officer": "Pomohaci Alex"
+                //         }
+                //     }
+                // }
+            ]
         }
     }
 
@@ -81,7 +83,7 @@ export default class RequestList extends React.Component {
         return (
             <React.Fragment>
                 <h2>Requests to approve</h2>
-                {this.state.requests.map(request =>
+                {this.state.requests == [] ? null : this.state.requests.map(request =>
                     <div className="request-card">
                         <div className="card-container">
                             <Link to={`/transcript/id=${request.date}`} key={request.date} style={{ textDecoration: 'none', color: 'black' }}>
