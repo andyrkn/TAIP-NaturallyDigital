@@ -5,6 +5,7 @@ import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/
 import axios from 'axios';
 import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
 import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
+import centralDatabaseAPI from '../../shared/centralDatabase';
 
 import "./credentials.styles.scss";
 import "../../shared/shared.scss";
@@ -49,7 +50,7 @@ export default function Credentials() {
         let accountAddress = await getAccountAddress();
         // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
         // await console.log("API GET call succesfull!");
-        await axios.post('http://109.100.27.188:5000/api/Requests', encodeRequest({
+        await axios.post(`${centralDatabaseAPI}/Requests`, encodeRequest({
             userAdress: accountAddress,
             identityProviderAdress: "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
             payload: { "institution": institution, "requestType": transcript }

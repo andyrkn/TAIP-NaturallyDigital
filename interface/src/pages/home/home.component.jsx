@@ -57,14 +57,14 @@ export default function Home() {
         <React.Fragment>
             <Navbar />
             <div className="home-message">
-                <p>Welcome! Below, you can see your request history:</p>
+                {/* <p>Welcome! Below, you can see your request history:</p> */}
                 {/* <p>Institution: {payload.fullName}</p>
                 <p>Transcript: {payload.transcript}</p>
                 <p>Amount: {payload.amount}</p>
                 <p>Date: {payload.date}</p>
                 <p>Reason: {payload.reason}</p>
                 <p>Officer Name: {payload.officer}</p> */}
-                <Paper className={classes.root}>
+                {/* <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
@@ -83,7 +83,7 @@ export default function Home() {
                             ))}
                         </TableBody>
                     </Table>
-                </Paper>
+                </Paper> */}
                 <p>If you have any questions, please contact the team.</p>
                 <p>Have a great day!</p>
                 <img src={logo} className="spider-logo"/>

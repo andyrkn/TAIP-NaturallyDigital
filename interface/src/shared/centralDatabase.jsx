@@ -1,3 +1,6 @@
-const centralDatabaseAPI = 'http://109.100.27.188:5000/api';
+const dotenv = require('dotenv');
+dotenv.config();
+const centralDatabaseAPI = process.env.CENTRAL_DATABASE_API;
+console.log(centralDatabaseAPI);
 
 export default centralDatabaseAPI;
