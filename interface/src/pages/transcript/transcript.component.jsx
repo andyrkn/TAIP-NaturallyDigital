@@ -3,15 +3,11 @@ import Navbar from '../../components/navbar';
 import Loader from '../../components/loader';
 
 import "./transcript.styles.css";
-import axios from 'axios';
 import { getAccountAddress } from '../../components/ethereum/ethereum';
-import centralDatabaseAPI from '../../shared/centralDatabase';
 import FileInput from "../../components/fileInput/fileInput";
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
-import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
-
-const privateKey = '123';
+import { getRequest, putRequest, deleteRequest } from "../../components/centralDatabase/centralDatabaseApi";
 
 export default class Transcript extends React.Component {
     constructor(props) {
@@ -40,15 +36,10 @@ export default class Transcript extends React.Component {
     async componentDidMount() {
         const { match: { params } } = this.props;
         this.setState({ id: params.id });
-
-        let accountAddress = await getAccountAddress();
-        this.setState({ accountAddress: accountAddress });
-        axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
-            .then(response => {
-                console.log("Raspuns de la server");
-                console.log(response.data);
-                this.setState({ request: decodeRequest(response.data) });
-            });
+        this.props.getAccountAddress()
+            .then(accountAddress => this.setState({ accountAddress: accountAddress }));
+        this.props.getRequest(params.id)
+            .then(response => this.setState({ request: response }));
     }
 
     onRead = (file) => {
@@ -59,14 +50,11 @@ export default class Transcript extends React.Component {
 
     onReject() {
         this.setState({ loading: true });
-        axios.put(`${centralDatabaseAPI}/Requests/users?userAdress=${this.state.accountAddress}&id=${this.state.id}`, this.state.request)
-            .then(response => {
-                console.log("Raspuns de la server");
-                console.log(response.data);
-                this.setState({ request: response, loading: false, status: 'Successfully rejected' });
+        this.props.deleteRequest(this.state.id)
+            .then(() => {
+                this.setState({ loading: false, status: 'Successfully rejected' });
             })
             .catch(err => {
-                console.log(err);
                 this.setState({ loading: false, status: 'Response submision failed' });
             });
     }
@@ -75,17 +63,13 @@ export default class Transcript extends React.Component {
         this.setState({ loading: true });
         let payload = this.state.request.payload;
         payload.description = this.state.fileContent;
-        console.log(payload);
-        axios.put(`${centralDatabaseAPI}/Requests/${this.state.id}`, { payload: btoa(JSON.stringify(payload)) })
+        this.props.putRequest(this.state.id, payload)
             .then(response => {
-                console.log("Raspuns de la server");
-                console.log(response.data);
                 this.setState({ request: response, loading: false, status: 'Successfully accepted' });
             })
             .catch(err => {
                 console.log(err);
                 this.setState({ loading: false, status: 'Response submision failed' });
-                throw err;
             });
     }
 
@@ -113,4 +97,11 @@ export default class Transcript extends React.Component {
             </React.Fragment >
         )
     }
+}
+
+Transcript.defaultProps = {
+    getRequest: getRequest,
+    putRequest: putRequest,
+    deleteRequest: deleteRequest,
+    getAccountAddress: getAccountAddress
 }

@@ -10,6 +10,7 @@ import centralDatabaseAPI from '../../shared/centralDatabase';
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
 import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
+import { getRequest, deleteRequest } from "../../components/centralDatabase/centralDatabaseApi";
 
 const privateKey = '123';
 
@@ -43,10 +44,15 @@ export default class ApprovedTranscript extends React.Component {
         const { match: { params } } = this.props;
         this.setState({ id: params.id });
 
-        let accountAddress = await getAccountAddress();
-        console.log(accountAddress);
+        let accountAddress = await this.props.getAccountAddress();
         this.setState({ accountAddress: accountAddress });
-        axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
+        // axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
+        //     .then(response => {
+        //         console.log("Raspuns de la server");
+        //         console.log(response.data);
+        //         this.setState({ request: decodeRequest(response.data) });
+        //     });
+        this.props.getRequest(params.id)
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
@@ -58,24 +64,19 @@ export default class ApprovedTranscript extends React.Component {
         this.setState({ loading: true });
         const encrypted = encrypt(this.state.request, privateKey);
         this.setState({ encryptedFile: encrypted });
-        console.log(encrypted);
 
         try {
             this.setState({ status: "Saving identity on IPFS" });
-            const ipfsHash = await uploadContent(JSON.stringify({ encryptedContent: encrypted }));
+            const ipfsHash = await this.props.uploadContent(JSON.stringify({ encryptedContent: encrypted }));
             console.log(ipfsHash);
             this.setState({ ipfsHash: ipfsHash, status: "Saving identity on Ethereum" });
 
-            let ide = await createIdentity(this.state.accountAddress, ipfsHash, this.state.request.identityProviderAdress);
+            let ide = await this.props.createIdentity(this.state.accountAddress, ipfsHash, this.state.request.identityProviderAdress);
             console.log(ide);
             this.setState({ txHash: ide });
-
+            
             this.setState({ status: "Deleting request from database" });
-            axios.delete(`${centralDatabaseAPI}/Requests/${this.state.id}`)
-                .then(response => {
-                    console.log("Raspuns de la server");
-                    console.log(response.data);
-                });
+            await this.props.deleteRequest(this.state.id);
         } catch (error) {
             this.setState({ status: 'Error while saving: ' + error });
         }
@@ -104,4 +105,12 @@ export default class ApprovedTranscript extends React.Component {
             </React.Fragment >
         )
     }
+}
+
+ApprovedTranscript.defaultProps = {
+    getAccountAddress: getAccountAddress,
+    getRequest: getRequest,
+    uploadContent: uploadContent,
+    createIdentity: createIdentity,
+    deleteRequest: deleteRequest
 }

@@ -31,11 +31,11 @@ const ApprovedTranscript = (props) => {
             const { match: { params } } = props;
             setId(params.id);
 
-            let address = await getAccountAddress();
+            let address = await props.getAccountAddress();
             setAccountAddress(address);
-            let identity = await getIdentity(address, params.id);
+            let identity = await props.getIdentity(address, params.id);
 
-            const encryptedRequest = JSON.parse(await getContent(identity.ipfsHash));
+            const encryptedRequest = JSON.parse(await props.getContent(identity.ipfsHash));
             console.log(encryptedRequest);
             const request = decrypt(encryptedRequest.encryptedContent, privateKey);
             console.log(request);
@@ -49,7 +49,7 @@ const ApprovedTranscript = (props) => {
 
     const onDelete = () => {
         setLoading(true);
-        deleteIdentity(accountAddress, id)
+        props.deleteIdentity(accountAddress, id)
             .then(result => { setTxHash(result); setLoading(false); })
             .catch(err => { setStatus(err); setLoading(false); });
     }
@@ -78,3 +78,10 @@ const ApprovedTranscript = (props) => {
 }
 
 export default ApprovedTranscript;
+
+ApprovedTranscript.defaultProps = {
+    getAccountAddress: getAccountAddress,
+    getIdentity: getIdentity,
+    getContent: getContent,
+    deleteIdentity: deleteIdentity
+}
