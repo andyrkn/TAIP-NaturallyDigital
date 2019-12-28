@@ -1,15 +1,12 @@
 import React from 'react';
-import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
-import { uploadContent, getContent } from '../../components/ipfs/ipfs';
-import { encrypt, decrypt } from '../../components/crypto';
-
-import Navbar from '../../components/navbar';
-import './wallet.styles.scss';
-import { Card, CardContent, Typography, CardActions } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { decrypt } from '../../components/crypto';
+import { getAccountAddress, getAllIdentities } from '../../components/ethereum/ethereum';
+import { getContent } from '../../components/ipfs/ipfs';
+import Navbar from '../../components/navbar';
 import Request from "../../components/request/request.component";
+import './wallet.styles.scss';
+
 
 const privateKey = '123';
 
@@ -47,8 +44,8 @@ export default class Wallet extends React.Component {
             <React.Fragment>
                 <Navbar />
                 <div className="transcripts">
-                {this.state.transcripts.length == 0 ? null : this.state.transcripts.map(request =>
-                    <div className="request-card">
+                {this.state.transcripts.length === 0 ? null : this.state.transcripts.map(request =>
+                    <div className="request-card" key={request.id}>
                         <div className="card-container">
                             <Link to={`/saved-transcript/${request.id}`} key={request.id} style={{ textDecoration: 'none', color: 'black' }}>
                                 <Request institution={request.payload.institution} requestType={request.payload.requestType} />

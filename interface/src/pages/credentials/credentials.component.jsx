@@ -1,14 +1,14 @@
-import React from 'react';
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Navbar from '../../components/navbar';
-import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core';
 import axios from 'axios';
-import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
-import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
+import React from 'react';
+import { getAccountAddress } from '../../components/ethereum/ethereum';
+import Navbar from '../../components/navbar';
+import { encodeRequest } from "../../components/request.model";
 import centralDatabaseAPI from '../../shared/centralDatabase';
-
-import "./credentials.styles.scss";
 import "../../shared/shared.scss";
+import "./credentials.styles.scss";
+
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -70,6 +70,7 @@ export default function Credentials() {
                         <Select
                             onChange={handleInstitutionChange}
                             labelWidth={labelWidth}
+                            id="institution"
                         >
                             <MenuItem value={"rutiera"}>Politia Rutiera Iasi</MenuItem>
                             <MenuItem value={"spclep"}>SPCLEP Iasi</MenuItem>
@@ -82,7 +83,7 @@ export default function Credentials() {
                 <div className="row">
                     <p>Select the transcript:</p>
                     <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel}>
+                        <InputLabel ref={inputLabel} id="transcript">
                             Transcript
                         </InputLabel>
                         <Select

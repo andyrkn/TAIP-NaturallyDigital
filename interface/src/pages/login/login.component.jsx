@@ -85,7 +85,7 @@ export default function Login() {
                     <TextField
                         id="outlined-select-role"
                         select
-                        label="Select"
+                        label="Select Role"
                         className={classes.textField}
                         value={role}
                         onChange={handleChange}
@@ -106,6 +106,7 @@ export default function Login() {
                     </TextField>
                 </form>
                 <Button
+                    id="login"
                     variant="contained"
                     color="primary"
                     className={classes.button}
