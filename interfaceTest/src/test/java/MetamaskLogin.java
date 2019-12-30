@@ -30,7 +30,6 @@ public class MetamaskLogin {
     }
 
     public static void connectToMetamask(ChromeDriver browser) {
-        System.out.println(browser.getWindowHandles().size());
         String metamaskWindow = "";
         for (String window : browser.getWindowHandles())
             metamaskWindow = window;

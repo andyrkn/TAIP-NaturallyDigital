@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Transcript page makes a snapshot 1`] = `
+exports[`Wallet page makes a snapshot 1`] = `
 Array [
   <div
     className="makeStyles-root-1"
@@ -54,67 +54,8 @@ Array [
       </div>
     </header>
   </div>,
-  <main
-    className="main"
-  >
-    <h2>
-      Request
-    </h2>
-    <div>
-      <span
-        className="key"
-      >
-        Institution: 
-      </span>
-      <span
-        className="institution"
-      >
-        
-      </span>
-    </div>
-    <div>
-      <span
-        className="key"
-      >
-        Request type: 
-      </span>
-      <span
-        className="type"
-      >
-        
-      </span>
-    </div>
-    <div>
-      <input
-        className="custom-file-input"
-        id="fileInput"
-        name="fileInput"
-        onChange={[Function]}
-        type="file"
-      />
-    </div>
-    <div>
-      <button
-        className="button button2"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      >
-        Upload
-      </button>
-      <button
-        className="button button2"
-        onClick={[Function]}
-        type="button"
-      >
-        Reject
-      </button>
-    </div>
-    <div
-      className="error"
-    >
-      
-    </div>
-  </main>,
+  <div
+    className="transcripts"
+  />,
 ]
 `;

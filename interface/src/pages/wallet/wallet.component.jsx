@@ -48,7 +48,7 @@ export default class Wallet extends React.Component {
                     <div className="request-card" key={request.id}>
                         <div className="card-container">
                             <Link to={`/saved-transcript/${request.id}`} key={request.id} style={{ textDecoration: 'none', color: 'black' }}>
-                                <Request institution={request.payload.institution} requestType={request.payload.requestType} />
+                                <Request institution={request.payload.institution} requestType={request.payload.requestType} title="Identity"/>
                             </Link>
                         </div>
                     </div>)

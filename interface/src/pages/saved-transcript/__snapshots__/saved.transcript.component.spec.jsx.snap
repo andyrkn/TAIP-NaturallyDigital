@@ -67,7 +67,9 @@ Array [
         >
           Institution: 
         </span>
-        <span>
+        <span
+          className="institution"
+        >
           
         </span>
       </div>
@@ -77,13 +79,19 @@ Array [
         >
           Request type: 
         </span>
-        <span>
+        <span
+          className="type"
+        >
           
         </span>
       </div>
-      <h3>
-        Response
-      </h3>
+      <div
+        id="response"
+      >
+        <h3>
+          Response
+        </h3>
+      </div>
       <div>
         <button
           className="button button2"

@@ -11,7 +11,9 @@ Array [
     >
       Institution: 
     </span>
-    <span />
+    <span
+      className="institution"
+    />
   </div>,
   <div>
     <span
@@ -19,7 +21,9 @@ Array [
     >
       Request type: 
     </span>
-    <span />
+    <span
+      className="type"
+    />
   </div>,
 ]
 `;

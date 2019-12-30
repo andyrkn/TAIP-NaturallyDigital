@@ -12,7 +12,7 @@ const Response = ({ payload }) => {
                         fields.push(<div>{subkey}:  {subvalue}</div>)
                     }
                 } else {
-                    fields.push(<div><span className="key">{key}</span><span>:  {value}</span></div>);
+                    fields.push(<div><span className="key">{key}</span><span id={key}>:  {value}</span></div>);
                 }
             }
         }
@@ -22,10 +22,10 @@ const Response = ({ payload }) => {
     let fields = populatFields(payload);
 
     return (
-        <React.Fragment>
+        <div id="response">
             <h3>Response</h3>
             {fields}
-        </React.Fragment>
+        </div>
     );
 }
 

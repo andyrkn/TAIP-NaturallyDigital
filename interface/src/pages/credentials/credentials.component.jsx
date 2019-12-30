@@ -8,6 +8,7 @@ import { encodeRequest } from "../../components/request.model";
 import centralDatabaseAPI from '../../shared/centralDatabase';
 import "../../shared/shared.scss";
 import "./credentials.styles.scss";
+import Loader from '../../components/loader/loader.component';
 
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +31,7 @@ export default function Credentials() {
     const classes = useStyles();
     const [institution, setInstitution] = React.useState(0);
     const [transcript, setTranscript] = React.useState(0);
+    const [status, setStatus] = React.useState("");
 
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -50,11 +52,14 @@ export default function Credentials() {
         let accountAddress = await getAccountAddress();
         // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
         // await console.log("API GET call succesfull!");
+        setStatus("Loading");
         await axios.post(`${centralDatabaseAPI}/Requests`, encodeRequest({
             userAdress: accountAddress,
             identityProviderAdress: "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
             payload: { "institution": institution, "requestType": transcript }
         }))
+            .then(() => setStatus("Succeded"))
+            .catch(err => setStatus("Error"));
     }
 
     return (
@@ -99,6 +104,10 @@ export default function Credentials() {
                 <Button variant="contained" color="primary" className={classes.button} onClick={handleTranscriptRequest}>
                     Send request
                 </Button>
+                <div id="status" className="row">
+                    {status == "Loading" ? <Loader /> : null}
+                    {status}
+                </div>
             </div>
         </React.Fragment>
     )

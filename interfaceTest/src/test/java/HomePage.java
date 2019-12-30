@@ -4,7 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.Assert.assertEquals;
 
 public class HomePage {
-    private final static String pageUrl = "http://localhost:3000/";
+    private final static String pageUrl = StringUtils.appUrl;
 
     @Test
     public void isOpeningHomePage()

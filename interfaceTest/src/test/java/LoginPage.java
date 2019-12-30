@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginPage {
-    private final static String pageUrl = "http://localhost:3000/login";
+    private final static String pageUrl = StringUtils.appUrl + "/login";
     private final static String userPassword = "user";
 
     @Test

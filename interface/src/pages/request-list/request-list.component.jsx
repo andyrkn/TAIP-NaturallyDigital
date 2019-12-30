@@ -1,13 +1,13 @@
-import React from 'react';
-import Navbar from '../../components/navbar';
-
 import axios from 'axios';
-import centralDatabaseAPI from '../../shared/centralDatabase';
-import { getAccountAddress } from '../../components/ethereum/ethereum';
-import Request from "../../components/request/request.component";
-import "./request-list.styles.css";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
+import { getAccountAddress } from '../../components/ethereum/ethereum';
+import Navbar from '../../components/navbar';
+import { decodeRequestList } from "../../components/request.model";
+import Request from "../../components/request/request.component";
+import centralDatabaseAPI from '../../shared/centralDatabase';
+import "./request-list.styles.css";
+
 
 const role = sessionStorage.getItem('role');
 
