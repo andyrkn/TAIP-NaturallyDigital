@@ -1,16 +1,14 @@
 import React from 'react';
-import Navbar from '../../components/navbar';
-import Loader from '../../components/loader';
-
-import axios from 'axios';
-import { uploadContent } from '../../components/ipfs/ipfs';
-import { getAccountAddress, createIdentity } from '../../components/ethereum/ethereum';
+import { deleteRequest, getRequest } from "../../components/centralDatabase/centralDatabaseApi";
 import { encrypt } from '../../components/crypto';
-import centralDatabaseAPI from '../../shared/centralDatabase';
+import { createIdentity, getAccountAddress } from '../../components/ethereum/ethereum';
+import { uploadContent } from '../../components/ipfs/ipfs';
+import Loader from '../../components/loader';
+import Navbar from '../../components/navbar';
+import { decodeRequest } from "../../components/request.model";
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
-import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
-import { getRequest, deleteRequest } from "../../components/centralDatabase/centralDatabaseApi";
+
 
 const privateKey = '123';
 
@@ -56,7 +54,7 @@ export default class ApprovedTranscript extends React.Component {
             .then(response => {
                 console.log("Raspuns de la server");
                 console.log(response.data);
-                this.setState({ request: decodeRequest(response.data) });
+                this.setState({ request: response });
             });
     }
 

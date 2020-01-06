@@ -22,8 +22,10 @@ public class CredentialsPage {
         String statusText = browser.findElementById("status").getText();
 
         assert statusText.equals("Loading");
-//        new WebDriverWait(browser, 15)
-//                .until(driver -> driver.findElement(By.className("loader")) == null);
-//        assert statusText.equals("Succeded");
+        new WebDriverWait(browser, 15)
+                .until(driver -> driver.findElements(By.className("loader")).size() == 0);
+        String status = browser.findElementById("status").getText();
+        System.out.println(status);
+        assert status.equals("Succeded");
     }
 }

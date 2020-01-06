@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
         HomePage.class,
         LoginPage.class,
         CredentialsPage.class,
+        RequestPage.class,
         WalletPage.class
 })
 public class TestSuite {

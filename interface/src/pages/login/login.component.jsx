@@ -64,6 +64,7 @@ export default function Login() {
         axios.get(`${centralDatabaseAPI}/Login?userName=user&password=${password}`)
             .then(res => {
                 if (res.status === 200) {
+                    sessionStorage.setItem("logged", true);
                     setRedirectHome(true);
                 };
             }, error => {

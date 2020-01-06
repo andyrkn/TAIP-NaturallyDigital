@@ -53,11 +53,13 @@ export default function Credentials() {
         // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
         // await console.log("API GET call succesfull!");
         setStatus("Loading");
-        await axios.post(`${centralDatabaseAPI}/Requests`, encodeRequest({
+        let request = encodeRequest({
             userAdress: accountAddress,
             identityProviderAdress: "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
             payload: { "institution": institution, "requestType": transcript }
-        }))
+        });
+        console.log(request);
+        await axios.post(`${centralDatabaseAPI}/Requests`, request)
             .then(() => setStatus("Succeded"))
             .catch(err => setStatus("Error"));
     }
