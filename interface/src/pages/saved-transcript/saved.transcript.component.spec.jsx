@@ -8,6 +8,7 @@ import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
 import { getContent } from '../../components/ipfs/ipfs';
 import { deleteRequest } from '../../components/centralDatabase/centralDatabaseApi';
+import { Button } from '@material-ui/core';
 
 configure({
     adapter: new Adapter()
@@ -43,7 +44,7 @@ describe("Saved transcript page", () => {
         let wrapper = shallow(<ApprovedTranscript match={match} getIdentity={getIdentity} getAccountAddress={getAccountAddress} 
             getContent={getContent} deleteIdentity={deleteIdentity}/>)
 
-        wrapper.find("button").at(0).simulate("click");
+        wrapper.find(Button).simulate("click");
 
         expect(deleteIdentity.mock.calls.length).toBe(1);
     })

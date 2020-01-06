@@ -67,7 +67,8 @@ export default class IdentityProvider extends React.Component {
                     <h2>Create identity provider</h2>
                     <label htmlFor="ip">Identity provider address:</label>
                     <input type="text" id="ip" value={this.state.identityProvider} onChange={this.handleIpChange} />
-                    <div>Identity provider data:<FileInput onRead={this.onRead} /></div>
+                    <div>Identity provider data:</div>
+                    <FileInput onRead={this.onRead} />
                     <IdentityProviderView identityProvider={this.state.fileContent} />
                     <button type="submit" onClick={this.onCreate}>Create</button>
                     <hr></hr>
@@ -75,7 +76,7 @@ export default class IdentityProvider extends React.Component {
                     <div>IPFS hash with uploaded data: {this.state.ipfsHash}</div>
                     <div>Transaction hash: {this.state.txHash}</div>
                     <button type="submit" onClick={this.loadIP}>Get IPs</button>
-                    <div>{JSON.stringify(this.state.identityProviders)}</div>
+                    <div>{this.state.identityProviders.map(ip => ip.identityProvider)}</div>
                     <div>{this.state.status}</div>
                 </main>
             </React.Fragment>

@@ -3,13 +3,13 @@
 exports[`Saved transcript page makes a snapshot 1`] = `
 Array [
   <div
-    className="makeStyles-root-1"
+    className="makeStyles-root-3"
   >
     <header
-      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-nav-2 MuiAppBar-colorPrimary mui-fixed"
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-nav-4 MuiAppBar-colorPrimary mui-fixed"
     >
       <div
-        className="MuiBox-root MuiBox-root-51 makeStyles-box-6"
+        className="MuiBox-root MuiBox-root-53 makeStyles-box-8"
       >
         <img
           alt="DSC-Logo"
@@ -18,7 +18,7 @@ Array [
         />
         <button
           aria-label="menu"
-          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-4 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-6 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -40,7 +40,7 @@ Array [
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root makeStyles-icon-7"
+              className="MuiSvgIcon-root makeStyles-icon-9"
               focusable="false"
               role="presentation"
               viewBox="0 0 24 24"
@@ -92,15 +92,30 @@ Array [
           Response
         </h3>
       </div>
-      <div>
-        <button
-          className="button button2"
-          onClick={[Function]}
-          type="button"
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
         >
           Delete
-        </button>
-      </div>
+        </span>
+      </button>
       <div
         className="error"
       >
