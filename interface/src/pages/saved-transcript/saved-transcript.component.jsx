@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/navbar';
-
-import { getContent } from '../../components/ipfs/ipfs';
-import { getAccountAddress, getIdentity, deleteIdentity } from '../../components/ethereum/ethereum';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState } from 'react';
 import { decrypt } from '../../components/crypto';
+import { deleteIdentity, getAccountAddress, getIdentity } from '../../components/ethereum/ethereum';
+import { getContent } from '../../components/ipfs/ipfs';
+import Navbar from '../../components/navbar';
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
 
 const privateKey = '123';
 
+const useStyles = makeStyles(theme => ({
+    button: {
+        margin: theme.spacing(3),
+    },
+    input: {
+        display: 'none',
+    },
+}));
+
 const ApprovedTranscript = (props) => {
+    const classes = useStyles();
     let [accountAddress, setAccountAddress] = useState('');
     let [request, setRequest] = useState({
         "userAdress": "",
@@ -31,11 +42,11 @@ const ApprovedTranscript = (props) => {
             const { match: { params } } = props;
             setId(params.id);
 
-            let address = await getAccountAddress();
+            let address = await props.getAccountAddress();
             setAccountAddress(address);
-            let identity = await getIdentity(address, params.id);
+            let identity = await props.getIdentity(address, params.id);
 
-            const encryptedRequest = JSON.parse(await getContent(identity.ipfsHash));
+            const encryptedRequest = JSON.parse(await props.getContent(identity.ipfsHash));
             console.log(encryptedRequest);
             const request = decrypt(encryptedRequest.encryptedContent, privateKey);
             console.log(request);
@@ -49,9 +60,9 @@ const ApprovedTranscript = (props) => {
 
     const onDelete = () => {
         setLoading(true);
-        deleteIdentity(accountAddress, id)
+        props.deleteIdentity(accountAddress, id)
             .then(result => { setTxHash(result); setLoading(false); })
-            .catch(err => { setStatus(err); setLoading(false); });
+            .catch(err => { setStatus("Error when deleting"); setLoading(false); });
     }
 
     let { institution, requestType, description } = request.payload;
@@ -64,7 +75,9 @@ const ApprovedTranscript = (props) => {
                     <div>
                         <Request institution={institution} requestType={requestType} />
                         <Response payload={description} />
-                        <div><button type="button" className="button button2" onClick={onDelete}>Delete</button></div>
+                        <Button variant="contained" color="primary" className={classes.button} onClick={onDelete}>
+                            Delete
+                        </Button>
                         {txHash == '' ? null :
                             <div><a href={`https://ropsten.etherscan.io/tx/${txHash}`}>TX Hash:</a> {txHash}</div>
                         }
@@ -78,3 +91,10 @@ const ApprovedTranscript = (props) => {
 }
 
 export default ApprovedTranscript;
+
+ApprovedTranscript.defaultProps = {
+    getAccountAddress: getAccountAddress,
+    getIdentity: getIdentity,
+    getContent: getContent,
+    deleteIdentity: deleteIdentity
+}

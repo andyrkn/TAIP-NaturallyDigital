@@ -6,7 +6,6 @@ export const uploadContent = async (jsonFile) => {
     console.log('Uploading to IPFS');
     const content = Buffer.from(jsonFile);
     const filesAdded = await ipfsNode.files.add(content);
-    //  .catch(error => { this.pageError = error; });
     return filesAdded[0].hash;
 }
 

@@ -1,13 +1,15 @@
-import React from 'react';
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Navbar from '../../components/navbar';
-import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core';
 import axios from 'axios';
-import { getAccountAddress, createIdentity, getAllIdentities, getAllIdentityProviders, createIdentityProvider } from '../../components/ethereum/ethereum';
-import { decodeRequest, encodeRequest, decodeRequestList } from "../../components/request.model";
-
-import "./credentials.styles.scss";
+import React from 'react';
+import { getAccountAddress } from '../../components/ethereum/ethereum';
+import Navbar from '../../components/navbar';
+import { encodeRequest } from "../../components/request.model";
+import centralDatabaseAPI from '../../shared/centralDatabase';
 import "../../shared/shared.scss";
+import "./credentials.styles.scss";
+import Loader from '../../components/loader/loader.component';
+
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -29,6 +31,7 @@ export default function Credentials() {
     const classes = useStyles();
     const [institution, setInstitution] = React.useState(0);
     const [transcript, setTranscript] = React.useState(0);
+    const [status, setStatus] = React.useState("");
 
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -49,11 +52,16 @@ export default function Credentials() {
         let accountAddress = await getAccountAddress();
         // let res = await axios.get(`http://109.100.27.188:5000/api/Requests`);
         // await console.log("API GET call succesfull!");
-        await axios.post('http://109.100.27.188:5000/api/Requests', encodeRequest({
+        setStatus("Loading");
+        let request = encodeRequest({
             userAdress: accountAddress,
             identityProviderAdress: "0x32C31A1AC1F98e4dF6C4D91F8b4959a904312e0D",
             payload: { "institution": institution, "requestType": transcript }
-        }))
+        });
+        console.log(request);
+        await axios.post(`${centralDatabaseAPI}/Requests`, request)
+            .then(() => setStatus("Succeded"))
+            .catch(err => setStatus("Error"));
     }
 
     return (
@@ -69,6 +77,7 @@ export default function Credentials() {
                         <Select
                             onChange={handleInstitutionChange}
                             labelWidth={labelWidth}
+                            id="institution"
                         >
                             <MenuItem value={"rutiera"}>Politia Rutiera Iasi</MenuItem>
                             <MenuItem value={"spclep"}>SPCLEP Iasi</MenuItem>
@@ -81,7 +90,7 @@ export default function Credentials() {
                 <div className="row">
                     <p>Select the transcript:</p>
                     <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel}>
+                        <InputLabel ref={inputLabel} id="transcript">
                             Transcript
                         </InputLabel>
                         <Select
@@ -97,6 +106,10 @@ export default function Credentials() {
                 <Button variant="contained" color="primary" className={classes.button} onClick={handleTranscriptRequest}>
                     Send request
                 </Button>
+                <div id="status" className="row">
+                    {status == "Loading" ? <Loader /> : null}
+                    {status}
+                </div>
             </div>
         </React.Fragment>
     )

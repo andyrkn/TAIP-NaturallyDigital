@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Saved transcript page makes a snapshot 1`] = `
+Array [
+  <div
+    className="makeStyles-root-3"
+  >
+    <header
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-nav-4 MuiAppBar-colorPrimary mui-fixed"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-53 makeStyles-box-8"
+      >
+        <img
+          alt="DSC-Logo"
+          className="navbar-logo"
+          src="spiderman.png"
+        />
+        <button
+          aria-label="menu"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-6 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root makeStyles-icon-9"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </header>
+  </div>,
+  <main
+    className="main"
+  >
+    <div>
+      <h2>
+        Request
+      </h2>
+      <div>
+        <span
+          className="key"
+        >
+          Institution: 
+        </span>
+        <span
+          className="institution"
+        >
+          
+        </span>
+      </div>
+      <div>
+        <span
+          className="key"
+        >
+          Request type: 
+        </span>
+        <span
+          className="type"
+        >
+          
+        </span>
+      </div>
+      <div
+        id="response"
+      >
+        <h3>
+          Response
+        </h3>
+      </div>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-1 MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Delete
+        </span>
+      </button>
+      <div
+        className="error"
+      >
+        
+      </div>
+    </div>
+  </main>,
+]
+`;

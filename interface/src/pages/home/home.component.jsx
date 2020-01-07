@@ -30,13 +30,15 @@ const useStyles = makeStyles({
 export default function Home() {
     let logo = require('../../assets/images/icons8-spider-64.png');
     let [payload, setPayload] = useState('');
+    let [logged, setLogget] = useState(false);
     const classes = useStyles();
 
     useEffect(() => {
-        axios.get(`http://109.100.27.188:5000/api/Requests/users?userAdress=0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b`)
-        .then(res => {
-            setPayload(JSON.parse(res.data[0].payload));
-        })
+        // axios.get(`http://109.100.27.188:5000/api/Requests/users?userAdress=0xa3F5c4B09289f482A362e031B6ACA4b662B23b6b`)
+        // .then(res => {
+        //     setPayload(JSON.parse(res.data[0].payload));
+        // })
+        logged = sessionStorage.getItem("logged");
     }, []);
 
     
@@ -57,14 +59,14 @@ export default function Home() {
         <React.Fragment>
             <Navbar />
             <div className="home-message">
-                <p>Welcome! Below, you can see your request history:</p>
+                {/* <p>Welcome! Below, you can see your request history:</p> */}
                 {/* <p>Institution: {payload.fullName}</p>
                 <p>Transcript: {payload.transcript}</p>
                 <p>Amount: {payload.amount}</p>
                 <p>Date: {payload.date}</p>
                 <p>Reason: {payload.reason}</p>
                 <p>Officer Name: {payload.officer}</p> */}
-                <Paper className={classes.root}>
+                {/* <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
@@ -83,9 +85,10 @@ export default function Home() {
                             ))}
                         </TableBody>
                     </Table>
-                </Paper>
+                </Paper> */}
                 <p>If you have any questions, please contact the team.</p>
                 <p>Have a great day!</p>
+                <p id="welcome">Welcome back!</p>
                 <img src={logo} className="spider-logo"/>
             </div>
         </React.Fragment>

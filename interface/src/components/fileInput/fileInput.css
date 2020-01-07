@@ -1,5 +1,7 @@
 .custom-file-input {
     color: transparent;
+    padding-left: 8rem;
+    padding-bottom: 2rem;
 }
 
 .custom-file-input::-webkit-file-upload-button {

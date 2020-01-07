@@ -8,13 +8,14 @@ import TelegramIcon from '@material-ui/icons/Telegram';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import './login.styles.scss';
+import centralDatabaseAPI from '../../shared/centralDatabase';
 
 const roles = [
     {
         value: 'user',
     },
     {
-        value: 'Identity Provider',
+        value: 'ip',
     }
 ]
 
@@ -60,13 +61,14 @@ export default function Login() {
     const handleSubmit = event => {
         event.preventDefault();
         sessionStorage.setItem('role', role);
-        axios.get(`http://109.100.27.188:5000/api/Login?userName=user&password=${password}`)
+        axios.get(`${centralDatabaseAPI}/Login?userName=user&password=${password}`)
             .then(res => {
                 if (res.status === 200) {
+                    sessionStorage.setItem("logged", true);
                     setRedirectHome(true);
                 };
             }, error => {
-                alert("Wrong password & role selected. Try again!");
+                // alert("Wrong password & role selected. Try again!");
             });
     }
 
@@ -84,7 +86,7 @@ export default function Login() {
                     <TextField
                         id="outlined-select-role"
                         select
-                        label="Select"
+                        label="Select Role"
                         className={classes.textField}
                         value={role}
                         onChange={handleChange}
@@ -105,6 +107,7 @@ export default function Login() {
                     </TextField>
                 </form>
                 <Button
+                    id="login"
                     variant="contained"
                     color="primary"
                     className={classes.button}

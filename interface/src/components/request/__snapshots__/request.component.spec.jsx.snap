@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Request component makes a snapshot 1`] = `
+Array [
+  <h2>
+    Request
+  </h2>,
+  <div>
+    <span
+      className="key"
+    >
+      Institution: 
+    </span>
+    <span
+      className="institution"
+    />
+  </div>,
+  <div>
+    <span
+      className="key"
+    >
+      Request type: 
+    </span>
+    <span
+      className="type"
+    />
+  </div>,
+]
+`;
