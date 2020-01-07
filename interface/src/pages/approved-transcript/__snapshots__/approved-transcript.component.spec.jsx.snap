@@ -94,6 +94,7 @@ Array [
     <div>
       <button
         className="button button2"
+        disabled={false}
         onClick={[Function]}
         type="button"
       >

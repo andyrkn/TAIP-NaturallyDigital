@@ -56,6 +56,10 @@ Array [
   </div>,
   <div
     className="transcripts"
-  />,
+  >
+    <div>
+      0 identities or no permission to view
+    </div>
+  </div>,
 ]
 `;

@@ -5,12 +5,11 @@ import { createIdentity, getAccountAddress } from '../../components/ethereum/eth
 import { uploadContent } from '../../components/ipfs/ipfs';
 import Loader from '../../components/loader';
 import Navbar from '../../components/navbar';
-import { decodeRequest } from "../../components/request.model";
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
+import monitorAccountChanges from "../../components/ethereum/monitor";
 
-
-const privateKey = '123';
+let privateKey = '123';
 
 export default class ApprovedTranscript extends React.Component {
     constructor(props) {
@@ -42,6 +41,8 @@ export default class ApprovedTranscript extends React.Component {
         const { match: { params } } = this.props;
         this.setState({ id: params.id });
 
+        monitorAccountChanges();
+
         let accountAddress = await this.props.getAccountAddress();
         this.setState({ accountAddress: accountAddress });
         // axios.get(`${centralDatabaseAPI}/Requests/${params.id}`)
@@ -56,6 +57,7 @@ export default class ApprovedTranscript extends React.Component {
                 console.log(response.data);
                 this.setState({ request: response });
             });
+        privateKey = sessionStorage.getItem("privateKey");
     }
 
     async onSubmit() {
@@ -72,7 +74,7 @@ export default class ApprovedTranscript extends React.Component {
             let ide = await this.props.createIdentity(this.state.accountAddress, ipfsHash, this.state.request.identityProviderAdress);
             console.log(ide);
             this.setState({ txHash: ide });
-            
+
             this.setState({ status: "Deleting request from database" });
             await this.props.deleteRequest(this.state.id);
         } catch (error) {
@@ -90,7 +92,7 @@ export default class ApprovedTranscript extends React.Component {
                 <main className="main">
                     <Request institution={institution} requestType={requestType} />
                     <Response payload={description} />
-                    <div><button type="button" className="button button2" onClick={this.onSubmit}>Accept response and save</button></div>
+                    <div><button type="button" className="button button2" onClick={this.onSubmit} disabled={privateKey == null}>Accept response and save</button></div>
                     {this.state.loading ? <Loader /> : null}
                     {this.state.ipfsHash == '' ? null :
                         <div>

@@ -7,8 +7,10 @@ import { getContent } from '../../components/ipfs/ipfs';
 import Navbar from '../../components/navbar';
 import Request from "../../components/request/request.component";
 import Response from "../../components/response/response.component";
+import monitorAccountChanges from '../../components/ethereum/monitor';
+import { withRouter } from 'react-router-dom';
 
-const privateKey = '123';
+let privateKey = '123';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ApprovedTranscript = (props) => {
+export const ApprovedTranscript = (props) => {
     const classes = useStyles();
     let [accountAddress, setAccountAddress] = useState('');
     let [request, setRequest] = useState({
@@ -53,7 +55,13 @@ const ApprovedTranscript = (props) => {
             setRequest(request);
             setLoading(false);
         }
-        loadRequest();
+        privateKey = sessionStorage.getItem("privateKey");
+        if(privateKey !== null && privateKey !== "") loadRequest();
+        monitorAccountChanges(accountChange);
+    }
+
+    let accountChange = () => {
+        props.history.push("/");
     }
 
     useEffect(getRequest, []);
@@ -90,7 +98,7 @@ const ApprovedTranscript = (props) => {
     )
 }
 
-export default ApprovedTranscript;
+export default withRouter(ApprovedTranscript);
 
 ApprovedTranscript.defaultProps = {
     getAccountAddress: getAccountAddress,

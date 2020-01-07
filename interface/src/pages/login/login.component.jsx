@@ -65,6 +65,7 @@ export default function Login() {
             .then(res => {
                 if (res.status === 200) {
                     sessionStorage.setItem("logged", true);
+                    sessionStorage.setItem('privateKey', password);
                     setRedirectHome(true);
                 };
             }, error => {
