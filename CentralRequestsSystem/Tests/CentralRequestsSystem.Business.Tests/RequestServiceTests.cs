@@ -9,6 +9,10 @@ using System;
 using CSharpFunctionalExtensions;
 using CentralRequestsSystem.Business.RequestBusiness.Extensions;
 using FluentAssertions;
+using System.Linq.Expressions;
+using System.Linq;
+using System.Collections.Generic;
+using CentralRequestsSystem.Business.RequestBusiness.Models;
 
 namespace CentralRequestsSystem.Business.Tests
 {
@@ -65,6 +69,75 @@ namespace CentralRequestsSystem.Business.Tests
             _writeRepository.Verify(repository => repository.Delete(guid), Times.Once);
             _writeRepository.Verify(repository => repository.SaveChanges(), Times.Once);
             result.IsSuccess.Should().Be(true);
+        }
+
+        [Fact]
+        public async Task When_Find_IsCalledWithRightId_ShouldReturn_Entity()
+        {
+            var guid = Guid.NewGuid();
+            var expectedEntity = RequestsTestData.RequestEntity();
+
+            _readRepository.Setup(repository => repository.Find(guid))
+                .ReturnsAsync(Maybe<Request>.From(expectedEntity));
+
+            var result = await sut.Find(guid);
+
+            _readRepository.Verify(repository => repository.Find(guid), Times.Once);
+
+            result.IsSuccess.Should().Be(true);
+            result.Value.Should().NotBeNull().And.BeOfType<Request>();
+        }
+
+        [Fact]
+        public async Task When_Find_IsCalledWithWrongId_ShouldReturn_ErrorMessage()
+        {
+            var guid = Guid.NewGuid();
+            var expectedError = $"Request with Id {guid} does not exist";
+
+            _readRepository.Setup(repository => repository.Find(guid))
+                .ReturnsAsync(Maybe<Request>.From(null));
+
+            var result = await sut.Find(guid);
+
+            _readRepository.Verify(repository => repository.Find(guid), Times.Once);
+
+            result.IsSuccess.Should().Be(false);
+            result.IsFailure.Should().Be(true);
+            result.Error.Should().Be(expectedError);
+        }
+
+        [Fact]
+        public void When_Filtering_GrantedRequests_Should_ReturnOnlyGrantedRequests()
+        {
+            var userAdress = RequestsTestData.FilterModelWithOneGrantedRequestForUserAdress().UserAdress;
+            var requests = RequestsTestData.GrantedRequests().Where(req => req.UserAdress == userAdress);
+            var model = RequestsTestData.FilterModelWithOneGrantedRequestForUserAdress();
+
+            _readRepository.Setup(repository => repository.Where(It.IsAny<Expression<Func<Request, bool>>>()))
+                .Returns(requests);
+
+            var result = sut.Where(model);
+
+            _readRepository.Verify(repository => repository.Where(It.IsAny<Expression<Func<Request, bool>>>()), Times.Once);
+
+            result.Should().BeEquivalentTo(requests);
+        }
+
+        [Fact]
+        public void When_Filtering_PendingRequestsToIdp_Should_ReturnOnlyPendingRequestsForThatIdp()
+        {
+            var idp = RequestsTestData.FilterModelWithPendingRequestsToIp().IdentityProviderAdress;
+            var requests = RequestsTestData.NotGrantedRequests().Where(req => req.IdentityProviderAdress == idp);
+            var model = RequestsTestData.FilterModelWithPendingRequestsToIp();
+
+            _readRepository.Setup(repository => repository.Where(It.IsAny<Expression<Func<Request, bool>>>()))
+                .Returns(requests);
+
+            var result = sut.Where(model);
+
+            _readRepository.Verify(repository => repository.Where(It.IsAny<Expression<Func<Request, bool>>>()), Times.Once);
+
+            result.Should().BeEquivalentTo(requests);
         }
 
         public override void InitSut()
