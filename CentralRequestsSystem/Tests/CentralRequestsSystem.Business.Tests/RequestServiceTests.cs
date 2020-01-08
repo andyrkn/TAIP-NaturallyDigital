@@ -11,8 +11,6 @@ using CentralRequestsSystem.Business.RequestBusiness.Extensions;
 using FluentAssertions;
 using System.Linq.Expressions;
 using System.Linq;
-using System.Collections.Generic;
-using CentralRequestsSystem.Business.RequestBusiness.Models;
 
 namespace CentralRequestsSystem.Business.Tests
 {
