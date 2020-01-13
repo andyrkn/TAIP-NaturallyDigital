@@ -38,4 +38,14 @@ public class MetamaskLogin {
                 .until(driver -> driver.findElement(By.xpath("//*[text()='Connect']")));
         confirmBtn.click();
     }
+
+    public static void confirmTransaction(ChromeDriver browser) {
+        String metamaskWindow = "";
+        for (String window : browser.getWindowHandles())
+            metamaskWindow = window;
+        browser.switchTo().window(metamaskWindow);
+        WebElement confirmBtn = new WebDriverWait(browser, 3)
+                .until(driver -> driver.findElement(By.xpath("//*[text()='Confirm']")));
+        confirmBtn.click();
+    }
 }

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginPage {
     private final static String pageUrl = StringUtils.appUrl + "/login";
-    private final static String userPassword = "user";
+    private final static String userPassword = "123";
 
     @Test
     public void isLoggingIntoAccount() {

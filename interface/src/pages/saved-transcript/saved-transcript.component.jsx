@@ -38,6 +38,10 @@ export const ApprovedTranscript = (props) => {
     let [status, setStatus] = useState('');
     let [loading, setLoading] = useState(false);
 
+    let accountChange = () => {
+        props.history.push("/");
+    }
+    
     const getRequest = () => {
         async function loadRequest() {
             setLoading(true);
@@ -58,10 +62,6 @@ export const ApprovedTranscript = (props) => {
         privateKey = sessionStorage.getItem("privateKey");
         if(privateKey !== null && privateKey !== "") loadRequest();
         monitorAccountChanges(accountChange);
-    }
-
-    let accountChange = () => {
-        props.history.push("/");
     }
 
     useEffect(getRequest, []);

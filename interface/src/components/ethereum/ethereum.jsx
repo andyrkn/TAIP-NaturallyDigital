@@ -28,6 +28,7 @@ export const getAccountAddress = async () => {
 }
 
 export const createIdentity = async (userAddress, ipfsHash, identityProviderAddress) => {
+  console.log(userAddress, ipfsHash, identityProviderAddress);
   let web3 = await getWeb3Instance();
   const contract = new web3.eth.Contract(userIdentityAbi, userIdentityAddress);
   let result = await contract.methods.addIdentity(ipfsHash, identityProviderAddress).send({

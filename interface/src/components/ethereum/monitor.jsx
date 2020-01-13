@@ -7,8 +7,8 @@ let monitorAccountChanges = (updateComponent) => {
             console.log("Account changed: " + accounts[0]);
             sessionStorage.setItem("logged", false);
             sessionStorage.setItem('privateKey', "");
-            // return <Redirect to="/" />;
-            updateComponent();
+            if (updateComponent !== null)
+                updateComponent();
         });
 }
 

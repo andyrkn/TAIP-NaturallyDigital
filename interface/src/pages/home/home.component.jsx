@@ -15,11 +15,11 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
     root: {
-    width: '100%',
-    overflowX: 'auto',
+        width: '100%',
+        overflowX: 'auto',
     },
     table: {
-    minWidth: 350,
+        minWidth: 350,
     },
     headCell: {
         fontSize: '19px',
@@ -38,10 +38,12 @@ export default function Home() {
         // .then(res => {
         //     setPayload(JSON.parse(res.data[0].payload));
         // })
-        logged = sessionStorage.getItem("logged");
+        let log = sessionStorage.getItem("logged");
+        setLogget(log);
+        console.log(logged);
     }, []);
 
-    
+
     function createData(type, value) {
         return { type, value };
     }
@@ -88,8 +90,8 @@ export default function Home() {
                 </Paper> */}
                 <p>If you have any questions, please contact the team.</p>
                 <p>Have a great day!</p>
-                <p id="welcome">Welcome back!</p>
-                <img src={logo} className="spider-logo"/>
+                {(logged !== null && logged !== "false") ? <p id="welcome">Welcome back!</p> : null}
+                <img src={logo} className="spider-logo" />
             </div>
         </React.Fragment>
     )

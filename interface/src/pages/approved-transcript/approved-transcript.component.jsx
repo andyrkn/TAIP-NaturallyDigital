@@ -78,7 +78,7 @@ export default class ApprovedTranscript extends React.Component {
             this.setState({ status: "Deleting request from database" });
             await this.props.deleteRequest(this.state.id);
         } catch (error) {
-            this.setState({ status: 'Error while saving: ' + error });
+            this.setState({ status: 'Error while saving: ' });
         }
         this.setState({ loading: false, status: "Identity successfully saved" });
     }
