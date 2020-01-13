@@ -11,16 +11,12 @@ namespace CentralRequestsSystem.Business.RequestBusiness
     {
         Task AddRequest(CreateRequestModel addRequestModel);
 
-        IAsyncEnumerable<Request> GetByUserAddress(string userAdress);
-
-        IAsyncEnumerable<Request> GetByIdentityProvider(string identityProvider);
-
-        IAsyncEnumerable<Request> GetApprovedRequestsForUser(string userAdress);
-
         Task<Result> Delete(Guid id);
 
         Task<Result> Grant(Guid id, UpdatePayloadModel payloadModel);
 
         Task<Result<Request>> Find(Guid id);
+
+        IAsyncEnumerable<Request> Where(FilterModel filterModel);
     }
 }

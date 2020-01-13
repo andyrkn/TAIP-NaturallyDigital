@@ -1,4 +1,5 @@
 ﻿using CentralRequestsSystem.Business.RequestBusiness;
+using CentralRequestsSystem.Business.RequestBusiness.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CentralRequestsSystem.Presentation.Controllers
@@ -17,7 +18,7 @@ namespace CentralRequestsSystem.Presentation.Controllers
         {
             if (userAdress != null) 
             {
-                return Ok(_requestsService.GetApprovedRequestsForUser(userAdress));
+                return Ok(_requestsService.Where(new FilterModel { UserAdress = userAdress, Granted = true}));
             }
             return BadRequest();
         }

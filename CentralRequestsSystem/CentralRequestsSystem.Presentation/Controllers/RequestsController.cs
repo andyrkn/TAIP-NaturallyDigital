@@ -37,7 +37,7 @@ namespace CentralRequestsSystem.Presentation.Controllers
         {
             if (userAdress != string.Empty)
             {
-                return Ok(_requestsService.GetByUserAddress(userAdress));
+                return Ok(_requestsService.Where(new FilterModel { UserAdress = userAdress, Granted = false }));
             }
 
             return BadRequest();
@@ -53,7 +53,7 @@ namespace CentralRequestsSystem.Presentation.Controllers
         {
             if (identityProvider != string.Empty)
             {
-                return Ok(_requestsService.GetByIdentityProvider(identityProvider));
+                return Ok(_requestsService.Where(new FilterModel { IdentityProviderAdress = identityProvider, Granted = false }));
             }
 
             return BadRequest();

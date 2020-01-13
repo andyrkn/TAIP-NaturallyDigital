@@ -17,7 +17,7 @@ namespace CentralRequestsSystem.Presentation.Tests
         [Fact]
         public async void When_AddRequestCalledWithValidModel_Returns_CompletedTask()
         {
-            var model = AddRequestTestData.AddRequestTestModel();
+            var model = RequestsTestData.RequestTestModel();
             requestServiceMock.Setup(service => service.AddRequest(model))
                 .Returns(Task.CompletedTask);
 

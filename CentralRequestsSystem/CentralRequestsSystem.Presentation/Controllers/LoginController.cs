@@ -9,12 +9,12 @@ namespace CentralRequestsSystem.Presentation.Controllers
         [HttpGet]
         public IActionResult Login([FromQuery] string userName, [FromQuery] string password)
         {
-            if (userName == "idp" && password == "idp")
+            if (userName == "idp" && password == "123")
             {
                 return Ok();
             }
 
-            if (userName == "user" && password == "user")
+            if (userName == "user" && password == "123")
             {
                 return Ok();
             }
