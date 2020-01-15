@@ -33,21 +33,33 @@ public class RequestPage {
         WebElement card = new WebDriverWait(browser, 25)
                 .until(driver -> driver.findElement(By.xpath("(//div[@class='request-card'])[last()]")));
         card.findElement(By.tagName("a")).click();
-        String institution = new WebDriverWait(browser, 5)
-                .until(driver -> driver.findElement(By.className("institution"))).getText();
         WebElement response = new WebDriverWait(browser, 5)
                 .until(driver -> driver.findElement(By.id("response")));
 
         assertTrue(browser.getCurrentUrl().contains(StringUtils.appUrl + "/approved-transcript/"));
         assertTrue(response.isDisplayed());
-        assertEquals(StringUtils.institutionValue, institution);
     }
 
-//    @Test
-//    public void userSubmitAcceptRequest() {
-//        ChromeDriver browser = AppChromeDriver.getDriver();
-//        WebElement input = new WebDriverWait(browser, 25)
-//                .until(driver -> driver.findElement(By.id("file-input")));
-//        input.sendKeys();
-//    }
+    @Test
+    public void userSubmitAcceptRequest() {
+        ChromeDriver browser = AppChromeDriver.getDriver();
+        String window = browser.getWindowHandle();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement button = new WebDriverWait(browser, 25)
+                .until(driver -> driver.findElement(By.className("button2")));
+        button.click();
+        System.out.println(browser.getWindowHandles());
+        new WebDriverWait(browser, 5).until(driver -> driver.getWindowHandles().size() > 2);
+        MetamaskLogin.confirmTransaction(browser);
+        browser.switchTo().window(window);
+        new WebDriverWait(browser, 60)
+                .until(driver -> driver.findElements(By.className("loader")).size() == 0);
+        String status = browser.findElement(By.className("error")).getText();
+        System.out.println(status);
+        assert status.equals("Identity successfully saved");
+    }
 }

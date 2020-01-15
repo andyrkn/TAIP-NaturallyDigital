@@ -76,7 +76,5 @@ describe("Transcript page", () => {
 
         expect(deleteRequest.mock.calls.length).toBe(1);
         expect(deleteRequest.mock.calls[0][0]).toBe(match.params.id);
-        // not working in test because setState is async, works in browser
-        //assert.equal(status.getElement().props.children, "Response submision failed");
     })
 })

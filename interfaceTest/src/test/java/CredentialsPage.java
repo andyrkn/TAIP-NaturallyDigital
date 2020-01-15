@@ -1,8 +1,11 @@
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CredentialsPage {
     private final static String pageUrl = StringUtils.appUrl + "/credentials";
 
@@ -25,7 +28,15 @@ public class CredentialsPage {
         new WebDriverWait(browser, 15)
                 .until(driver -> driver.findElements(By.className("loader")).size() == 0);
         String status = browser.findElementById("status").getText();
-        System.out.println(status);
         assert status.equals("Succeded");
+    }
+
+    @Test
+    public void waitForApproval() {
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
